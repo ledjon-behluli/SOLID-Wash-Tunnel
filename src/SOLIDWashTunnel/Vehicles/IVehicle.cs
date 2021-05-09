@@ -1,4 +1,4 @@
-﻿using SOLIDWashTunnel.WashPrograms.WashSteps;
+using SOLIDWashTunnel.WashPrograms.WashSteps;
 using System.Collections.Generic;
 
 namespace SOLIDWashTunnel.Vehicles

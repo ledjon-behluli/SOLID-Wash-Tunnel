@@ -1,4 +1,4 @@
-﻿using SOLIDWashTunnel.WashPrograms.WashSteps;
+using SOLIDWashTunnel.WashPrograms.WashSteps;
 using System.Collections.Generic;
 
 namespace SOLIDWashTunnel.WashPrograms
@@ -15,10 +15,11 @@ namespace SOLIDWashTunnel.WashPrograms
         public int Id => 1;
         public string Name => "Fast";
 
-        public IEnumerable<IWashStep> GetWashSteps()
-        {
-            return null;
-        }
+        public IEnumerable<IWashStep> GetWashSteps() =>
+            new List<IWashStep>()
+            {
+                new HighPressureWashing()
+            };
     }
 
     public class EconomicWashProgram : IWashProgram
@@ -26,10 +27,11 @@ namespace SOLIDWashTunnel.WashPrograms
         public int Id => 2;
         public string Name => "Economic";
 
-        public IEnumerable<IWashStep> GetWashSteps()
-        {
-            return null;
-        }
+        public IEnumerable<IWashStep> GetWashSteps() =>
+            new List<IWashStep>()
+            {
+                new HighPressureWashing()
+            };
     }
 
     public class AllRounderWashProgram : IWashProgram
@@ -37,10 +39,11 @@ namespace SOLIDWashTunnel.WashPrograms
         public int Id => 3;
         public string Name => "All rounder";
 
-        public IEnumerable<IWashStep> GetWashSteps()
-        {
-            return null;
-        }
+        public IEnumerable<IWashStep> GetWashSteps() =>
+            new List<IWashStep>()
+            {
+                new HighPressureWashing()
+            };
     }
 
     public class CustomWashProgram : IWashProgram
@@ -48,9 +51,10 @@ namespace SOLIDWashTunnel.WashPrograms
         public int Id => 4;
         public string Name => "Custom";
 
-        public IEnumerable<IWashStep> GetWashSteps()
-        {
-            return null;
-        }
+        public IEnumerable<IWashStep> GetWashSteps() =>
+            new List<IWashStep>()
+            {
+                new HighPressureWashing()
+            };
     }
 }

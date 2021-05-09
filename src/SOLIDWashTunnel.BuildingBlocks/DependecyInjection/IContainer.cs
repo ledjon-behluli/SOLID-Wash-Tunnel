@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace SOLIDWashTunnel.BuildingBlocks.DependecyInjection
 {

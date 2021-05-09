@@ -1,9 +1,9 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SOLIDWashTunnel.Console", "Clients\SOLIDWashTunnel.Console\SOLIDWashTunnel.Console.csproj", "{A8554D1A-B82B-4EE2-A45E-16C442C9911F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SOLIDWashTunnel.ConsoleApp", "Clients\SOLIDWashTunnel.ConsoleApp\SOLIDWashTunnel.ConsoleApp.csproj", "{A8554D1A-B82B-4EE2-A45E-16C442C9911F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E0EDA7E4-7A2F-40F8-BFA0-A70276644EEA}"
 EndProject

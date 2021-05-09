@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,14 +14,22 @@ namespace SOLIDWashTunnel.WashPrograms
      
     public class WashProgramFactory
     {
-        public static IWashProgram GetProgram(int programId) =>
-            programId switch
+        public static IWashProgram GetProgram(ProgramType type) =>
+            type switch
             {
-                1 => new FastWashProgram(),
-                2 => new EconomicWashProgram(),
-                3 => new AllRounderWashProgram(),
-                4 => new CustomWashProgram(),
+                ProgramType.Fast => new FastWashProgram(),
+                ProgramType.Economic => new EconomicWashProgram(),
+                ProgramType.AllRounder => new AllRounderWashProgram(),
+                ProgramType.Custom => new CustomWashProgram(),
                 _ => throw new NotSupportedException("Specified wash program is not available!"),
             };
+    }
+
+    public enum ProgramType
+    {
+        Fast = 1,
+        Economic = 2,
+        AllRounder = 3,
+        Custom = 4
     }
 }

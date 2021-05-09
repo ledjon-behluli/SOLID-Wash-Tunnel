@@ -1,4 +1,4 @@
-﻿
+
 namespace SOLIDWashTunnel.WashComponents
 {
     public interface IFoam

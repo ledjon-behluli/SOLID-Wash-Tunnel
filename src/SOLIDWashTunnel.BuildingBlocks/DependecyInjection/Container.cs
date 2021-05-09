@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -42,7 +42,7 @@ namespace SOLIDWashTunnel.BuildingBlocks.DependecyInjection
 
         public TService GetService<TService>()
         {
-            throw new NotImplementedException();
+            return (TService)GetService(typeof(TService));
         }
 
         private object CreateService(Type implementationType)
