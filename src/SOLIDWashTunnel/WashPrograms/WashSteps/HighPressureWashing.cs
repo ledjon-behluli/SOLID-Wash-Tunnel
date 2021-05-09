@@ -4,6 +4,8 @@ namespace SOLIDWashTunnel.WashPrograms.WashSteps
 {
     public class HighPressureWashing : WashStep
     {
+        public override decimal Price => 0.3m;
+
         public override void Execute(IVehicle vehicle)
         {
             vehicle.ApplyWashStep(this);

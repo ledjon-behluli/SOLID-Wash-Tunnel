@@ -1,17 +1,21 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SOLIDWashTunnel.WashPrograms
 {
+    public enum ProgramType
+    {
+        Fast = 1,
+        Economic = 2,
+        AllRounder = 3,
+        Custom = 4
+    }
+
     /* 
      * Pattern: Simple factory pattern
      * Reason: Decouple the selection of a wash program from the Client.
      * Learn more: https://refactoring.guru/design-patterns/factory-comparison 
      */
-     
+
     public class WashProgramFactory
     {
         public static IWashProgram GetProgram(ProgramType type) =>
@@ -23,13 +27,5 @@ namespace SOLIDWashTunnel.WashPrograms
                 ProgramType.Custom => new CustomWashProgram(),
                 _ => throw new NotSupportedException("Specified wash program is not available!"),
             };
-    }
-
-    public enum ProgramType
-    {
-        Fast = 1,
-        Economic = 2,
-        AllRounder = 3,
-        Custom = 4
     }
 }

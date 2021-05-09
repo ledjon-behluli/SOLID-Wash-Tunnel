@@ -19,7 +19,7 @@ namespace SOLIDWashTunnel.BuildingBlocks.DependecyInjection
         public void Register<TService>(Func<TService> instanceCreator) 
             => _registrations.Add(typeof(TService), () => instanceCreator());
 
-        public void RegisterInstance<TService>(TService instance) 
+        public void Register<TService>(TService instance) 
             => _registrations.Add(typeof(TService), () => instance);
 
         public void RegisterSingleton<TService>(Func<TService> instanceCreator)

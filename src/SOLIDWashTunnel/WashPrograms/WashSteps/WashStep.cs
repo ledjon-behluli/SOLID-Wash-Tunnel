@@ -4,6 +4,7 @@ namespace SOLIDWashTunnel.WashPrograms.WashSteps
 {
     public interface IWashStep
     {
+        decimal Price { get; }
         IWashStep NextStep(IWashStep washStep);
         void Execute(IVehicle vehicle);
         string Describe();
@@ -11,6 +12,7 @@ namespace SOLIDWashTunnel.WashPrograms.WashSteps
 
     public abstract class WashStep : IWashStep
     {
+        public abstract decimal Price { get; }
         protected readonly IVehicle vehicle;
         private IWashStep nextStep;
 

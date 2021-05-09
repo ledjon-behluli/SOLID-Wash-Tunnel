@@ -9,6 +9,7 @@ namespace SOLIDWashTunnel.Vehicles
         void ApplyWashStep(WashStep step);
     }
 
+
     public abstract class Vehicle : IVehicle
     {
         private List<WashStep> appliedWashSteps;

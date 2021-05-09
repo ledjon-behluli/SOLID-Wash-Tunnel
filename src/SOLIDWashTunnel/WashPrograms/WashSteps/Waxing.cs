@@ -5,6 +5,7 @@ namespace SOLIDWashTunnel.WashPrograms.WashSteps
 {
     public class Waxing : WashStep
     {
+        public override decimal Price => 2.2m;
         private readonly IWax wax;
 
         public Waxing(IWax wax)

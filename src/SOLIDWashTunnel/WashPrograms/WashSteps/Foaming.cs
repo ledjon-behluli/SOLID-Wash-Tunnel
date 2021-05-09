@@ -2,13 +2,10 @@ using SOLIDWashTunnel.Vehicles;
 
 namespace SOLIDWashTunnel.WashPrograms.WashSteps
 {
-    public abstract class Foaming : WashStep
+    public class ColorFoaming : WashStep
     {
+        public override decimal Price => 1.1m;
 
-    }
-
-    public class ColorFoaming : Foaming
-    {
         public override string Describe()
         {
             throw new System.NotImplementedException();
@@ -21,8 +18,10 @@ namespace SOLIDWashTunnel.WashPrograms.WashSteps
         }
     }
 
-    public class ThreeColorFoaming : Foaming
+    public class ThreeColorFoaming : WashStep
     {
+        public override decimal Price => 1.7m;
+
         public override string Describe()
         {
             throw new System.NotImplementedException();

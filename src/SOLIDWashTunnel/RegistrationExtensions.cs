@@ -3,16 +3,20 @@ using SOLIDWashTunnel.Vehicles;
 using SOLIDWashTunnel.Tunnels;
 using SOLIDWashTunnel.WashPrograms;
 using SOLIDWashTunnel.WashComponents;
-using System;
+using SOLIDWashTunnel.Customers;
+using SOLIDWashTunnel.Invoices;
 
 namespace SOLIDWashTunnel
 {
     public static class RegistrationExtensions
     {
-        public static IContainer AddWashTunnel(this IContainer container, 
-            Func<IVehicle> vehicleCreator)
+        public static IContainer AddWashTunnel(this IContainer container, IVehicle vehicle)
         {
-            container.Register(vehicleCreator);
+            container.Register(vehicle);
+
+            container.Register<ICurrencyRateConverter, CurrencyRateConverter>();
+            container.Register<ICustomerPriceCalculatorFactory, CustomerPriceCalculatorFactory>();
+            container.Register<IInvoiceBuilder, InvoiceBuilder>();
             container.Register<IWashTunnel, ConveyorTunnel>();
             container.Register<IWashProgram, FastWashProgram>();
 

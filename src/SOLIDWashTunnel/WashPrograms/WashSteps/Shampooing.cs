@@ -5,6 +5,7 @@ namespace SOLIDWashTunnel.WashPrograms.WashSteps
 {
     public class Shampooing : WashStep
     {
+        public override decimal Price => 0.8m;
         private readonly IShampoo shampoo;
 
         public Shampooing(IShampoo shampoo)

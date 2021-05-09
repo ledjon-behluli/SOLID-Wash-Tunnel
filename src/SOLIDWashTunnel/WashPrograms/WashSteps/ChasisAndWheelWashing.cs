@@ -5,6 +5,7 @@ namespace SOLIDWashTunnel.WashPrograms.WashSteps
 {
     public class ChasisAndWheelWashing : WashStep
     {
+        public override decimal Price => 1.5m;
         private readonly IBrush brush;
 
         public ChasisAndWheelWashing(IBrush brush)

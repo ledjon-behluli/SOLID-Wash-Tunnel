@@ -1,3 +1,5 @@
+using SOLIDWashTunnel.Customers;
+using SOLIDWashTunnel.Invoices;
 using SOLIDWashTunnel.Vehicles;
 using SOLIDWashTunnel.WashPrograms;
 using SOLIDWashTunnel.WashPrograms.WashSteps;
@@ -7,21 +9,25 @@ namespace SOLIDWashTunnel.Tunnels
 {
     public class ConveyorTunnel : IWashTunnel
     {
-        private IWashProgram program;
+        private IWashProgram _program;
+        private readonly IInvoiceBuilder _invoiceBuilder;
 
-        public ConveyorTunnel(IWashProgram program)
+        public ConveyorTunnel(
+            IWashProgram program,
+            IInvoiceBuilder invoiceBuilder)
         {
-            this.program = program;
+            _program = program;     // We inject a default wash program.
+            _invoiceBuilder = invoiceBuilder;
         }
 
         public void SelectProgram(IWashProgram program)
         {
-            this.program = program;
+            _program ??= program;     // Wash program can be changed during runtime, if it is not null.
         }
 
         public void Wash(IVehicle vehicle)
         {
-            IWashStep[] washSteps = program.GetWashSteps().ToArray();
+            IWashStep[] washSteps = _program.GetWashSteps().ToArray();
 
             for (int i = 0; i < washSteps.Length - 1; i++)
             {
@@ -30,5 +36,23 @@ namespace SOLIDWashTunnel.Tunnels
 
             washSteps[0].Execute(vehicle);
         }
+
+        public string GetInvoiceForIndividual(string firstName, string lastName, Currency preferedCurrecy)
+            => _invoiceBuilder
+                    .CreateForIndividual()
+                    .WithName(firstName, lastName)
+                    .Select(_program)
+                    .Choose(preferedCurrecy)
+                    .Calculate()
+                    .Print();
+
+        public string GetInvoiceForCompany(string companyName, Currency preferedCurrecy)
+            => _invoiceBuilder
+                    .CreateForCompany()
+                    .WithName(companyName)
+                    .Select(_program)
+                    .Choose(preferedCurrecy)
+                    .Calculate()
+                    .Print();
     }
 }

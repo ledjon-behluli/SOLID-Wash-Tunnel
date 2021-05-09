@@ -5,6 +5,7 @@ namespace SOLIDWashTunnel.WashPrograms.WashSteps
 {
     public class Drying : WashStep
     {
+        public override decimal Price => 0.5m;
         private readonly IDryer dryer;
 
         public Drying(IDryer dryer)
