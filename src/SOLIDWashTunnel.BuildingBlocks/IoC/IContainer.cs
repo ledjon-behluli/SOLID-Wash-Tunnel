@@ -1,6 +1,6 @@
 using System;
 
-namespace SOLIDWashTunnel.BuildingBlocks.DependecyInjection
+namespace SOLIDWashTunnel.BuildingBlocks.IoC
 {
     public interface IContainer
     {

@@ -3,6 +3,11 @@ using System;
 
 namespace SOLIDWashTunnel.Customers
 {
+    /* 
+    * Pattern: Factory Method
+    * Reason: TODO
+    * Learn more: https://refactoring.guru/design-patterns/strategy
+    */
     public interface ICustomerPriceCalculatorFactory
     {
         ICustomerPriceCalculator Create(CustomerType customerType);

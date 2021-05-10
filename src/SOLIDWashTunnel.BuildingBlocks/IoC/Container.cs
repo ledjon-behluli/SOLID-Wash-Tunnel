@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SOLIDWashTunnel.BuildingBlocks.DependecyInjection
+namespace SOLIDWashTunnel.BuildingBlocks.IoC
 {
     public class Container : IContainer
     {

@@ -2,6 +2,11 @@ using SOLIDWashTunnel.Vehicles;
 
 namespace SOLIDWashTunnel.WashPrograms.WashSteps
 {
+    /* 
+    * Pattern: Chain of Responsebility
+    * Reason: TODO
+    * Learn more: https://refactoring.guru/design-patterns/strategy
+    */
     public interface IWashStep
     {
         decimal Price { get; }

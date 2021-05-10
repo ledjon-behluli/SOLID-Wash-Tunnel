@@ -4,6 +4,11 @@ using System.Linq;
 
 namespace SOLIDWashTunnel.Customers
 {
+    /* 
+    * Pattern: Strategy pattern
+    * Reason: Switch different price calculation strategies on runtime.
+    * Learn more: https://refactoring.guru/design-patterns/strategy
+    */
     public interface ICustomerPriceCalculator
     {
         int Discount { get; }

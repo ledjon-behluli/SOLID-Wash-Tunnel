@@ -15,6 +15,8 @@ namespace SOLIDWashTunnel.Vehicles
         private List<WashStep> appliedWashSteps;
         public IReadOnlyCollection<WashStep> AppliedWashSteps => appliedWashSteps.AsReadOnly();
 
+        public IEnumerable<IVehicleStatusSubscriber> Watchers => throw new System.NotImplementedException();
+
         public Vehicle()
         {
             appliedWashSteps = new List<WashStep>();
@@ -23,6 +25,11 @@ namespace SOLIDWashTunnel.Vehicles
         public void ApplyWashStep(WashStep step)
         {
             appliedWashSteps.Add(step);
+        }
+
+        public void AddWatcher(IVehicleStatusSubscriber watcher)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

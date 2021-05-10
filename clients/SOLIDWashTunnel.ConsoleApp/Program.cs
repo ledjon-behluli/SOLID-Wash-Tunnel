@@ -1,5 +1,5 @@
 using System;
-using SOLIDWashTunnel.BuildingBlocks.DependecyInjection;
+using SOLIDWashTunnel.BuildingBlocks.IoC;
 using SOLIDWashTunnel.Invoices;
 using SOLIDWashTunnel.Tunnels;
 using SOLIDWashTunnel.WashPrograms;
@@ -25,9 +25,7 @@ namespace SOLIDWashTunnel.ConsoleApp
             }
 
             Console.OutputEncoding = System.Text.Encoding.UTF8;
-            //Console.WriteLine(tunnel.GetInvoiceForIndividual("Ledjon", "Behluli", Currency.EUR));
             Console.WriteLine(tunnel.GetInvoiceForIndividual("Ledjon", "Behluli", Currency.USD));
-            Console.WriteLine(tunnel.GetInvoiceForCompany("SoftTech LLC", Currency.USD));
 
             Console.ReadKey();
         }

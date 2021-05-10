@@ -1,4 +1,5 @@
-using SOLIDWashTunnel.BuildingBlocks.DependecyInjection;
+using SOLIDWashTunnel.BuildingBlocks.IoC;
+using SOLIDWashTunnel.Auxiliaries;
 using SOLIDWashTunnel.Vehicles;
 using SOLIDWashTunnel.Tunnels;
 using SOLIDWashTunnel.WashPrograms;
@@ -14,6 +15,8 @@ namespace SOLIDWashTunnel
         {
             container.Register(vehicle);
 
+            container.RegisterSingleton<IVehicleStatusPublisher>(() => new ControlPanel());
+
             container.Register<ICurrencyRateConverter, CurrencyRateConverter>();
             container.Register<ICustomerPriceCalculatorFactory, CustomerPriceCalculatorFactory>();
             container.Register<IInvoiceBuilder, InvoiceBuilder>();
@@ -25,6 +28,11 @@ namespace SOLIDWashTunnel
             container.Register<IFoam, Foam>();
             container.Register<IShampoo, Shampoo>();
             container.Register<IWax, Wax>();
+
+
+            container.GetService<IVehicleStatusPublisher>()
+                     .Subscribe(new BackDoor())
+                     .Subscribe(new InvoiceGenerator());
 
             return container;
         }

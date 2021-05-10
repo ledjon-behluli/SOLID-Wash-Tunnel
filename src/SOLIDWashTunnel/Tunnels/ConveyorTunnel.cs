@@ -1,4 +1,3 @@
-using SOLIDWashTunnel.Customers;
 using SOLIDWashTunnel.Invoices;
 using SOLIDWashTunnel.Vehicles;
 using SOLIDWashTunnel.WashPrograms;
@@ -15,7 +14,7 @@ namespace SOLIDWashTunnel.Tunnels
         public ConveyorTunnel(
             IWashProgram program,
             IInvoiceBuilder invoiceBuilder)
-        {
+        {   
             _program = program;     // We inject a default wash program.
             _invoiceBuilder = invoiceBuilder;
         }

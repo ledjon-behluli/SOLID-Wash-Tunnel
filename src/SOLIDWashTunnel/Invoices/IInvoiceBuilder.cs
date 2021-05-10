@@ -1,8 +1,12 @@
-﻿using SOLIDWashTunnel.Customers;
-using SOLIDWashTunnel.WashPrograms;
+﻿using SOLIDWashTunnel.WashPrograms;
 
 namespace SOLIDWashTunnel.Invoices
 {
+    /* 
+    * Pattern: Builder
+    * Reason: TODO
+    * Learn more: https://refactoring.guru/design-patterns/strategy
+    */
     public interface IInvoiceBuilder
     {
         IIndividualNamePicker CreateForIndividual();

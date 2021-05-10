@@ -11,7 +11,7 @@ namespace SOLIDWashTunnel.WashPrograms
     }
 
     /* 
-     * Pattern: Simple factory pattern
+     * Pattern: Simple Factory
      * Reason: Decouple the selection of a wash program from the Client.
      * Learn more: https://refactoring.guru/design-patterns/factory-comparison 
      */
