@@ -1,10 +1,16 @@
 ﻿using SOLIDWashTunnel.Customers;
-using SOLIDWashTunnel.WashPrograms;
+using SOLIDWashTunnel.Programs;
 using SOLIDWashTunnel.BuildingBlocks.Extensions;
 using System.Text;
 
 namespace SOLIDWashTunnel.Invoices
 {
+    /* 
+    * Pattern: Builder
+    * Reason: TODO
+    * Learn more: https://refactoring.guru/design-patterns/strategy
+    */
+
     public class InvoiceBuilder : IInvoiceBuilder, IIndividualNamePicker, ICompanyNamePicker, IProgramSelector, ICurrencyPicker, IAmountCalculator, IInvoicePrinter
     {
         private int _discount;

@@ -1,5 +1,5 @@
 ﻿using SOLIDWashTunnel.Invoices;
-using SOLIDWashTunnel.WashPrograms;
+using SOLIDWashTunnel.Programs;
 using System.Linq;
 
 namespace SOLIDWashTunnel.Customers

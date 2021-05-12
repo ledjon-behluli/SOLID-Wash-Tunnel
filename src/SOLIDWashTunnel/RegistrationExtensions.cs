@@ -1,38 +1,34 @@
-using SOLIDWashTunnel.BuildingBlocks.IoC;
-using SOLIDWashTunnel.Auxiliaries;
+using SOLIDWashTunnel.IoC;
 using SOLIDWashTunnel.Vehicles;
-using SOLIDWashTunnel.Tunnels;
-using SOLIDWashTunnel.WashPrograms;
-using SOLIDWashTunnel.WashComponents;
+using SOLIDWashTunnel.Tunnel;
+using SOLIDWashTunnel.Materials;
 using SOLIDWashTunnel.Customers;
 using SOLIDWashTunnel.Invoices;
+using SOLIDWashTunnel.Programs;
 
 namespace SOLIDWashTunnel
 {
     public static class RegistrationExtensions
     {
-        public static IContainer AddWashTunnel(this IContainer container, IVehicle vehicle)
+        public static IContainer Setup(this IContainer container, IVehicle vehicle)
         {
             container.Register(vehicle);
-
-            container.RegisterSingleton<IVehicleStatusPublisher>(() => new ControlPanel());
 
             container.Register<ICurrencyRateConverter, CurrencyRateConverter>();
             container.Register<ICustomerPriceCalculatorFactory, CustomerPriceCalculatorFactory>();
             container.Register<IInvoiceBuilder, InvoiceBuilder>();
-            container.Register<IWashTunnel, ConveyorTunnel>();
-            container.Register<IWashProgram, FastWashProgram>();
+            container.Register<IUserPanel, UserPanel>();
+            container.Register<IWashTunnel, WashTunnel>();
+            container.Register<IWashProgramFactory, WashProgramFactory>();
+            container.Register<IBackDoor, BackDoor>();
+
+            container.Register<ICentralControllerUnit, CentralControllerUnit>();
 
             container.Register<IBrush, Brush>();
             container.Register<IDryer, AirDryer>();
             container.Register<IFoam, Foam>();
             container.Register<IShampoo, Shampoo>();
             container.Register<IWax, Wax>();
-
-
-            container.GetService<IVehicleStatusPublisher>()
-                     .Subscribe(new BackDoor())
-                     .Subscribe(new InvoiceGenerator());
 
             return container;
         }

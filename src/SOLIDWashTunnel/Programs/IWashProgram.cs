@@ -1,7 +1,7 @@
-using SOLIDWashTunnel.WashPrograms.WashSteps;
+using SOLIDWashTunnel.Programs.Steps;
 using System.Collections.Generic;
 
-namespace SOLIDWashTunnel.WashPrograms
+namespace SOLIDWashTunnel.Programs
 {
     public interface IWashProgram
     {

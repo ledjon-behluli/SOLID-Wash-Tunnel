@@ -1,7 +1,7 @@
 using SOLIDWashTunnel.Vehicles;
-using SOLIDWashTunnel.WashComponents;
+using SOLIDWashTunnel.Materials;
 
-namespace SOLIDWashTunnel.WashPrograms.WashSteps
+namespace SOLIDWashTunnel.Programs.Steps
 {
     public class ChasisAndWheelWashing : WashStep
     {

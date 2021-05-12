@@ -1,8 +1,7 @@
 using System;
-using SOLIDWashTunnel.BuildingBlocks.IoC;
-using SOLIDWashTunnel.Invoices;
-using SOLIDWashTunnel.Tunnels;
-using SOLIDWashTunnel.WashPrograms;
+using SOLIDWashTunnel.IoC;
+using SOLIDWashTunnel.Tunnel;
+using SOLIDWashTunnel.Programs;
 
 namespace SOLIDWashTunnel.ConsoleApp
 {
@@ -13,11 +12,12 @@ namespace SOLIDWashTunnel.ConsoleApp
             Car car = new Car();
 
             var container = new Container();
-            container.AddWashTunnel(car);
+            container.Setup(car);
 
-            IWashTunnel tunnel = container.GetService<IWashTunnel>();
-            tunnel.SelectProgram(WashProgramFactory.GetProgram(ProgramType.Fast));
-            tunnel.Wash(car);
+            IUserPanel panel = container.GetService<IUserPanel>();
+
+            panel.SelectProgram(ProgramType.Fast);
+            panel.Start(car);
 
             foreach (var step in car.AppliedWashSteps)
             {
@@ -25,7 +25,7 @@ namespace SOLIDWashTunnel.ConsoleApp
             }
 
             Console.OutputEncoding = System.Text.Encoding.UTF8;
-            Console.WriteLine(tunnel.GetInvoiceForIndividual("Ledjon", "Behluli", Currency.USD));
+            //Console.WriteLine(tunnel.GetInvoiceForIndividual("Ledjon", "Behluli", Currency.USD));
 
             Console.ReadKey();
         }

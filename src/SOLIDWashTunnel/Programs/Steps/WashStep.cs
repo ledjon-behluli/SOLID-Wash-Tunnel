@@ -1,6 +1,6 @@
 using SOLIDWashTunnel.Vehicles;
 
-namespace SOLIDWashTunnel.WashPrograms.WashSteps
+namespace SOLIDWashTunnel.Programs.Steps
 {
     /* 
     * Pattern: Chain of Responsebility

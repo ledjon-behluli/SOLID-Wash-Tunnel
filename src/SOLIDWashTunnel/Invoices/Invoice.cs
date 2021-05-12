@@ -1,4 +1,4 @@
-﻿using SOLIDWashTunnel.WashPrograms;
+﻿using SOLIDWashTunnel.Programs;
 
 namespace SOLIDWashTunnel.Invoices
 {

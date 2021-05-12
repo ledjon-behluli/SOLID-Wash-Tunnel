@@ -1,6 +1,6 @@
 using System;
 
-namespace SOLIDWashTunnel.WashPrograms
+namespace SOLIDWashTunnel.Programs
 {
     public enum ProgramType
     {
@@ -11,14 +11,19 @@ namespace SOLIDWashTunnel.WashPrograms
     }
 
     /* 
-     * Pattern: Simple Factory
+     * Pattern: Factory Method
      * Reason: Decouple the selection of a wash program from the Client.
      * Learn more: https://refactoring.guru/design-patterns/factory-comparison 
      */
 
-    public class WashProgramFactory
+    public interface IWashProgramFactory
     {
-        public static IWashProgram GetProgram(ProgramType type) =>
+        IWashProgram Create(ProgramType type);
+    }
+
+    public class WashProgramFactory : IWashProgramFactory
+    {
+        public IWashProgram Create(ProgramType type) =>
             type switch
             {
                 ProgramType.Fast => new FastWashProgram(),

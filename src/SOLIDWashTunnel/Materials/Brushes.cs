@@ -1,6 +1,6 @@
 
 
-namespace SOLIDWashTunnel.WashComponents
+namespace SOLIDWashTunnel.Materials
 {
     public interface IBrush
     {
