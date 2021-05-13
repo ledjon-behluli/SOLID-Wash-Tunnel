@@ -2,6 +2,7 @@
 using SOLIDWashTunnel.Vehicles;
 using SOLIDWashTunnel.Programs;
 using System;
+using SOLIDWashTunnel.IoC;
 
 namespace SOLIDWashTunnel.Tunnel
 {
@@ -26,27 +27,23 @@ namespace SOLIDWashTunnel.Tunnel
 
     public class CentralControllerUnit : ICentralControllerUnit
     {
-        private readonly IUserPanel _userPanel;
-        private readonly IWashTunnel _washTunnel;
-        private readonly IBackDoor _backDoor;
-
+        private readonly IContainer container;
         private IWashProgram _selectedProgram;
 
-        public CentralControllerUnit(
-            IUserPanel userPanel,
-            IWashTunnel washTunnel,
-            IBackDoor backDoor)
+        public CentralControllerUnit(IContainer container)
         {
-            _userPanel = userPanel;
-            _washTunnel = washTunnel;
-            _backDoor = backDoor;
+            this.container = container;
         }
 
         public void Transmit(Signal signal)
         {
             switch (signal)
             {
-                case Signal.VehicleReady: _backDoor.Open();
+                case Signal.VehicleReady:
+                    {
+                        container.GetService<IBackDoor>()
+                                 .Open();
+                    }
                     break;
             };
         }
@@ -55,14 +52,18 @@ namespace SOLIDWashTunnel.Tunnel
         {
             switch (signal)
             {
-                case Signal.WashProgramSelected: _selectedProgram = (IWashProgram)extraInfo;
+                case Signal.WashProgramSelected:
+                    {
+                        _selectedProgram = (IWashProgram)extraInfo;
+                    }
                     break;
                 case Signal.StartWashing:
                     {
                         if (_selectedProgram == null)
                             throw new InvalidOperationException("Vehicle washing can not start until a program has been selected!");
 
-                        _washTunnel.Wash((IVehicle)extraInfo, _selectedProgram);
+                        container.GetService<IWashTunnel>()
+                                 .Wash((IVehicle)extraInfo, _selectedProgram);
                     }
                     break;
             };
