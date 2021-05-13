@@ -15,7 +15,7 @@ namespace SOLIDWashTunnel
         {
             container.Register(vehicle);
 
-            container.RegisterSingleton<ICentralControllerUnit>(() => new CentralControllerUnit(container));
+            container.RegisterSingleton<IControlUnit>(() => new ControlUnit(container));
 
             container.Register<IUserPanel, UserPanel>();
             container.Register<IWashTunnel, WashTunnel>();

@@ -17,8 +17,9 @@ namespace SOLIDWashTunnel.ConsoleApp
 
             IUserPanel panel = container.GetService<IUserPanel>();
 
-            panel.SelectProgram(ProgramType.Fast);
-            panel.Start(car);
+            panel.SelectProgram(ProgramType.Fast)
+                 .ForCompany("asda", Invoices.Currency.EUR)
+                 .Start(car);
 
             foreach (var step in car.AppliedWashSteps)
             {

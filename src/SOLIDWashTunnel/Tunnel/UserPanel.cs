@@ -1,7 +1,6 @@
 ﻿using SOLIDWashTunnel.Vehicles;
 using SOLIDWashTunnel.Programs;
 using SOLIDWashTunnel.Invoices;
-using SOLIDWashTunnel.Customers;
 
 namespace SOLIDWashTunnel.Tunnel
 {
@@ -23,55 +22,90 @@ namespace SOLIDWashTunnel.Tunnel
     
     public class UserPanel : IUserPanel, IClientInformationCollector, IWashProcessStarter
     {
-        private readonly ICentralControllerUnit _centralControllerUnit;
+        private readonly IControlUnit _controlUnit;
         private readonly IWashProgramFactory _programFactory;
 
         public UserPanel(
-            ICentralControllerUnit centralControllerUnit,
+            IControlUnit controlUnit,
             IWashProgramFactory programFactory)
         {
-            _centralControllerUnit = centralControllerUnit;
+            _controlUnit = controlUnit;
             _programFactory = programFactory;
         }
 
         public IClientInformationCollector SelectProgram(ProgramType type)
         {
             IWashProgram program = _programFactory.Create(type);
-            _centralControllerUnit.Transmit(Signal.WashProgramSelected, program);
+            _controlUnit.Transmit(new WashProgramSelectedSignal(program));
 
             return this;
         }
 
         public IWashProcessStarter ForIndividual(string firstName, string lastName, Currency preferedCurrecy)
         {
-            InvoiceCustomerInfo info = new InvoiceCustomerInfo()
-            {
-                FirstName = firstName,
-                LastName = lastName,
-                PreferredCurrency = preferedCurrecy
-            };
-
-            _centralControllerUnit.Transmit(Signal.ClientInfosCollected, info);
-
+            _controlUnit.Transmit(new IndividualCustomerInfoEnteredSignal(firstName, lastName, preferedCurrecy));
             return this;
         }
 
         public IWashProcessStarter ForCompany(string companyName, Currency preferedCurrecy)
         {
-            InvoiceCustomerInfo info = new InvoiceCustomerInfo()
-            {
-                CompanyName = companyName,
-                PreferredCurrency = preferedCurrecy
-            };
-
-            _centralControllerUnit.Transmit(Signal.ClientInfosCollected, info);
-
+            _controlUnit.Transmit(new CompanyCustomerInfoEnteredSignal(companyName, preferedCurrecy));
             return this;
         }
 
         public void Start(IVehicle vehicle)
         {
-            _centralControllerUnit.Transmit(Signal.StartWashing, vehicle);
+            _controlUnit.Transmit(new VehicleWashingStartedSignal(vehicle));
         }
     }
+
+    #region Signals
+
+    public class WashProgramSelectedSignal : IControlUnitSignal
+    {
+        public IWashProgram Program { get; }
+
+        public WashProgramSelectedSignal(IWashProgram program)
+        {
+            Program = program;
+        }
+    }
+
+    public class IndividualCustomerInfoEnteredSignal : IControlUnitSignal
+    {
+        public string FirstName { get; }
+        public string LastName { get; }
+        public Currency PreferredCurrency { get; }
+
+        public IndividualCustomerInfoEnteredSignal(string firstName, string lastName, Currency preferredCurrency)
+        {
+            FirstName = firstName;
+            LastName = lastName;
+            PreferredCurrency = preferredCurrency;
+        }
+    }
+
+    public class CompanyCustomerInfoEnteredSignal : IControlUnitSignal
+    {
+        public string CompanyName { get; }
+        public Currency PreferredCurrency { get; }
+
+        public CompanyCustomerInfoEnteredSignal(string companyName, Currency preferredCurrency)
+        {
+            CompanyName = companyName;
+            PreferredCurrency = preferredCurrency;
+        }
+    }
+
+    public class VehicleWashingStartedSignal : IControlUnitSignal
+    {
+        public IVehicle Vehicle { get; }
+
+        public VehicleWashingStartedSignal(IVehicle vehicle)
+        {
+            Vehicle = vehicle;
+        }
+    }
+
+    #endregion
 }

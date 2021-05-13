@@ -12,11 +12,11 @@ namespace SOLIDWashTunnel.Tunnel
 
     public class WashTunnel : IWashTunnel
     {
-        private readonly ICentralControllerUnit _centralControllerUnit;
+        private readonly IControlUnit _controlUnit;
 
-        public WashTunnel(ICentralControllerUnit centralControllerUnit)
+        public WashTunnel(IControlUnit controlUnit)
         {
-            _centralControllerUnit = centralControllerUnit;
+            _controlUnit = controlUnit;
         }
 
         public void Wash(IVehicle vehicle, IWashProgram program)
@@ -29,7 +29,12 @@ namespace SOLIDWashTunnel.Tunnel
             }
 
             washSteps[0].Execute(vehicle);
-            _centralControllerUnit.Transmit(Signal.VehicleReady);
+            _controlUnit.Transmit(new VehicleReadySignal());
         }
+    }
+
+    public class VehicleReadySignal : IControlUnitSignal
+    {
+
     }
 }
