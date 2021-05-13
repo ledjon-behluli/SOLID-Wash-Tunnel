@@ -7,7 +7,7 @@ using SOLIDWashTunnel.Customers;
 using SOLIDWashTunnel.Invoices;
 using SOLIDWashTunnel.Programs;
 
-namespace SOLIDWashTunnel.BuildingBlocks.Extensions
+namespace SOLIDWashTunnel
 {
     public static class Extensions
     {

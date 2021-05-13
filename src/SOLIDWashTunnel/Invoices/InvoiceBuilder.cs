@@ -1,6 +1,5 @@
 ﻿using SOLIDWashTunnel.Customers;
 using SOLIDWashTunnel.Programs;
-using SOLIDWashTunnel.BuildingBlocks.Extensions;
 using System.Text;
 
 namespace SOLIDWashTunnel.Invoices

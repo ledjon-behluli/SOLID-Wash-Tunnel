@@ -1,8 +1,7 @@
 using System;
 using SOLIDWashTunnel.IoC;
-using SOLIDWashTunnel.Tunnel;
 using SOLIDWashTunnel.Programs;
-using SOLIDWashTunnel.BuildingBlocks.Extensions;
+using SOLIDWashTunnel.Tunnel;
 using SOLIDWashTunnel.Vehicles;
 
 namespace SOLIDWashTunnel.ConsoleApp
@@ -18,7 +17,7 @@ namespace SOLIDWashTunnel.ConsoleApp
 
             IUserPanel panel = container.GetService<IUserPanel>();
 
-            //panel.SelectProgram(ProgramType.Fast);
+            panel.SelectProgram(ProgramType.Fast);
             panel.Start(car);
 
             foreach (var step in car.AppliedWashSteps)

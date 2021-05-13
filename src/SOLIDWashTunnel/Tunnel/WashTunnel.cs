@@ -8,8 +8,6 @@ namespace SOLIDWashTunnel.Tunnel
     public interface IWashTunnel
     {
         void Wash(IVehicle vehicle, IWashProgram program);
-        //string GetInvoiceForIndividual(string firstName, string lastName, Currency preferedCurrecy);
-        //string GetInvoiceForCompany(string companyName, Currency preferedCurrecy);
     }
 
     public class WashTunnel : IWashTunnel
@@ -33,23 +31,5 @@ namespace SOLIDWashTunnel.Tunnel
             washSteps[0].Execute(vehicle);
             _centralControllerUnit.Transmit(Signal.VehicleReady);
         }
-
-        //public string GetInvoiceForIndividual(string firstName, string lastName, Currency preferedCurrecy)
-        //    => _invoiceBuilder
-        //            .CreateForIndividual()
-        //            .WithName(firstName, lastName)
-        //            .Select(_program)
-        //            .Choose(preferedCurrecy)
-        //            .Calculate()
-        //            .Print();
-
-        //public string GetInvoiceForCompany(string companyName, Currency preferedCurrecy)
-        //    => _invoiceBuilder
-        //            .CreateForCompany()
-        //            .WithName(companyName)
-        //            .Select(_program)
-        //            .Choose(preferedCurrecy)
-        //            .Calculate()
-        //            .Print();
     }
 }
