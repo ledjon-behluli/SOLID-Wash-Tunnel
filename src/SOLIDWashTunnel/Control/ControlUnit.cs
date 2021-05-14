@@ -4,30 +4,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace SOLIDWashTunnel.Tunnel
+namespace SOLIDWashTunnel.Control
 {
     /* 
-    * Pattern: Mediator pattern
-    * Reason: Encapsulate communication logic between objects, in order to reduce dependencies between them.
-    * Learn more:
-    */
-
-    public interface IControlUnitSignal
-    {
-
-    }
-
-    // Marker interface
-    public interface IControlUnitSignalHandler
-    {
-
-    }
-
-    public interface IControlUnitSignalHandler<in T> : IControlUnitSignalHandler
-        where T : IControlUnitSignal
-    {
-        void Handle(T signal);
-    }
+     * Pattern: Mediator pattern
+     * Reason: Encapsulate communication logic between objects, in order to reduce dependencies between them.
+     * Learn more:
+     */
 
     public interface IControlUnit
     {
@@ -45,14 +28,14 @@ namespace SOLIDWashTunnel.Tunnel
 
         public void Transmit<T>(T signal) where T : IControlUnitSignal
         {
-            var signalHandlers = GetAllSignalHandlers<T>();
+            var signalHandlers = GetSignalHandlers<T>();
             foreach (var handler in signalHandlers)
             {
                 handler.Handle(signal);
             }
         }
 
-        private IEnumerable<IControlUnitSignalHandler<T>> GetAllSignalHandlers<T>()
+        private IEnumerable<IControlUnitSignalHandler<T>> GetSignalHandlers<T>()
             where T : IControlUnitSignal
         {
             return Assembly
@@ -78,7 +61,7 @@ namespace SOLIDWashTunnel.Tunnel
                     foreach (var constructorParameter in constructorParameters)
                     {
                         var cpType = constructorParameter.ParameterType;
-                        var instance = typeof(IContainer).IsAssignableFrom(cpType) ? _container : _container.GetService(cpType);
+                        var instance = _container.GetService(cpType);
                         objectList.Add(instance);
                     }
 
@@ -92,6 +75,6 @@ namespace SOLIDWashTunnel.Tunnel
             }
 
             return (IControlUnitSignalHandler<T>)handlerInstance;
-        }
+        }  
     }
 }

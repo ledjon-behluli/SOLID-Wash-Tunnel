@@ -6,6 +6,7 @@ using SOLIDWashTunnel.Materials;
 using SOLIDWashTunnel.Customers;
 using SOLIDWashTunnel.Invoices;
 using SOLIDWashTunnel.Programs;
+using SOLIDWashTunnel.Control;
 
 namespace SOLIDWashTunnel
 {
@@ -16,6 +17,7 @@ namespace SOLIDWashTunnel
             container.Register(vehicle);
 
             container.RegisterSingleton<IControlUnit>(() => new ControlUnit(container));
+            container.RegisterSingleton<IControlUnitMemory>(() => new ControlUnitMemory());
 
             container.Register<IUserPanel, UserPanel>();
             container.Register<IWashTunnel, WashTunnel>();
