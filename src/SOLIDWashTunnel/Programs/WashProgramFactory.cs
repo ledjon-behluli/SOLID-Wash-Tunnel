@@ -2,6 +2,17 @@ using System;
 
 namespace SOLIDWashTunnel.Programs
 {
+    /* 
+    * Pattern: 
+    *   Simple Factory
+    *   
+    * Reason: 
+    *   Decouple the selection of a wash program from the customer.
+    *   
+    * Learn more: 
+    *   https://refactoring.guru/design-patterns/factory-comparison
+    */
+
     public enum ProgramType
     {
         Fast = 1,
@@ -9,12 +20,6 @@ namespace SOLIDWashTunnel.Programs
         AllRounder = 3,
         Custom = 4
     }
-
-    /* 
-     * Pattern: Factory Method
-     * Reason: Decouple the selection of a wash program from the Client.
-     * Learn more: https://refactoring.guru/design-patterns/factory-comparison 
-     */
 
     public interface IWashProgramFactory
     {
@@ -30,7 +35,7 @@ namespace SOLIDWashTunnel.Programs
                 ProgramType.Economic => new EconomicWashProgram(),
                 ProgramType.AllRounder => new AllRounderWashProgram(),
                 ProgramType.Custom => new CustomWashProgram(),
-                _ => throw new NotSupportedException("Specified wash program is not available!"),
+                _ => throw new NotSupportedException(),
             };
     }
 }

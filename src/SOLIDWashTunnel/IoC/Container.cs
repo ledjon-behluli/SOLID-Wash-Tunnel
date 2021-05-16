@@ -4,6 +4,18 @@ using System.Linq;
 
 namespace SOLIDWashTunnel.IoC
 {
+    /* 
+    * Principle: 
+    *   Inversion of Control
+    *   
+    * Reason: 
+    *   Objects do not create other objects on which they rely to do their work.
+    *   Instead, they get the objects that they need from an outside source/container.
+    *   
+    * Learn more: 
+    *   https://en.wikipedia.org/wiki/Inversion_of_control
+    */
+
     public class Container : IContainer
     {
         private Dictionary<Type, Func<object>> _registrations;
@@ -30,19 +42,22 @@ namespace SOLIDWashTunnel.IoC
 
         public object GetService(Type type)
         {
-            Func<object> creator;
-
-            if (_registrations.TryGetValue(type, out creator)) 
+            if (_registrations.TryGetValue(type, out Func<object> creator))
                 return creator();
-            else if (!type.IsAbstract) 
+            else if (!type.IsAbstract)
                 return CreateService(type);
-            else 
+            else
                 throw new InvalidOperationException("No registration for " + type);
         }
 
         public TService GetService<TService>()
         {
             return (TService)GetService(typeof(TService));
+        }
+
+        public TService GetService<TService>(Type type)
+        {
+            return (TService)GetService(type);
         }
 
         private object CreateService(Type implementationType)

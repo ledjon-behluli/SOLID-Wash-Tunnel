@@ -7,7 +7,7 @@ namespace SOLIDWashTunnel.Finances
         Money Convert(Money price, Currency currency);
     }
 
-    // You would use an external service to handle currency convertion
+    // You would use an external service to handle currency convertions
     public class CurrencyRateConverter : ICurrencyRateConverter
     {
         public Money Convert(Money price, Currency currency)

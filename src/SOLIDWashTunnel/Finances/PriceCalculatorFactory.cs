@@ -3,10 +3,16 @@
 namespace SOLIDWashTunnel.Finances
 {
     /* 
-    * Pattern: Factory Method
-    * Reason: TODO
-    * Learn more: https://refactoring.guru/design-patterns/strategy
+    * Pattern: 
+    *   Simple Factory
+    *   
+    * Reason: 
+    *   Decouple the retrival of a price calculator based on the customer type.
+    *   
+    * Learn more: 
+    *   https://refactoring.guru/design-patterns/factory-comparison
     */
+
     public interface IPriceCalculatorFactory
     {
         IPriceCalculator Create(CustomerType customerType);

@@ -3,6 +3,23 @@ using SOLIDWashTunnel.Tunnel;
 
 namespace SOLIDWashTunnel.Control
 {
+    /* 
+     * Pattern: 
+     *   Command
+     *   
+     * Reason: 
+     *   Encapsulate all information needed to perform an action or trigger an event/notification.
+     *   
+     * Side note:
+     *   In general, it is recommended to sepparate the command handlers into sepparate classes.
+     *   But in this example we are modeling an electronic device (micro-controller/PC) which reacts on these actions/signals.
+     *   Since this controller in the real-world is a single unit, we are treating it here as such also. 
+     *   Although it doesn't have to be like this!!!
+     *   
+     * Learn more: 
+     *   https://en.wikipedia.org/wiki/Command_pattern
+     */
+
     public class ControlUnitSignalHandler : 
         IControlUnitSignalHandler<WashProgramSelectedSignal>,
         IControlUnitSignalHandler<IndividualCustomerInfoEnteredSignal>,

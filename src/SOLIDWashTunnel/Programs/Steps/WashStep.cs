@@ -3,9 +3,15 @@ using SOLIDWashTunnel.Vehicles;
 namespace SOLIDWashTunnel.Programs.Steps
 {
     /* 
-    * Pattern: Chain of Responsebility
-    * Reason: TODO
-    * Learn more: https://refactoring.guru/design-patterns/strategy
+    * Pattern: 
+    *   Chain of Responsibility
+    *
+    * Reason: 
+    *   Pass requests along a chain of handlers. Upon receiving a request, each handler decides either to process the request 
+    *   or to pass it to the next handler in the chain.
+    *   
+    * Learn more: 
+    *   https://en.wikipedia.org/wiki/Chain-of-responsibility_pattern
     */
     public interface IWashStep
     {

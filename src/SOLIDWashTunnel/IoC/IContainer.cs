@@ -10,5 +10,6 @@ namespace SOLIDWashTunnel.IoC
         void RegisterSingleton<TService>(Func<TService> instanceCreator);
         object GetService(Type type);
         TService GetService<TService>();
+        TService GetService<TService>(Type type);
     }
 }

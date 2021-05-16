@@ -1,5 +1,4 @@
 ﻿using SOLIDWashTunnel.IoC;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -7,9 +6,14 @@ using System.Reflection;
 namespace SOLIDWashTunnel.Control
 {
     /* 
-     * Pattern: Mediator pattern
-     * Reason: Encapsulate communication logic between wash tunnel components, in order to reduce dependencies between them.
-     * Learn more: https://refactoring.guru/design-patterns/mediator
+     * Pattern: 
+     *   Mediator
+     *   
+     * Reason: 
+     *   Encapsulate communication logic between wash tunnel components, in order to reduce dependencies between them.
+     *   
+     * Learn more: 
+     *   https://en.wikipedia.org/wiki/Mediator_pattern
      */
 
     public interface IControlUnit
@@ -42,39 +46,7 @@ namespace SOLIDWashTunnel.Control
                 .GetExecutingAssembly()
                 .GetTypes()
                 .Where(type => typeof(IControlUnitSignalHandler<T>).IsAssignableFrom(type) && !type.IsInterface && !type.IsAbstract)
-                .Select(type => CreateHandlerInstance<T>(type));
+                .Select(type => _container.GetService<IControlUnitSignalHandler<T>>(type));
         }
-
-        private IControlUnitSignalHandler<T> CreateHandlerInstance<T>(Type type)
-             where T : IControlUnitSignal
-        {
-            object handlerInstance = null;
-            var constructors = type.GetConstructors();
-            var firstConstrutor = constructors.FirstOrDefault();
-
-            if (firstConstrutor != null)
-            {
-                var constructorParameters = firstConstrutor.GetParameters();
-                if (constructorParameters != null && constructorParameters.Any())
-                {
-                    var objectList = new List<object>();
-                    foreach (var constructorParameter in constructorParameters)
-                    {
-                        var cpType = constructorParameter.ParameterType;
-                        var instance = _container.GetService(cpType);
-                        objectList.Add(instance);
-                    }
-
-                    handlerInstance = Activator.CreateInstance(type, objectList.ToArray());
-                }
-            }
-
-            if (handlerInstance == null)
-            {
-                handlerInstance = Activator.CreateInstance(type);
-            }
-
-            return (IControlUnitSignalHandler<T>)handlerInstance;
-        }  
     }
 }

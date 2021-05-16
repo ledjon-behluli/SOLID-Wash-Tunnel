@@ -5,9 +5,16 @@ using System.Text;
 namespace SOLIDWashTunnel.Invoices
 {
     /* 
-    * Pattern: Builder
-    * Reason: TODO
-    * Learn more: https://refactoring.guru/design-patterns/strategy
+    * Pattern:
+    *   Builder
+    *   
+    * Reason: 
+    *   Create a potential complex invoice object step by step. 
+    *   Paired with the Fluent interface, this gives a nice way of expressing intent of the build process of an invoice.
+    *   
+    * Learn more: 
+    *   https://en.wikipedia.org/wiki/Builder_pattern
+    *   https://en.wikipedia.org/wiki/Fluent_interface
     */
 
     public class InvoiceBuilder : IInvoiceBuilder, IIndividualNamePicker, ICompanyNamePicker, IProgramSelector, ICurrencyPicker, IAmountCalculator, IInvoicePrinter

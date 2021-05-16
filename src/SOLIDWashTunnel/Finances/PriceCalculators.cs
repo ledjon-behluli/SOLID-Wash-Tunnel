@@ -4,9 +4,14 @@ using System.Linq;
 namespace SOLIDWashTunnel.Finances
 {
     /* 
-    * Pattern: Strategy pattern
-    * Reason: Switch different price calculation strategies at runtime.
-    * Learn more: https://refactoring.guru/design-patterns/strategy
+    * Pattern: 
+    *   Strategy
+    *   
+    * Reason: 
+    *   Switch different price calculation strategies at runtime.
+    *   
+    * Learn more: 
+    *   https://en.wikipedia.org/wiki/Strategy_pattern
     */
 
     public interface IPriceCalculator
