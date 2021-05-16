@@ -10,7 +10,7 @@ namespace SOLIDWashTunnel.IoC
     *   
     * Reason: 
     *   Objects do not create other objects on which they rely to do their work.
-    *   Instead, they get the objects that they need from an outside source/container.
+    *   Instead they get the objects that they need from an outside source/container.
     *   
     * Learn more: 
     *   https://en.wikipedia.org/wiki/Inversion_of_control
