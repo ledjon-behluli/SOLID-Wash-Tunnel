@@ -17,17 +17,9 @@ namespace SOLIDWashTunnel.ConsoleApp
 
             IUserPanel panel = container.GetService<IUserPanel>();
 
-            panel.SelectProgram(ProgramType.Fast)
-                 .ForCompany("asda", Invoices.Currency.EUR)
+            panel.SelectProgram(ProgramType.AllRounder)
+                 .ForCompany("Ledjon SoftTech", Invoices.Currency.EUR)
                  .Start(car);
-
-            foreach (var step in car.AppliedWashSteps)
-            {
-                Console.WriteLine(step.Describe());
-            }
-
-            Console.OutputEncoding = System.Text.Encoding.UTF8;
-            //Console.WriteLine(tunnel.GetInvoiceForIndividual("Ledjon", "Behluli", Currency.USD));
 
             Console.ReadKey();
         }

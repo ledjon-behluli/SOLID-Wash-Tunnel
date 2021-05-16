@@ -4,6 +4,6 @@ namespace SOLIDWashTunnel.ConsoleApp
 {
     public class Car : Vehicle
     {
-
+       
     }
 }

@@ -35,6 +35,6 @@ namespace SOLIDWashTunnel.Invoices
 
     public interface IInvoicePrinter
     {
-        string Print();
+        string Build();
     }
 }

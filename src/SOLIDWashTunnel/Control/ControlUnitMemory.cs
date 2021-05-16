@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace SOLIDWashTunnel.Control
 {
     public interface IControlUnitMemory
     {
-        T Get<T>(string key) where T : IControlUnitSignal;
-        void Set(string key, IControlUnitSignal signal);
+        bool TryGet<T>(string key, out T signal) where T : IControlUnitSignal;
+        void SetOrOverride(string key, IControlUnitSignal signal);
     }
 
     public class ControlUnitMemory : IControlUnitMemory
@@ -18,15 +17,15 @@ namespace SOLIDWashTunnel.Control
             _items = new Dictionary<string, IControlUnitSignal>();
         }
 
-        public T Get<T>(string key) where T : IControlUnitSignal
+        public bool TryGet<T>(string key, out T signal) where T : IControlUnitSignal
         {
-            if (_items.TryGetValue(key, out IControlUnitSignal signal))
-                return (T)signal;
+            bool success = _items.TryGetValue(key, out IControlUnitSignal _signal);
+            signal = success ? (T)_signal : default;
 
-            throw new ArgumentException($"An item with the key = '{key}', was not found in memory.");
+            return success;
         }
 
-        public void Set(string key, IControlUnitSignal signal)
+        public void SetOrOverride(string key, IControlUnitSignal signal)
         {
             if (!_items.TryAdd(key, signal))
             {

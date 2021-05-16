@@ -18,7 +18,9 @@ namespace SOLIDWashTunnel.Programs
         public IEnumerable<IWashStep> GetWashSteps() =>
             new List<IWashStep>()
             {
-                new HighPressureWashing()
+                new ChasisAndWheelWashing(),
+                new HighPressureWashing(),
+                new AirDrying()
             };
     }
 
@@ -30,7 +32,12 @@ namespace SOLIDWashTunnel.Programs
         public IEnumerable<IWashStep> GetWashSteps() =>
             new List<IWashStep>()
             {
-                new HighPressureWashing()
+                new ChasisAndWheelWashing(),
+                new Shampooing(),
+                new HighPressureWashing(),
+                new SingleColorFoaming(),
+                new HighPressureWashing(),
+                new AirDrying()
             };
     }
 
@@ -42,7 +49,13 @@ namespace SOLIDWashTunnel.Programs
         public IEnumerable<IWashStep> GetWashSteps() =>
             new List<IWashStep>()
             {
-                new HighPressureWashing()
+                new ChasisAndWheelWashing(),
+                new Shampooing(),
+                new HighPressureWashing(),
+                new ThreeColorFoaming(),
+                new HighPressureWashing(),
+                new Waxing(),
+                new AirDrying()
             };
     }
 

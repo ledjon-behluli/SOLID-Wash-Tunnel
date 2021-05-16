@@ -33,9 +33,4 @@ namespace SOLIDWashTunnel.Tunnel
             _controlUnit.Transmit(new VehicleReadySignal());
         }
     }
-
-    public class VehicleReadySignal : IControlUnitSignal
-    {
-
-    }
 }

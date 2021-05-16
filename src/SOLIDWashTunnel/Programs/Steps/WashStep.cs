@@ -12,7 +12,7 @@ namespace SOLIDWashTunnel.Programs.Steps
         decimal Price { get; }
         IWashStep NextStep(IWashStep washStep);
         void Execute(IVehicle vehicle);
-        string Describe();
+        string GetDescription();
     }
 
     public abstract class WashStep : IWashStep
@@ -35,6 +35,6 @@ namespace SOLIDWashTunnel.Programs.Steps
             }
         }
 
-        public abstract string Describe();
+        public abstract string GetDescription();
     }
 }

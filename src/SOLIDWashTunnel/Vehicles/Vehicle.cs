@@ -5,15 +5,14 @@ namespace SOLIDWashTunnel.Vehicles
 {
     public interface IVehicle
     {
-        IReadOnlyCollection<WashStep> AppliedWashSteps { get; }
         void ApplyWashStep(WashStep step);
+        IReadOnlyCollection<WashStep> GetAppliedWashSteps();
     }
 
 
     public abstract class Vehicle : IVehicle
     {
         private List<WashStep> appliedWashSteps;
-        public IReadOnlyCollection<WashStep> AppliedWashSteps => appliedWashSteps.AsReadOnly();
 
         public Vehicle()
         {
@@ -23,6 +22,11 @@ namespace SOLIDWashTunnel.Vehicles
         public void ApplyWashStep(WashStep step)
         {
             appliedWashSteps.Add(step);
+        }
+
+        public IReadOnlyCollection<WashStep> GetAppliedWashSteps()
+        {
+            return appliedWashSteps.AsReadOnly();
         }
     }
 }

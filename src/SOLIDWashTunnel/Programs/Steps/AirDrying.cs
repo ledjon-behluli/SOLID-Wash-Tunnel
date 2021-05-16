@@ -1,17 +1,10 @@
 using SOLIDWashTunnel.Vehicles;
-using SOLIDWashTunnel.Materials;
 
 namespace SOLIDWashTunnel.Programs.Steps
 {
-    public class Drying : WashStep
+    public class AirDrying : WashStep
     {
         public override decimal Price => 0.5m;
-        private readonly IDryer dryer;
-
-        public Drying(IDryer dryer)
-        {
-            this.dryer = dryer;
-        }
 
         public override void Execute(IVehicle vehicle)
         {
@@ -19,9 +12,9 @@ namespace SOLIDWashTunnel.Programs.Steps
             base.Execute(vehicle);
         }
 
-        public override string Describe()
+        public override string GetDescription()
         {
-            return $"Drying using a {dryer.GetType()}";
+            return "Air drying";
         }
     }
 }

@@ -12,9 +12,9 @@ namespace SOLIDWashTunnel.Programs.Steps
             base.Execute(vehicle);
         }
 
-        public override string Describe()
+        public override string GetDescription()
         {
-            return "Applying high pressure water";
+            return "High water pressure washing";
         }
     }
 }

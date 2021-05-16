@@ -25,8 +25,8 @@ namespace SOLIDWashTunnel.Invoices
             ICustomerPriceCalculatorFactory calculatorFactory)
         {
             _invoice = new Invoice();
-            this._converter = converter;
-            this._calculatorFactory = calculatorFactory;
+            _converter = converter;
+            _calculatorFactory = calculatorFactory;
         }
 
         public IIndividualNamePicker CreateForIndividual()
@@ -75,7 +75,7 @@ namespace SOLIDWashTunnel.Invoices
         }
 
         // TODO: Extract to send Mediator.Send() to a real printer.
-        public string Print()
+        public string Build()
         {
             var builder = new StringBuilder();
         
@@ -84,7 +84,7 @@ namespace SOLIDWashTunnel.Invoices
             builder.AppendLine("-----------------------------");
 
             foreach (var washStep in _invoice.WashProgram.GetWashSteps())
-                builder.AppendLine($" * {washStep.Describe()} - {_converter.Convert(washStep.Price, _invoice.Currency)}{_invoice.Currency.GetDescription()}");
+                builder.AppendLine($" * {washStep.GetDescription()} - {_converter.Convert(washStep.Price, _invoice.Currency)}{_invoice.Currency.GetDescription()}");
 
             builder.AppendLine("-----------------------------");
             builder.AppendLine($"Total price: {_invoice.Price}{_invoice.Currency.GetDescription()}");
