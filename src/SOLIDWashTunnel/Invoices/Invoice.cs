@@ -6,8 +6,7 @@ namespace SOLIDWashTunnel.Invoices
     {
         public string Recepient { get; set; }
         public string VehicleMark { get; set; }
-        public decimal Price { get; set; }
-        public Currency Currency { get; set; }
+        public Money Price { get; set; }
         public IWashProgram WashProgram { get; set; }
     }
 }

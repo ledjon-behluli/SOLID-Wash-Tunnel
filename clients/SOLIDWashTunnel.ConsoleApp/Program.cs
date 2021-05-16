@@ -18,7 +18,7 @@ namespace SOLIDWashTunnel.ConsoleApp
             IUserPanel panel = container.GetService<IUserPanel>();
 
             panel.SelectProgram(ProgramType.AllRounder)
-                 .ForCompany("Ledjon SoftTech", Invoices.Currency.EUR)
+                 .AsCompany("Ledjon SoftTech", Currency.EUR)
                  .Start(car);
 
             Console.ReadKey();

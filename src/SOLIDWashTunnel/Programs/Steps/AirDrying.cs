@@ -4,7 +4,7 @@ namespace SOLIDWashTunnel.Programs.Steps
 {
     public class AirDrying : WashStep
     {
-        public override decimal Price => 0.5m;
+        public override Money Price => Money.Create(0.5m);
 
         public override void Execute(IVehicle vehicle)
         {

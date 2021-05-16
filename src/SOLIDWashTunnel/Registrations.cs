@@ -1,15 +1,14 @@
-﻿using System;
-using SOLIDWashTunnel.IoC;
+﻿using SOLIDWashTunnel.IoC;
 using SOLIDWashTunnel.Vehicles;
 using SOLIDWashTunnel.Tunnel;
-using SOLIDWashTunnel.Customers;
+using SOLIDWashTunnel.Finances;
 using SOLIDWashTunnel.Invoices;
 using SOLIDWashTunnel.Programs;
 using SOLIDWashTunnel.Control;
 
 namespace SOLIDWashTunnel
 {
-    public static class Extensions
+    public static class Registrations
     {
         public static IContainer Setup(this IContainer container, IVehicle vehicle)
         {
@@ -23,20 +22,11 @@ namespace SOLIDWashTunnel
             container.Register<IBackDoor, BackDoor>();
 
             container.Register<ICurrencyRateConverter, CurrencyRateConverter>();
-            container.Register<ICustomerPriceCalculatorFactory, CustomerPriceCalculatorFactory>();
+            container.Register<IPriceCalculatorFactory, PriceCalculatorFactory>();
             container.Register<IInvoiceBuilder, InvoiceBuilder>();
             container.Register<IWashProgramFactory, WashProgramFactory>();
 
             return container;
-        }
-
-        public static string GetDescription<T>(this T @enum) where T : Enum
-        {
-            var field = @enum.GetType().GetField(@enum.ToString());
-            var attributes = field.GetCustomAttributes(typeof(System.ComponentModel.DescriptionAttribute), false) as System.ComponentModel.DescriptionAttribute[];
-
-            return attributes != null && attributes.Length > 0 ?
-                attributes[0].Description : @enum.ToString();
         }
     }
 }

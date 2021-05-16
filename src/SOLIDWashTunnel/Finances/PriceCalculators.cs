@@ -1,38 +1,42 @@
-﻿using SOLIDWashTunnel.Invoices;
-using SOLIDWashTunnel.Programs;
+﻿using SOLIDWashTunnel.Programs;
 using System.Linq;
 
-namespace SOLIDWashTunnel.Customers
+namespace SOLIDWashTunnel.Finances
 {
     /* 
     * Pattern: Strategy pattern
-    * Reason: Switch different price calculation strategies on runtime.
+    * Reason: Switch different price calculation strategies at runtime.
     * Learn more: https://refactoring.guru/design-patterns/strategy
     */
-    public interface ICustomerPriceCalculator
+
+    public interface IPriceCalculator
     {
         int Discount { get; }
-        decimal Calculate(IWashProgram program, Currency currency);
+        Money Calculate(IWashProgram program, Currency currency);
     }
 
-    public abstract class CustomerPriceCalculator : ICustomerPriceCalculator
+    public abstract class PriceCalculator : IPriceCalculator
     {
         public abstract int Discount { get; }
         protected readonly ICurrencyRateConverter converter;
 
-        public CustomerPriceCalculator(ICurrencyRateConverter converter)
+        public PriceCalculator(ICurrencyRateConverter converter)
         {
             this.converter = converter;
         }
 
-        public virtual decimal Calculate(IWashProgram program, Currency currency)
+        public virtual Money Calculate(IWashProgram program, Currency currency)
         {
-            decimal totalPrice = program.GetWashSteps().Sum(x => x.Price);
+            Money totalPrice = program
+                .GetWashSteps()
+                .Select(x => x.Price)
+                .Aggregate((x, y) => x + y);
+
             return converter.Convert(totalPrice, currency);
         }
     }
 
-    public class IndividualPriceCalculator : CustomerPriceCalculator
+    public class IndividualPriceCalculator : PriceCalculator
     {
         public override int Discount => 0;
 
@@ -43,7 +47,7 @@ namespace SOLIDWashTunnel.Customers
         }
     }
 
-    public class CompanyPriceCalculator : CustomerPriceCalculator
+    public class CompanyPriceCalculator : PriceCalculator
     {
         public override int Discount => 20;
 
@@ -53,9 +57,9 @@ namespace SOLIDWashTunnel.Customers
 
         }
 
-        public override decimal Calculate(IWashProgram program, Currency currency)
+        public override Money Calculate(IWashProgram program, Currency currency)
         {
-            decimal totalPrice = base.Calculate(program, currency);
+            Money totalPrice = base.Calculate(program, currency);
             return totalPrice - ((Discount / 100m) * totalPrice);
         }
     }

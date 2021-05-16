@@ -4,7 +4,7 @@ namespace SOLIDWashTunnel.Programs.Steps
 {
     public class SingleColorFoaming : WashStep
     {
-        public override decimal Price => 1.1m;
+        public override Money Price => Money.Create(1.1m);
 
         public override void Execute(IVehicle vehicle)
         {
@@ -20,7 +20,7 @@ namespace SOLIDWashTunnel.Programs.Steps
 
     public class ThreeColorFoaming : WashStep
     {
-        public override decimal Price => 1.7m;
+        public override Money Price => Money.Create(1.7m);
 
         public override void Execute(IVehicle vehicle)
         {

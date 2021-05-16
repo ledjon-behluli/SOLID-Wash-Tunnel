@@ -1,4 +1,4 @@
-﻿using SOLIDWashTunnel.Customers;
+﻿using SOLIDWashTunnel.Finances;
 using SOLIDWashTunnel.Programs;
 using System.Text;
 
@@ -14,15 +14,16 @@ namespace SOLIDWashTunnel.Invoices
     {
         private int _discount;
         private CustomerType _customerType;
+        private Currency _currency;
         private readonly Invoice _invoice;
         private readonly ICurrencyRateConverter _converter;
-        private readonly ICustomerPriceCalculatorFactory _calculatorFactory;
+        private readonly IPriceCalculatorFactory _calculatorFactory;
 
         // Note: The 'ICustomerPriceCalculatorFactory' is being injected via the constructor since we are using an IoC container that supports ctor injections only.
         // With a more sophisticated IoC container it would be best to inject this service in the 'IAmountCalculator.Calculate()'.
         public InvoiceBuilder(
             ICurrencyRateConverter converter,
-            ICustomerPriceCalculatorFactory calculatorFactory)
+            IPriceCalculatorFactory calculatorFactory)
         {
             _invoice = new Invoice();
             _converter = converter;
@@ -61,20 +62,19 @@ namespace SOLIDWashTunnel.Invoices
 
         public IAmountCalculator Choose(Currency currency)
         {
-            _invoice.Currency = currency;
+            _currency = currency;
             return this;
         }
 
         public IInvoicePrinter Calculate()
         {
-            ICustomerPriceCalculator calculator = _calculatorFactory.Create(_customerType);
-            _invoice.Price = calculator.Calculate(_invoice.WashProgram, _invoice.Currency);
+            IPriceCalculator calculator = _calculatorFactory.Create(_customerType);
+            _invoice.Price = calculator.Calculate(_invoice.WashProgram, _currency);
             _discount = calculator.Discount;
 
             return this;
         }
 
-        // TODO: Extract to send Mediator.Send() to a real printer.
         public string Build()
         {
             var builder = new StringBuilder();
@@ -84,10 +84,10 @@ namespace SOLIDWashTunnel.Invoices
             builder.AppendLine("-----------------------------");
 
             foreach (var washStep in _invoice.WashProgram.GetWashSteps())
-                builder.AppendLine($" * {washStep.GetDescription()} - {_converter.Convert(washStep.Price, _invoice.Currency)}{_invoice.Currency.GetDescription()}");
+                builder.AppendLine($" * {washStep.GetDescription()} - {_converter.Convert(washStep.Price, _currency)}");
 
             builder.AppendLine("-----------------------------");
-            builder.AppendLine($"Total price: {_invoice.Price}{_invoice.Currency.GetDescription()}");
+            builder.AppendLine($"Total price: {_invoice.Price}");
             builder.AppendLine($"Discount: {_discount}%");
 
             return builder.ToString();

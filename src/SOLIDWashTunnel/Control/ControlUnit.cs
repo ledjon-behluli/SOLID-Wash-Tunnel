@@ -8,8 +8,8 @@ namespace SOLIDWashTunnel.Control
 {
     /* 
      * Pattern: Mediator pattern
-     * Reason: Encapsulate communication logic between objects, in order to reduce dependencies between them.
-     * Learn more:
+     * Reason: Encapsulate communication logic between wash tunnel components, in order to reduce dependencies between them.
+     * Learn more: https://refactoring.guru/design-patterns/mediator
      */
 
     public interface IControlUnit

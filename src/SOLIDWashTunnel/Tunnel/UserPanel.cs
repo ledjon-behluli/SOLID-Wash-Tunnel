@@ -1,19 +1,18 @@
 ﻿using SOLIDWashTunnel.Vehicles;
 using SOLIDWashTunnel.Programs;
-using SOLIDWashTunnel.Invoices;
 using SOLIDWashTunnel.Control;
 
 namespace SOLIDWashTunnel.Tunnel
 {
     public interface IUserPanel
     {
-        IClientInformationCollector SelectProgram(ProgramType type);
+        ICustomerInformationCollector SelectProgram(ProgramType type);
     }
 
-    public interface IClientInformationCollector
+    public interface ICustomerInformationCollector
     {
-        IWashProcessStarter ForIndividual(string firstName, string lastName, Currency preferedCurrecy);
-        IWashProcessStarter ForCompany(string companyName, Currency preferedCurrecy);
+        IWashProcessStarter AsIndividual(string firstName, string lastName, Currency preferedCurrecy);
+        IWashProcessStarter AsCompany(string companyName, Currency preferedCurrecy);
     }
 
     public interface IWashProcessStarter
@@ -21,7 +20,7 @@ namespace SOLIDWashTunnel.Tunnel
         void Start(IVehicle vehicle);
     }
     
-    public class UserPanel : IUserPanel, IClientInformationCollector, IWashProcessStarter
+    public class UserPanel : IUserPanel, ICustomerInformationCollector, IWashProcessStarter
     {
         private readonly IControlUnit _controlUnit;
         private readonly IWashProgramFactory _programFactory;
@@ -34,7 +33,7 @@ namespace SOLIDWashTunnel.Tunnel
             _programFactory = programFactory;
         }
 
-        public IClientInformationCollector SelectProgram(ProgramType type)
+        public ICustomerInformationCollector SelectProgram(ProgramType type)
         {
             IWashProgram program = _programFactory.Create(type);
             _controlUnit.Transmit(new WashProgramSelectedSignal(program));
@@ -42,13 +41,13 @@ namespace SOLIDWashTunnel.Tunnel
             return this;
         }
 
-        public IWashProcessStarter ForIndividual(string firstName, string lastName, Currency preferedCurrecy)
+        public IWashProcessStarter AsIndividual(string firstName, string lastName, Currency preferedCurrecy)
         {
             _controlUnit.Transmit(new IndividualCustomerInfoEnteredSignal(firstName, lastName, preferedCurrecy));
             return this;
         }
 
-        public IWashProcessStarter ForCompany(string companyName, Currency preferedCurrecy)
+        public IWashProcessStarter AsCompany(string companyName, Currency preferedCurrecy)
         {
             _controlUnit.Transmit(new CompanyCustomerInfoEnteredSignal(companyName, preferedCurrecy));
             return this;

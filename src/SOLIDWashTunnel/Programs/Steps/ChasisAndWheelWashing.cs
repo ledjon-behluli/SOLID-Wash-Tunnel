@@ -4,7 +4,7 @@ namespace SOLIDWashTunnel.Programs.Steps
 {
     public class ChasisAndWheelWashing : WashStep
     {
-        public override decimal Price => 1.5m;
+        public override Money Price => Money.Create(1.5m);
 
         public override void Execute(IVehicle vehicle)
         {

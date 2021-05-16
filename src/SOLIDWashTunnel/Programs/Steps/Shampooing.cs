@@ -4,7 +4,7 @@ namespace SOLIDWashTunnel.Programs.Steps
 {
     public class Shampooing : WashStep
     {
-        public override decimal Price => 0.8m;
+        public override Money Price => Money.Create(0.8m);
 
         public override void Execute(IVehicle vehicle)
         {

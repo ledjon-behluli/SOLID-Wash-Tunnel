@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace SOLIDWashTunnel.Invoices
+namespace SOLIDWashTunnel
 {
     public enum Currency
     {
