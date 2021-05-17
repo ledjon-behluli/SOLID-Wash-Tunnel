@@ -16,11 +16,47 @@ namespace SOLIDWashTunnel.IoC
     *   https://en.wikipedia.org/wiki/Inversion_of_control
     */
 
-    public class Container : IContainer
+    /* 
+    * Pattern:
+    *   Singelton
+    *   
+    * Reason: 
+    *   Although this pattern is considered nowdays to be an anti-pattern, because of dependency injection and singelton lifespan.
+    *   It sometimes makes sense to implement it:
+    *   Our simple IoC container below, doesn't make sense to have multiple instance of it running.
+    *   It also doesn't make sense to register **the container, within the container** with a singelton lifespan.
+    *   
+    * Learn more: 
+    *   https://en.wikipedia.org/wiki/Singleton_pattern
+    */
+
+    public class Container : IContainer, IDisposable
     {
         private Dictionary<Type, Func<object>> _registrations;
+
+        private static readonly object _lock = new object();
+        private static IContainer _instance;
+
+        public static IContainer Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    lock (_lock)
+                    {
+                        if(_instance == null)
+                        {
+                            _instance = new Container();
+                        }
+                    }
+                }
+
+                return _instance;
+            }
+        }
     
-        public Container()
+        private Container()
         {
             _registrations = new Dictionary<Type, Func<object>>();
         }
@@ -66,6 +102,12 @@ namespace SOLIDWashTunnel.IoC
             var parameterTypes = ctor.GetParameters().Select(p => p.ParameterType);
             var dependencies = parameterTypes.Select(t => GetService(t)).ToArray();
             return Activator.CreateInstance(implementationType, dependencies);
+        }
+
+        public void Dispose()
+        {
+            _registrations.Clear();
+            _instance = null;
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿
 namespace SOLIDWashTunnel.Control
 {
-    public interface IControlUnitSignal
+    public interface ISignal
     {
         
     }

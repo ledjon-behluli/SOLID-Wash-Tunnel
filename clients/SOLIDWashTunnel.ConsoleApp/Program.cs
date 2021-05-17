@@ -12,7 +12,7 @@ namespace SOLIDWashTunnel.ConsoleApp
         {
             IVehicle car = new Car();
 
-            var container = new Container();
+            var container = Container.Instance;
             container.Setup(car);
 
             IUserPanel panel = container.GetService<IUserPanel>();

@@ -13,11 +13,11 @@ namespace SOLIDWashTunnel.Tunnel
 
     public class WashTunnel : IWashTunnel
     {
-        private readonly IControlUnit _controlUnit;
+        private readonly IMotherboard _motherboard;
 
-        public WashTunnel(IControlUnit controlUnit)
+        public WashTunnel(IMotherboard motherboard)
         {
-            _controlUnit = controlUnit;
+            _motherboard = motherboard;
         }
 
         public void Wash(IVehicle vehicle, IWashProgram program)
@@ -30,7 +30,7 @@ namespace SOLIDWashTunnel.Tunnel
             }
 
             washSteps[0].Execute(vehicle);
-            _controlUnit.Transmit(new VehicleReadySignal());
+            _motherboard.Transmit(new VehicleReadySignal());
         }
     }
 }

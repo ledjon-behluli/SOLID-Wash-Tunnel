@@ -63,7 +63,8 @@ namespace SOLIDWashTunnel.Programs
     {
         public int Id => 4;
         public string Name => "Custom";
-
+        
+        //TODO: Handle this
         public IEnumerable<IWashStep> GetWashSteps() =>
             new List<IWashStep>()
             {

@@ -1,10 +1,9 @@
-﻿using SOLIDWashTunnel.Invoices;
-using SOLIDWashTunnel.Programs;
+﻿using SOLIDWashTunnel.Programs;
 using SOLIDWashTunnel.Vehicles;
 
 namespace SOLIDWashTunnel.Control
 {
-    public class WashProgramSelectedSignal : IControlUnitSignal
+    public class WashProgramSelectedSignal : ISignal
     {
         public IWashProgram Program { get; }
 
@@ -14,7 +13,7 @@ namespace SOLIDWashTunnel.Control
         }
     }
 
-    public abstract class CustomerInfoEnteredSignal : IControlUnitSignal
+    public abstract class CustomerInfoEnteredSignal : ISignal
     {
         public Currency PreferredCurrency { get; }
 
@@ -49,7 +48,7 @@ namespace SOLIDWashTunnel.Control
         }
     }
 
-    public class VehicleWashingStartedSignal : IControlUnitSignal
+    public class VehicleWashingStartedSignal : ISignal
     {
         public IVehicle Vehicle { get; }
 
@@ -59,7 +58,7 @@ namespace SOLIDWashTunnel.Control
         }
     }
 
-    public class VehicleReadySignal : IControlUnitSignal
+    public class VehicleReadySignal : ISignal
     {
 
     }

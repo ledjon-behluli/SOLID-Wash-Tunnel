@@ -22,40 +22,40 @@ namespace SOLIDWashTunnel.Tunnel
     
     public class UserPanel : IUserPanel, ICustomerInformationCollector, IWashProcessStarter
     {
-        private readonly IControlUnit _controlUnit;
+        private readonly IMotherboard _motherboard;
         private readonly IWashProgramFactory _programFactory;
 
         public UserPanel(
-            IControlUnit controlUnit,
+            IMotherboard motherboard,
             IWashProgramFactory programFactory)
         {
-            _controlUnit = controlUnit;
+            _motherboard = motherboard;
             _programFactory = programFactory;
         }
 
         public ICustomerInformationCollector SelectProgram(ProgramType type)
         {
             IWashProgram program = _programFactory.Create(type);
-            _controlUnit.Transmit(new WashProgramSelectedSignal(program));
+            _motherboard.Transmit(new WashProgramSelectedSignal(program));
 
             return this;
         }
 
         public IWashProcessStarter AsIndividual(string firstName, string lastName, Currency preferedCurrecy)
         {
-            _controlUnit.Transmit(new IndividualCustomerInfoEnteredSignal(firstName, lastName, preferedCurrecy));
+            _motherboard.Transmit(new IndividualCustomerInfoEnteredSignal(firstName, lastName, preferedCurrecy));
             return this;
         }
 
         public IWashProcessStarter AsCompany(string companyName, Currency preferedCurrecy)
         {
-            _controlUnit.Transmit(new CompanyCustomerInfoEnteredSignal(companyName, preferedCurrecy));
+            _motherboard.Transmit(new CompanyCustomerInfoEnteredSignal(companyName, preferedCurrecy));
             return this;
         }
 
         public void Start(IVehicle vehicle)
         {
-            _controlUnit.Transmit(new VehicleWashingStartedSignal(vehicle));
+            _motherboard.Transmit(new VehicleWashingStartedSignal(vehicle));
         }
     }
 }
