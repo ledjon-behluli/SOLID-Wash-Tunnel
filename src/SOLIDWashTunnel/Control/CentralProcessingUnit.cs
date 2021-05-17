@@ -61,13 +61,17 @@ namespace SOLIDWashTunnel.Control
 
         public void Handle(VehicleWashingStartedSignal signal)
         {
+            _memory.SetOrOverride("VWSS", signal);
             if (_memory.TryGet("WPSS", out WashProgramSelectedSignal _signal))
+            {
                 _washTunnel.Wash(signal.Vehicle, _signal.Program);
+            }
         }
 
         public void Handle(VehicleReadySignal signal)
         {
-            string report = GenerateInvoiceReport();
+            _memory.TryGet("VWSS", out VehicleWashingStartedSignal _signal);
+            _signal.InvoiceCallback.Invoke(GenerateInvoiceReport());
         }
 
         private string GenerateInvoiceReport()

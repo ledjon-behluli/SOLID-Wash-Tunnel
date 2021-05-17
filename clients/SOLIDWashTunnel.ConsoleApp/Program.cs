@@ -19,9 +19,15 @@ namespace SOLIDWashTunnel.ConsoleApp
 
             panel.SelectProgram(ProgramType.AllRounder)
                  .AsCompany("Ledjon SoftTech", Currency.EUR)
-                 .Start(car);
+                 .Start(car, PrintInvoice());
 
             Console.ReadKey();
         }
+
+        private static Action<string> PrintInvoice() => (content) =>
+        {
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
+            Console.WriteLine(content);
+        };
     }
 }

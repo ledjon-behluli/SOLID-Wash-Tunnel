@@ -1,7 +1,5 @@
 using SOLIDWashTunnel.Vehicles;
 using SOLIDWashTunnel.Programs;
-using SOLIDWashTunnel.Programs.Steps;
-using System.Linq;
 using SOLIDWashTunnel.Control;
 
 namespace SOLIDWashTunnel.Tunnel
@@ -9,28 +7,32 @@ namespace SOLIDWashTunnel.Tunnel
     public interface IWashTunnel
     {
         void Wash(IVehicle vehicle, IWashProgram program);
+        void TransitionState(IWashTunnelState state);
     }
 
     public class WashTunnel : IWashTunnel
     {
         private readonly IMotherboard _motherboard;
+        private IWashTunnelState _state;
 
         public WashTunnel(IMotherboard motherboard)
         {
             _motherboard = motherboard;
+            _state = new FreeState(this);
         }
 
         public void Wash(IVehicle vehicle, IWashProgram program)
         {
-            IWashStep[] washSteps = program.GetWashSteps().ToArray();
+            _state.Handle(vehicle, program);
+        }
 
-            for (int i = 0; i < washSteps.Length - 1; i++)
+        public void TransitionState(IWashTunnelState state)
+        {
+            _state = state;
+            if (state is FreeState)
             {
-                washSteps[i].NextStep(washSteps[i + 1]);
+                _motherboard.Transmit(new VehicleReadySignal());
             }
-
-            washSteps[0].Execute(vehicle);
-            _motherboard.Transmit(new VehicleReadySignal());
         }
     }
 }

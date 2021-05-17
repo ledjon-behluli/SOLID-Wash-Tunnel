@@ -19,7 +19,6 @@ namespace SOLIDWashTunnel
 
             container.Register<IUserPanel, UserPanel>();
             container.Register<IWashTunnel, WashTunnel>();
-            container.Register<IBackDoor, BackDoor>();
 
             container.Register<ICurrencyRateConverter, CurrencyRateConverter>();
             container.Register<IPriceCalculatorFactory, PriceCalculatorFactory>();

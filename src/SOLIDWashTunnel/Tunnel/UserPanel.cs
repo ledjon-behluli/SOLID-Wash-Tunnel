@@ -1,6 +1,7 @@
 ﻿using SOLIDWashTunnel.Vehicles;
 using SOLIDWashTunnel.Programs;
 using SOLIDWashTunnel.Control;
+using System;
 
 namespace SOLIDWashTunnel.Tunnel
 {
@@ -17,7 +18,7 @@ namespace SOLIDWashTunnel.Tunnel
 
     public interface IWashProcessStarter
     {
-        void Start(IVehicle vehicle);
+        void Start(IVehicle vehicle, Action<string> invoiceCallback);
     }
     
     public class UserPanel : IUserPanel, ICustomerInformationCollector, IWashProcessStarter
@@ -53,9 +54,9 @@ namespace SOLIDWashTunnel.Tunnel
             return this;
         }
 
-        public void Start(IVehicle vehicle)
+        public void Start(IVehicle vehicle, Action<string> invoiceCallback)
         {
-            _motherboard.Transmit(new VehicleWashingStartedSignal(vehicle));
+            _motherboard.Transmit(new VehicleWashingStartedSignal(vehicle, invoiceCallback));
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using SOLIDWashTunnel.Programs;
 using SOLIDWashTunnel.Vehicles;
+using System;
 
 namespace SOLIDWashTunnel.Control
 {
@@ -51,10 +52,12 @@ namespace SOLIDWashTunnel.Control
     public class VehicleWashingStartedSignal : ISignal
     {
         public IVehicle Vehicle { get; }
+        public Action<string> InvoiceCallback { get; }
 
-        public VehicleWashingStartedSignal(IVehicle vehicle)
+        public VehicleWashingStartedSignal(IVehicle vehicle, Action<string> invoiceCallback)
         {
             Vehicle = vehicle;
+            InvoiceCallback = invoiceCallback;
         }
     }
 

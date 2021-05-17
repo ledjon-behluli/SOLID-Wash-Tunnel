@@ -19,7 +19,7 @@ namespace SOLIDWashTunnel.Control
      *   
      *   The injected dependencies reflect the real-word usage of a Motherboard
      *      IContainer -
-     *          The motherboard has access to all of it's connected components (CPU, Memory etc.) but is not tied to any of them.
+     *          The motherboard has access to all of its connected components (CPU, Memory etc.) but is not tied to any of them.
      *          We can think of the container as the collection of electronic paths on a PCB (Printed Circuit Board).
      *          
      *   
