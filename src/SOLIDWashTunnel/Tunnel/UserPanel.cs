@@ -7,7 +7,8 @@ namespace SOLIDWashTunnel.Tunnel
 {
     public interface IUserPanel
     {
-        ICustomerInformationCollector SelectProgram(ProgramType type);
+        ICustomerInformationCollector SelectBuiltInProgram(ProgramType type);
+        ICustomerInformationCollector CustomizeProgram(ICustomWashProgramBuilder builder);
     }
 
     public interface ICustomerInformationCollector
@@ -34,9 +35,17 @@ namespace SOLIDWashTunnel.Tunnel
             _programFactory = programFactory;
         }
 
-        public ICustomerInformationCollector SelectProgram(ProgramType type)
+        public ICustomerInformationCollector SelectBuiltInProgram(ProgramType type)
         {
             IWashProgram program = _programFactory.Create(type);
+            _motherboard.Transmit(new WashProgramSelectedSignal(program));
+
+            return this;
+        }
+
+        public ICustomerInformationCollector CustomizeProgram(ICustomWashProgramBuilder builder)
+        {
+            IWashProgram program = builder.Build();
             _motherboard.Transmit(new WashProgramSelectedSignal(program));
 
             return this;

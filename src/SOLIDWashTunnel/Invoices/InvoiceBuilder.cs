@@ -26,7 +26,7 @@ namespace SOLIDWashTunnel.Invoices
         private readonly ICurrencyRateConverter _converter;
         private readonly IPriceCalculatorFactory _calculatorFactory;
 
-        // Note: The 'ICustomerPriceCalculatorFactory' is being injected via the constructor since we are using an IoC container that supports ctor injections only.
+        // The 'ICustomerPriceCalculatorFactory' is being injected via the constructor since we are using an IoC container that supports ctor injections only.
         // With a more sophisticated IoC container it would be best to inject this service in the 'IAmountCalculator.Calculate()'.
         public InvoiceBuilder(
             ICurrencyRateConverter converter,

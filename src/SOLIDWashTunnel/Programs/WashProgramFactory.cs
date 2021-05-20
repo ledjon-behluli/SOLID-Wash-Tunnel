@@ -1,4 +1,4 @@
-using System;
+using SOLIDWashTunnel.Programs.Steps;
 
 namespace SOLIDWashTunnel.Programs
 {
@@ -15,27 +15,25 @@ namespace SOLIDWashTunnel.Programs
 
     public enum ProgramType
     {
-        Fast = 1,
-        Economic = 2,
-        AllRounder = 3,
-        Custom = 4
+        Fast = 0,
+        Economic = 1,
+        AllRounder = 2
     }
 
     public interface IWashProgramFactory
     {
-        IWashProgram Create(ProgramType type);
+        IWashProgram Create(ProgramType? type, params IWashStep[] washSteps);
     }
 
     public class WashProgramFactory : IWashProgramFactory
     {
-        public IWashProgram Create(ProgramType type) =>
+        public IWashProgram Create(ProgramType? type, params IWashStep[] washSteps) =>
             type switch
             {
                 ProgramType.Fast => new FastWashProgram(),
                 ProgramType.Economic => new EconomicWashProgram(),
                 ProgramType.AllRounder => new AllRounderWashProgram(),
-                ProgramType.Custom => new CustomWashProgram(),
-                _ => throw new NotSupportedException(),
+                _ => new CustomWashProgram(washSteps)
             };
     }
 }

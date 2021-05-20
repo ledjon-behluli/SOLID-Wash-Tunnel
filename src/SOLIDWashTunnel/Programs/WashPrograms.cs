@@ -54,8 +54,8 @@ namespace SOLIDWashTunnel.Programs
                 new HighPressureWashing(),
                 new ThreeColorFoaming(),
                 new HighPressureWashing(),
-                new Waxing(),
-                new AirDrying()
+                new AirDrying(),
+                new Waxing()
             };
     }
 
@@ -63,12 +63,14 @@ namespace SOLIDWashTunnel.Programs
     {
         public int Id => 4;
         public string Name => "Custom";
-        
-        //TODO: Handle this
-        public IEnumerable<IWashStep> GetWashSteps() =>
-            new List<IWashStep>()
-            {
-                new HighPressureWashing()
-            };
+
+        private IEnumerable<IWashStep> _washSteps;
+
+        public CustomWashProgram(IEnumerable<IWashStep> washSteps)
+        {
+            _washSteps = washSteps;
+        }
+
+        public IEnumerable<IWashStep> GetWashSteps() => _washSteps;
     }
 }

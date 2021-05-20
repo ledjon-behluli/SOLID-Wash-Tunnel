@@ -23,6 +23,7 @@ namespace SOLIDWashTunnel
             container.Register<ICurrencyRateConverter, CurrencyRateConverter>();
             container.Register<IPriceCalculatorFactory, PriceCalculatorFactory>();
             container.Register<IInvoiceBuilder, InvoiceBuilder>();
+            container.Register<ICustomWashProgramBuilder, CustomWashProgramBuilder>();
             container.Register<IWashProgramFactory, WashProgramFactory>();
 
             return container;

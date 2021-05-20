@@ -65,7 +65,7 @@ namespace SOLIDWashTunnel.Finances
         public override Money Calculate(IWashProgram program, Currency currency)
         {
             Money totalPrice = base.Calculate(program, currency);
-            return totalPrice - ((Discount / 100m) * totalPrice);
+            return totalPrice - (Discount / 100m * totalPrice);
         }
     }
 }

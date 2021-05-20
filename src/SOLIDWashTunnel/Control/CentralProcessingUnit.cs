@@ -72,6 +72,7 @@ namespace SOLIDWashTunnel.Control
         {
             _memory.TryGet("VWSS", out VehicleWashingStartedSignal _signal);
             _signal.InvoiceCallback.Invoke(GenerateInvoiceReport());
+            _memory.Flush();
         }
 
         private string GenerateInvoiceReport()

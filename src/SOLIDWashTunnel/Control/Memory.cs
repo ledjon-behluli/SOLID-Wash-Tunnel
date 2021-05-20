@@ -6,6 +6,7 @@ namespace SOLIDWashTunnel.Control
     {
         bool TryGet<T>(string key, out T signal) where T : ISignal;
         void SetOrOverride(string key, ISignal signal);
+        void Flush();
     }
 
     public class Memory : IMemory
@@ -31,6 +32,11 @@ namespace SOLIDWashTunnel.Control
             {
                 _items[key] = signal;
             }
+        }
+
+        public void Flush()
+        {
+            _items.Clear();
         }
     }
 }
