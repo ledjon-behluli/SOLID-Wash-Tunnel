@@ -1,6 +1,6 @@
 using System;
 
-namespace SOLIDWashTunnel.IoC
+namespace SOLIDWashTunnel.DI.Abstractions
 {
     public interface IContainer
     {

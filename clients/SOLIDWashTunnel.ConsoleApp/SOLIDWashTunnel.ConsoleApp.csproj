@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\SOLIDWashTunnel.DI\SOLIDWashTunnel.DI.csproj" />
     <ProjectReference Include="..\..\src\SOLIDWashTunnel\SOLIDWashTunnel.csproj" />
   </ItemGroup>
 

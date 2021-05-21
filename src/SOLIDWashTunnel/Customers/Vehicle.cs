@@ -1,4 +1,5 @@
 using SOLIDWashTunnel.Programs.Steps;
+using SOLIDWashTunnel.Tunnel;
 using System.Collections.Generic;
 
 namespace SOLIDWashTunnel.Vehicles
@@ -29,4 +30,11 @@ namespace SOLIDWashTunnel.Vehicles
             return appliedWashSteps.AsReadOnly();
         }
     }
+
+    public interface ICustomer
+    {
+        IUserPanel UserPanel { get; set; }
+    }
+
+    
 }

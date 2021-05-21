@@ -1,5 +1,4 @@
-﻿using SOLIDWashTunnel.IoC;
-using SOLIDWashTunnel.Vehicles;
+﻿using SOLIDWashTunnel.DI.Abstractions;
 using SOLIDWashTunnel.Tunnel;
 using SOLIDWashTunnel.Finances;
 using SOLIDWashTunnel.Invoices;
@@ -8,12 +7,10 @@ using SOLIDWashTunnel.Control;
 
 namespace SOLIDWashTunnel
 {
-    public static class Registrations
+    public static class ServiceRegistrations
     {
-        public static IContainer Setup(this IContainer container, IVehicle vehicle)
+        public static IContainer AddWashTunnel(this IContainer container)
         {
-            container.Register(vehicle);
-
             container.RegisterSingleton<IMotherboard>(() => new Motherboard(container));
             container.RegisterSingleton<IMemory>(() => new Memory());
 

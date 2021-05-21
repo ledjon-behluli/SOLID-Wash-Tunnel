@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using SOLIDWashTunnel.DI.Abstractions;
 
-namespace SOLIDWashTunnel.IoC
+namespace SOLIDWashTunnel.DI
 {
     /* 
     * Principle: 
@@ -24,13 +25,18 @@ namespace SOLIDWashTunnel.IoC
     *   Although this pattern is considered nowdays to be an anti-pattern, because of dependency injection and singelton lifespan.
     *   It sometimes makes sense to implement it:
     *   Our simple IoC container below, doesn't make sense to have multiple instance of it running.
-    *   It also doesn't make sense to register **the container, within the container** with a singelton lifespan.
+    *   It also doesn't make sense to register **the container, within the container** with a singelton lifespan, 
+    *   if we need to resolve a service somewhere.
+    *   
+    * Note: 
+    *   We should always try to avoid resolving services where DI can be used. This is known as the "Service Locator (Anti)Pattern".
     *   
     * Learn more: 
     *   https://en.wikipedia.org/wiki/Singleton_pattern
+    *   https://en.wikipedia.org/wiki/Service_locator_pattern
     */
 
-    public class Container : IContainer, IDisposable
+    public class SimpleContainer : IContainer, IDisposable
     {
         private Dictionary<Type, Func<object>> _registrations;
 
@@ -47,7 +53,7 @@ namespace SOLIDWashTunnel.IoC
                     {
                         if(_instance == null)
                         {
-                            _instance = new Container();
+                            _instance = new SimpleContainer();
                         }
                     }
                 }
@@ -56,7 +62,7 @@ namespace SOLIDWashTunnel.IoC
             }
         }
     
-        private Container()
+        private SimpleContainer()
         {
             _registrations = new Dictionary<Type, Func<object>>();
         }
