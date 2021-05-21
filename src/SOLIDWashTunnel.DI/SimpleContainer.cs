@@ -25,15 +25,11 @@ namespace SOLIDWashTunnel.DI
     *   Although this pattern is considered nowdays to be an anti-pattern, because of dependency injection and singelton lifespan.
     *   It sometimes makes sense to implement it:
     *   Our simple IoC container below, doesn't make sense to have multiple instance of it running.
-    *   It also doesn't make sense to register **the container, within the container** with a singelton lifespan, 
-    *   if we need to resolve a service somewhere.
-    *   
-    * Note: 
-    *   We should always try to avoid resolving services where DI can be used. This is known as the "Service Locator (Anti)Pattern".
+    *   It also doesn't make sense to register **the container, within the container** with a singelton lifespan, if we need to 
+    *   resolve a service somewhere, if we don't know the service type at design-time.
     *   
     * Learn more: 
     *   https://en.wikipedia.org/wiki/Singleton_pattern
-    *   https://en.wikipedia.org/wiki/Service_locator_pattern
     */
 
     public class SimpleContainer : IContainer, IDisposable

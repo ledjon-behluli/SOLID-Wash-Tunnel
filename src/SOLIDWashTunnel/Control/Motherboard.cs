@@ -22,9 +22,26 @@ namespace SOLIDWashTunnel.Control
      *          The motherboard has access to all of its connected components (CPU, Memory etc.) but is not tied to any of them.
      *          We can think of the container as the collection of electronic paths on a PCB (Printed Circuit Board).
      *          
-     *   
      * Learn more: 
      *   https://en.wikipedia.org/wiki/Mediator_pattern
+     */
+
+
+    /*
+     * Anti-Pattern
+     *   Service Locator
+     *   
+     * Reason:
+     *   As we can see we are injecting the 'IContainer' in motherboard constructor.
+     *   We use the container to resolve the various signal handlers.
+     *   Resolving services within an object is known as the 'Service Locator (Anti)Pattern', and in general should be avoided
+     *   in favor of dependency injection. But if we didn't inject IContainer, we would need to inject all the ISignalHandler<T>'s. 
+     *   This would be a hard to maintain solution and would violate the Open/Closed principle, since we would need to modify 
+     *   the motherboard class each time a new singal is introduced.
+     *   
+     * Learn more: 
+     *  https://en.wikipedia.org/wiki/Service_locator_pattern
+     *  https://bit.ly/3oDvNrk
      */
 
     public interface IMotherboard
