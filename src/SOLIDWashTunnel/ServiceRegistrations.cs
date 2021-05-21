@@ -4,6 +4,7 @@ using SOLIDWashTunnel.Finances;
 using SOLIDWashTunnel.Invoices;
 using SOLIDWashTunnel.Programs;
 using SOLIDWashTunnel.Control;
+using SOLIDWashTunnel.Sensors;
 
 namespace SOLIDWashTunnel
 {
@@ -22,6 +23,7 @@ namespace SOLIDWashTunnel
             container.Register<IInvoiceBuilder, InvoiceBuilder>();
             container.Register<ICustomWashProgramBuilder, CustomWashProgramBuilder>();
             container.Register<IWashProgramFactory, WashProgramFactory>();
+            container.Register(() => new DirtinessSensor().Calibrate(5));
 
             return container;
         }

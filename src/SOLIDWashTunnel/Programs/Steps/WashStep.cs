@@ -13,9 +13,17 @@ namespace SOLIDWashTunnel.Programs.Steps
     * Learn more: 
     *   https://en.wikipedia.org/wiki/Chain-of-responsibility_pattern
     */
+
+
+    //TODO: Visitor pattern
+    // IWashStep - Is the visitor since it acts on the IVehicle
+    // IVehicle - Is the Visited Element, since it accepts actions from the visitor (IWashStep)
+
     public interface IWashStep
     {
+        int CleanlinessFactor { get; }
         Money Price { get; }
+
         IWashStep NextStep(IWashStep washStep);
         void Execute(IVehicle vehicle);
         string GetDescription();
@@ -23,6 +31,7 @@ namespace SOLIDWashTunnel.Programs.Steps
 
     public abstract class WashStep : IWashStep
     {
+        public abstract int CleanlinessFactor { get; }
         public abstract Money Price { get; }
 
         protected readonly IVehicle vehicle;

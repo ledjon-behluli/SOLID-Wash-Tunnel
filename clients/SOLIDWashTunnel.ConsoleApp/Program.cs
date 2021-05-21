@@ -45,7 +45,7 @@ namespace SOLIDWashTunnel.ConsoleApp
 
             panel.SelectBuiltInProgram(type)
                  .AsIndividual(firstName, lastName, currency)
-                 .Start(new Car(), PrintInvoice());
+                 .Start(new DirtyCar(), PrintInvoice());
         }
 
 
@@ -55,7 +55,7 @@ namespace SOLIDWashTunnel.ConsoleApp
 
             panel.SelectBuiltInProgram(type)
                  .AsIndividual(firstName, lastName, currency)
-                 .Start(new Car(), PrintInvoice());
+                 .Start(new DirtyCar(), PrintInvoice());
         }
 
         static void RunBuildInProgramForCompany(ProgramType type, string companyName, Currency currency)
@@ -64,7 +64,7 @@ namespace SOLIDWashTunnel.ConsoleApp
 
             panel.SelectBuiltInProgram(type)
                  .AsCompany(companyName, currency)
-                 .Start(new Car(), PrintInvoice());
+                 .Start(new DirtyCar(), PrintInvoice());
         }
 
         static void RunCustomWashProgramForIndividual(string firstName, string lastName, Currency currency)
@@ -78,7 +78,7 @@ namespace SOLIDWashTunnel.ConsoleApp
 
             panel.CustomizeProgram(builder)
                  .AsIndividual(firstName, lastName, currency)
-                 .Start(new Car(), PrintInvoice());
+                 .Start(new DirtyCar(), PrintInvoice());
         }
 
         static void RunCustomWashProgramForCompany(string companyName, Currency currency)
@@ -97,7 +97,7 @@ namespace SOLIDWashTunnel.ConsoleApp
 
             panel.CustomizeProgram(builder)
                  .AsCompany(companyName, currency)
-                 .Start(new Car(), PrintInvoice());
+                 .Start(new DirtyCar(), PrintInvoice());
         }
 
 
