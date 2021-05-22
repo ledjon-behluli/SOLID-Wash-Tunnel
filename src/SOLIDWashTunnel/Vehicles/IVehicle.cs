@@ -14,7 +14,7 @@ namespace SOLIDWashTunnel.Vehicles
     *   IVehicle - Is the 'abstract visited element', since it accepts an action from the visitor.
     *   
     * Learn more: 
-    *   https://en.wikipedia.org/wiki/visitor_pattern
+    *   https://en.wikipedia.org/wiki/Visitor_pattern
     */
 
     public interface IWashAction

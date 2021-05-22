@@ -5,8 +5,21 @@ using SOLIDWashTunnel.Control;
 
 namespace SOLIDWashTunnel.Tunnel
 {
+    /* 
+    * Pattern: 
+    *   Decorator
+    *
+    * Reason: 
+    *   Adds the ability to add new operations to existing object structures without modifying their structures.
+    *   We are decorating/wrapping the WashTunnel with the SmartWashTunnel to enhance its functionality.
+    *   The SmartWashTunnel is able to detect (via the dirtiness sensor) if a vehicle is clean or dirty.
+    *   The dirtiness sensor is configured to detect level of dirtiness on a vehicle and if it is considered to be 'clean'
+    *   the smart tunnel will completely by-pass washing the vehicle.
+    *   
+    * Learn more: 
+    *   https://en.wikipedia.org/wiki/Decorator_pattern
+    */
 
-    // TODO: Decorator pattern
     public class SmartWashTunnel : IWashTunnel
     {
         private readonly IWashTunnel _washTunnel;
