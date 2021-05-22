@@ -11,7 +11,7 @@ namespace SOLIDWashTunnel.ConsoleApp
             Cleanliness = cleanliness; 
         }
 
-        public void ApplyWashStep(IWashAction action)
+        public void Accept(IWashAction action)
         {
             Cleanliness += action.CleanlinessFactor;      // With each wash action we increase the cleanliness a.k.a we make the vehicle cleaner.
         }

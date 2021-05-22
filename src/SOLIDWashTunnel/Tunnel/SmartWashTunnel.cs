@@ -19,6 +19,7 @@ namespace SOLIDWashTunnel.Tunnel
             IDirtinessSensor dirtinessSensor)
         {
             _washTunnel = washTunnel;
+            _motherboard = motherboard;
             _dirtinessSensor = dirtinessSensor;
         }
 
