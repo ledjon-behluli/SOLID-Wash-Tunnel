@@ -14,18 +14,24 @@ namespace SOLIDWashTunnel.Programs.Steps
     *   https://en.wikipedia.org/wiki/Chain-of-responsibility_pattern
     */
 
+    /*
+     * Principle:
+     *   Interface Seggregation:
+     *   
+     * Reason:
+     *   Clients should not be forced to implement interfaces they don't use.
+     *   A vehicle does not care about information of an wash step like: price, next step to apply, or the step description.
+     *   A vehicle just need to be washed a.k.a apply a wash action. That is why we have sepparated the IWashAction from IWashStep. 
+     *   
+     * Learn more:
+     *   https://en.wikipedia.org/wiki/Interface_segregation_principle
+     */
 
-    //TODO: Visitor pattern
-    // IWashStep - Is the visitor since it acts on the IVehicle
-    // IVehicle - Is the Visited Element, since it accepts actions from the visitor (IWashStep)
-
-    public interface IWashStep
+    public interface IWashStep : IWashAction
     {
-        int CleanlinessFactor { get; }
         Money Price { get; }
 
         IWashStep NextStep(IWashStep washStep);
-        void Execute(IVehicle vehicle);
         string GetDescription();
     }
 
