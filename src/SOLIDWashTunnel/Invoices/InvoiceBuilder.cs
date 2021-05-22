@@ -21,8 +21,10 @@ namespace SOLIDWashTunnel.Invoices
     {
         private int _discount;
         private CustomerType _customerType;
-        private Currency _currency;
-        private readonly Invoice _invoice;
+
+        protected Currency _currency;
+        protected readonly Invoice _invoice;
+
         private readonly ICurrencyRateConverter _converter;
         private readonly IPriceCalculatorFactory _calculatorFactory;
 
@@ -82,7 +84,7 @@ namespace SOLIDWashTunnel.Invoices
             return this;
         }
 
-        public string Build()
+        public virtual string Build()
         {
             var builder = new StringBuilder();
         

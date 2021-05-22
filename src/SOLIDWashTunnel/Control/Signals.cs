@@ -65,4 +65,9 @@ namespace SOLIDWashTunnel.Control
     {
 
     }
+
+    public class VehicleAlreadyCleanSignal : ISignal
+    {
+
+    }
 }

@@ -33,6 +33,7 @@ namespace SOLIDWashTunnel.Control
         ISignalHandler<IndividualCustomerInfoEnteredSignal>,
         ISignalHandler<CompanyCustomerInfoEnteredSignal>,
         ISignalHandler<VehicleWashingStartedSignal>,
+        ISignalHandler<VehicleAlreadyCleanSignal>,
         ISignalHandler<VehicleReadySignal>
     {
         private readonly IMemory _memory;
@@ -75,12 +76,18 @@ namespace SOLIDWashTunnel.Control
             _memory.Flush();
         }
 
+        public void Handle(VehicleAlreadyCleanSignal signal)
+        {
+            _memory.TryGet("VWSS", out VehicleWashingStartedSignal _signal);
+            _signal.InvoiceCallback.Invoke("No wash step was applied since the vehicle is already clean!");
+            _memory.Flush();
+        }
+
         private string GenerateInvoiceReport()
         {
             IProgramSelector selector = null;
-            CustomerInfoEnteredSignal info;
 
-            if (_memory.TryGet("ICIES", out info))
+            if (_memory.TryGet("ICIES", out CustomerInfoEnteredSignal info))
             {
                 var individualInfo = info as IndividualCustomerInfoEnteredSignal;
 

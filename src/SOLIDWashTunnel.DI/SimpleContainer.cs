@@ -32,7 +32,7 @@ namespace SOLIDWashTunnel.DI
     *   https://en.wikipedia.org/wiki/Singleton_pattern
     */
 
-    public class SimpleContainer : IContainer, IDisposable
+    public class SimpleContainer : IContainer
     {
         private Dictionary<Type, Func<object>> _registrations;
 
@@ -63,7 +63,7 @@ namespace SOLIDWashTunnel.DI
             _registrations = new Dictionary<Type, Func<object>>();
         }
 
-        public void Register<TService, TImplementation>() where TImplementation : TService 
+        public void Register<TService, TImplementation>() where TImplementation : TService
             => _registrations.Add(typeof(TService), () => GetService(typeof(TImplementation)));
 
         public void Register<TService>(Func<TService> instanceCreator) 
@@ -78,6 +78,23 @@ namespace SOLIDWashTunnel.DI
             Register(() => lazy.Value);
         }
 
+        // In real projects use a DI container which supports decorator registrations out of the box.
+        public void Decorate<TService, TImplementation>() where TImplementation : TService
+        {
+            Type serviceType = typeof(TService);
+            Type implementationType = typeof(TImplementation);
+
+            TService decorated = GetService<TService>();
+
+            if (decorated == null)
+                throw new InvalidOperationException($"Can not register decorator {implementationType}, if no decorated service of {serviceType} has be registered.");
+            
+            var decorator = CreateService(implementationType);
+
+            _registrations.Remove(serviceType);
+            _registrations.Add(serviceType, () => decorator);
+        }
+
         public object GetService(Type type)
         {
             if (_registrations.TryGetValue(type, out Func<object> creator))
@@ -85,7 +102,7 @@ namespace SOLIDWashTunnel.DI
             else if (!type.IsAbstract)
                 return CreateService(type);
             else
-                throw new InvalidOperationException("No registration for " + type);
+                throw new InvalidOperationException($"No registration for {type}.");
         }
 
         public TService GetService<TService>()
@@ -93,10 +110,6 @@ namespace SOLIDWashTunnel.DI
             return (TService)GetService(typeof(TService));
         }
 
-        public TService GetService<TService>(Type type)
-        {
-            return (TService)GetService(type);
-        }
 
         private object CreateService(Type implementationType)
         {
@@ -109,7 +122,6 @@ namespace SOLIDWashTunnel.DI
         public void Dispose()
         {
             _registrations.Clear();
-            _instance = null;
         }
     }
 }

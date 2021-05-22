@@ -10,6 +10,10 @@ namespace SOLIDWashTunnel
 {
     public static class ServiceRegistrations
     {
+        /// <summary>
+        /// Registers all components needed for a normal wash tunnel.
+        /// The tunnel will wash a vehicle regardless if it is 'clean' or 'dirty'.
+        /// </summary>
         public static IContainer AddWashTunnel(this IContainer container)
         {
             container.RegisterSingleton<IMotherboard>(() => new Motherboard(container));
@@ -23,9 +27,24 @@ namespace SOLIDWashTunnel
             container.Register<IInvoiceBuilder, InvoiceBuilder>();
             container.Register<ICustomWashProgramBuilder, CustomWashProgramBuilder>();
             container.Register<IWashProgramFactory, WashProgramFactory>();
-            container.Register(() => new DirtinessSensor().Calibrate(5));
 
             return container;
         }
+
+        /// <summary>
+        /// Registers all components needed for a smart wash tunnel.
+        /// The tunnel will wash a vehicle only if it considered to be 'dirty'.
+        /// </summary>
+        public static IContainer AddSmartWashTunnel(this IContainer container)
+        {
+            container.Dispose();
+            container.AddWashTunnel();
+
+            container.Register(() => new DirtinessSensor().Calibrate(5));
+            container.Decorate<IWashTunnel, SmartWashTunnel>();
+
+            return container;
+        }
+
     }
 }

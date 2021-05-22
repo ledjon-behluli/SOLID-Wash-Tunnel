@@ -74,7 +74,7 @@ namespace SOLIDWashTunnel.Control
                 .GetExecutingAssembly()
                 .GetTypes()
                 .Where(type => typeof(ISignalHandler<T>).IsAssignableFrom(type) && !type.IsInterface && !type.IsAbstract)
-                .Select(type => _container.GetService<ISignalHandler<T>>(type));
+                .Select(type => (ISignalHandler<T>)_container.GetService(type));
         }
     }
 }

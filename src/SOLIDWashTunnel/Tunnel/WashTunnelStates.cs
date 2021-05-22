@@ -51,7 +51,7 @@ namespace SOLIDWashTunnel.Tunnel
         {
             /* 
              * The wash tunnel can't accept washing a new vehicle, while an other vehicle is being washed from the tunnel.
-             * So we simply ignore this request. We could extend this to queue up a new washing process and start it when
+             * So we simply ignore this request. We could extend this to queue a new washing process and start it when
              * the previous vehicle is ready.
              */
         }

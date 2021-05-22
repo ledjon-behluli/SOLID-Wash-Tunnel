@@ -3,16 +3,21 @@ using SOLIDWashTunnel.DI;
 using SOLIDWashTunnel.DI.Abstractions;
 using SOLIDWashTunnel.Programs;
 using SOLIDWashTunnel.Tunnel;
+using SOLIDWashTunnel.Vehicles;
 
 namespace SOLIDWashTunnel.ConsoleApp
 {
     class Program
     {
-        static IContainer container = SimpleContainer.Instance;
+        static readonly IContainer container = SimpleContainer.Instance;
+
+        // Choose per-liking
+        static readonly IVehicle vehicle = new DirtyCar(); // new CleanCar();
 
         static void Main(string[] args)
         {
-            container.AddWashTunnel();
+            container.AddWashTunnel();           // A normal wash tunnel registration (hover over it to see what it means)
+            container.AddSmartWashTunnel();      // A smart wash tunnel registration (hover over it to see what it means)
 
             test(ProgramType.Fast, "Ledjon", "Behluli", Currency.USD);
 
@@ -45,7 +50,7 @@ namespace SOLIDWashTunnel.ConsoleApp
 
             panel.SelectBuiltInProgram(type)
                  .AsIndividual(firstName, lastName, currency)
-                 .Start(new DirtyCar(), PrintInvoice());
+                 .Start(vehicle, PrintInvoice());
         }
 
 
@@ -55,7 +60,7 @@ namespace SOLIDWashTunnel.ConsoleApp
 
             panel.SelectBuiltInProgram(type)
                  .AsIndividual(firstName, lastName, currency)
-                 .Start(new DirtyCar(), PrintInvoice());
+                 .Start(vehicle, PrintInvoice());
         }
 
         static void RunBuildInProgramForCompany(ProgramType type, string companyName, Currency currency)
@@ -64,7 +69,7 @@ namespace SOLIDWashTunnel.ConsoleApp
 
             panel.SelectBuiltInProgram(type)
                  .AsCompany(companyName, currency)
-                 .Start(new DirtyCar(), PrintInvoice());
+                 .Start(vehicle, PrintInvoice());
         }
 
         static void RunCustomWashProgramForIndividual(string firstName, string lastName, Currency currency)
@@ -78,7 +83,7 @@ namespace SOLIDWashTunnel.ConsoleApp
 
             panel.CustomizeProgram(builder)
                  .AsIndividual(firstName, lastName, currency)
-                 .Start(new DirtyCar(), PrintInvoice());
+                 .Start(vehicle, PrintInvoice());
         }
 
         static void RunCustomWashProgramForCompany(string companyName, Currency currency)
@@ -97,7 +102,7 @@ namespace SOLIDWashTunnel.ConsoleApp
 
             panel.CustomizeProgram(builder)
                  .AsCompany(companyName, currency)
-                 .Start(new DirtyCar(), PrintInvoice());
+                 .Start(vehicle, PrintInvoice());
         }
 
 

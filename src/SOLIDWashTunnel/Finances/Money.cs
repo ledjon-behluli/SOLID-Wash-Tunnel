@@ -19,6 +19,8 @@ namespace SOLIDWashTunnel
         public static Money Create(decimal amount) 
             => new Money(Currency.USD, amount);
 
+        public static Money Zero(Currency currency) 
+            => new Money(currency, 0.0m);
 
         public static Money operator *(decimal amount, Money money)
             => new Money(money.Currency, money.Amount * amount);
