@@ -1,0 +1,12 @@
+Command
+Mediator
+Service Locator
+Simple Factory
+Strategy
+Builder
+Chain of Responsibility
+Decorator
+State
+Visitor
+Singelton
+Dependency Injection
