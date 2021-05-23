@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using SOLIDWashTunnel.Vehicles;
 using SOLIDWashTunnel.Programs;
 using SOLIDWashTunnel.Programs.Steps;

@@ -12,10 +12,14 @@ namespace SOLIDWashTunnel.ConsoleApp
         static readonly IContainer container = SimpleContainer.Instance;
 
         // Choose per-liking
-        static readonly IVehicle vehicle = new DirtyCar(); // new CleanCar();
+
+        static readonly IVehicle vehicle = new DirtyCar(); 
+        //static readonly IVehicle vehicle = new CleanCar();
 
         static void Main(string[] args)
         {
+            // Choose per-liking
+
             container.AddWashTunnel();           // A normal wash tunnel registration (hover over it to see what it means)
             container.AddSmartWashTunnel();      // A smart wash tunnel registration (hover over it to see what it means)
 

@@ -1,4 +1,4 @@
-﻿using SOLIDWashTunnel.Finances;
+using SOLIDWashTunnel.Finances;
 using SOLIDWashTunnel.Programs;
 using System.Text;
 

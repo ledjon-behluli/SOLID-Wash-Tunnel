@@ -1,4 +1,4 @@
-﻿using SOLIDWashTunnel.Programs;
+using SOLIDWashTunnel.Programs;
 using System.Linq;
 
 namespace SOLIDWashTunnel.Finances

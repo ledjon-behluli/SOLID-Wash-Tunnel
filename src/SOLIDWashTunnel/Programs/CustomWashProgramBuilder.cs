@@ -1,4 +1,4 @@
-﻿using SOLIDWashTunnel.Programs.Steps;
+using SOLIDWashTunnel.Programs.Steps;
 using System.Collections.Generic;
 
 namespace SOLIDWashTunnel.Programs

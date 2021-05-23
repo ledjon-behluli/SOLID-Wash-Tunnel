@@ -22,6 +22,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SOLIDWashTunnel.DI", "src\S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SOLIDWashTunnel.DI.Abstractions", "src\SOLIDWashTunnel.DI.Abstractions\SOLIDWashTunnel.DI.Abstractions.csproj", "{3E9B36FD-B430-4D0A-9BC9-6991AC7F48F9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SOLIDWashTunnel.WebServices", "src\SOLIDWashTunnel.WebServices\SOLIDWashTunnel.WebServices.csproj", "{EBDA81A1-76EE-48EA-A8D2-B918A27F7D9D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,6 +46,10 @@ Global
 		{3E9B36FD-B430-4D0A-9BC9-6991AC7F48F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E9B36FD-B430-4D0A-9BC9-6991AC7F48F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3E9B36FD-B430-4D0A-9BC9-6991AC7F48F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EBDA81A1-76EE-48EA-A8D2-B918A27F7D9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBDA81A1-76EE-48EA-A8D2-B918A27F7D9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBDA81A1-76EE-48EA-A8D2-B918A27F7D9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBDA81A1-76EE-48EA-A8D2-B918A27F7D9D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -53,6 +59,7 @@ Global
 		{5D623D0C-C278-4683-85EE-958C0E351D56} = {E0EDA7E4-7A2F-40F8-BFA0-A70276644EEA}
 		{E6B2FCF2-2AA7-468A-A3E6-A7F842806E0A} = {E0EDA7E4-7A2F-40F8-BFA0-A70276644EEA}
 		{3E9B36FD-B430-4D0A-9BC9-6991AC7F48F9} = {E0EDA7E4-7A2F-40F8-BFA0-A70276644EEA}
+		{EBDA81A1-76EE-48EA-A8D2-B918A27F7D9D} = {E0EDA7E4-7A2F-40F8-BFA0-A70276644EEA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D8D1C49C-419A-4B7A-A1EC-847F656A00DF}

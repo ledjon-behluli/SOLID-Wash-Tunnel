@@ -1,4 +1,4 @@
-﻿
+
 namespace SOLIDWashTunnel.Finances
 {
     public enum CustomerType

@@ -19,13 +19,13 @@ namespace SOLIDWashTunnel.Vehicles
 
     public interface IWashAction
     {
-        int CleanlinessFactor { get; }
+        int CleaningFactor { get; }
         void Visit(IVehicle vehicle);
     }
 
     public interface IVehicle
     {
-        int Cleanliness { get; }
+        int Dirtiness { get; }
         void Accept(IWashAction action);
     }
 }

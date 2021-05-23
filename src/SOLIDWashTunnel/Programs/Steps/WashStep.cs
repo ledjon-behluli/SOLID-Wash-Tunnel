@@ -37,7 +37,7 @@ namespace SOLIDWashTunnel.Programs.Steps
 
     public abstract class WashStep : IWashStep
     {
-        public abstract int CleanlinessFactor { get; }
+        public abstract int CleaningFactor { get; }
         public abstract Money Price { get; }
 
         protected readonly IVehicle vehicle;

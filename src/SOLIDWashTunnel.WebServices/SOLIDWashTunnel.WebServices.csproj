@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SOLIDWashTunnel.DI.Abstractions\SOLIDWashTunnel.DI.Abstractions.csproj" />
-    <ProjectReference Include="..\SOLIDWashTunnel.WebServices\SOLIDWashTunnel.WebServices.csproj" />
   </ItemGroup>
 
 </Project>

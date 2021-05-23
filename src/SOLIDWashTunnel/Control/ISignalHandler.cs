@@ -1,4 +1,4 @@
-﻿namespace SOLIDWashTunnel.Control
+namespace SOLIDWashTunnel.Control
 {
     // Marker interface
     public interface ISignalHandler

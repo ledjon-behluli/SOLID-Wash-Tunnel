@@ -1,4 +1,5 @@
-﻿using SOLIDWashTunnel.DI.Abstractions;
+using SOLIDWashTunnel.DI.Abstractions;
+using SOLIDWashTunnel.WebServices;
 using SOLIDWashTunnel.Tunnel;
 using SOLIDWashTunnel.Finances;
 using SOLIDWashTunnel.Invoices;
@@ -16,6 +17,8 @@ namespace SOLIDWashTunnel
         /// </summary>
         public static IContainer AddWashTunnel(this IContainer container)
         {
+            container.AddLegacyComponents();
+
             container.RegisterSingleton<IMotherboard>(() => new Motherboard(container));
             container.RegisterSingleton<IMemory>(() => new Memory());
 
