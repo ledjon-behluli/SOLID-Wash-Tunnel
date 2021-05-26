@@ -1,5 +1,5 @@
 using System;
-using SOLIDWashTunnel.WebServices;
+using SOLIDWashTunnel.Legacy;
 
 namespace SOLIDWashTunnel.Finances
 {
@@ -22,8 +22,6 @@ namespace SOLIDWashTunnel.Finances
     *   https://wiki.c2.com/?PrimitiveObsession
     */
 
-
-    //TODO: Proxy, cache token to use legacy converter
     public interface ICurrencyRateConverter
     {
         Money Convert(Money price, Currency currency);

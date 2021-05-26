@@ -9,7 +9,7 @@ namespace SOLIDWashTunnel.ConsoleApp
 {
     class Program
     {
-        static readonly IContainer container = SimpleContainer.Instance;
+        static readonly IContainer container = new SimpleContainer();
 
         // Choose per-liking
 

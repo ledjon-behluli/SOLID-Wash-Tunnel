@@ -1,5 +1,5 @@
 using SOLIDWashTunnel.DI.Abstractions;
-using SOLIDWashTunnel.WebServices;
+using SOLIDWashTunnel.Legacy;
 using SOLIDWashTunnel.Tunnel;
 using SOLIDWashTunnel.Finances;
 using SOLIDWashTunnel.Invoices;
@@ -17,15 +17,19 @@ namespace SOLIDWashTunnel
         /// </summary>
         public static IContainer AddWashTunnel(this IContainer container)
         {
-            container.AddLegacyComponents();
-
             container.RegisterSingleton<IMotherboard>(() => new Motherboard(container));
             container.RegisterSingleton<IMemory>(() => new Memory());
 
             container.Register<IUserPanel, UserPanel>();
             container.Register<IWashTunnel, WashTunnel>();
 
-            container.Register<ICurrencyRateConverter, CurrencyRateConverter>();
+            container.Register<ICurrencyRateConverter>(() =>
+            {
+                ILegacyCurrencyRateConverter legacyConverter = 
+                    LegacyCurrencyRateConverterProxy.Instance.Authenticate("solid-tunnel-00F1BDE0-AC18-452B-A628-B8FB0335DAB6");
+
+                return new CurrencyRateConverter(legacyConverter);
+            });
             container.Register<IPriceCalculatorFactory, PriceCalculatorFactory>();
             container.Register<IInvoiceBuilder, InvoiceBuilder>();
             container.Register<ICustomWashProgramBuilder, CustomWashProgramBuilder>();

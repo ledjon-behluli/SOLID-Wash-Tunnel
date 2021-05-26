@@ -22,7 +22,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SOLIDWashTunnel.DI", "src\S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SOLIDWashTunnel.DI.Abstractions", "src\SOLIDWashTunnel.DI.Abstractions\SOLIDWashTunnel.DI.Abstractions.csproj", "{3E9B36FD-B430-4D0A-9BC9-6991AC7F48F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SOLIDWashTunnel.WebServices", "src\SOLIDWashTunnel.WebServices\SOLIDWashTunnel.WebServices.csproj", "{EBDA81A1-76EE-48EA-A8D2-B918A27F7D9D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SOLIDWashTunnel.Legacy", "src\SOLIDWashTunnel.Legacy\SOLIDWashTunnel.Legacy.csproj", "{EBDA81A1-76EE-48EA-A8D2-B918A27F7D9D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

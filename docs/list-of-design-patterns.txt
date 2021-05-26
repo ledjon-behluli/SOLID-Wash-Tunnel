@@ -10,4 +10,5 @@ State
 Visitor
 Singelton
 Adapter
+Proxy
 Dependency Injection
