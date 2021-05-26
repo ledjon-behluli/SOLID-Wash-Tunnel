@@ -9,6 +9,8 @@ using SOLIDWashTunnel.Sensors;
 
 namespace SOLIDWashTunnel
 {
+    //TODO: Observer pattern: implement signal login in external provider or similar
+
     public static class ServiceRegistrations
     {
         /// <summary>
