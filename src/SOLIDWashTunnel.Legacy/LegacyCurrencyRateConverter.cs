@@ -2,11 +2,6 @@ using System;
 
 namespace SOLIDWashTunnel.Legacy
 {
-    public interface ILegacyCurrencyRateConverter
-    {
-        decimal Convert(decimal price, string currency);
-    }
-
     internal class LegacyCurrencyRateConverter : ILegacyCurrencyRateConverter
     {
         public decimal Convert(decimal price, string currency)
