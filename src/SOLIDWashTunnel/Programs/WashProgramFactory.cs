@@ -7,7 +7,8 @@ namespace SOLIDWashTunnel.Programs
     *   Simple Factory
     *   
     * Reason: 
-    *   Decouple the selection of a wash program from the customer.
+    *   Decouple the retrival of a wash program based on the program type.
+    *   Not to be confused with Factory Method or Abstract Factory patterns.
     *   
     * Learn more: 
     *   https://refactoring.guru/design-patterns/factory-comparison

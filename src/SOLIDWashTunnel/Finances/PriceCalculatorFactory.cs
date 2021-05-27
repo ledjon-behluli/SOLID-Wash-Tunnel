@@ -8,6 +8,7 @@ namespace SOLIDWashTunnel.Finances
     *   
     * Reason: 
     *   Decouple the retrival of a price calculator based on the customer type.
+    *   Not to be confused with Factory Method or Abstract Factory patterns.
     *   
     * Learn more: 
     *   https://refactoring.guru/design-patterns/factory-comparison

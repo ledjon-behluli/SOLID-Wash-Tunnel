@@ -1,3 +1,4 @@
+using SOLIDWashTunnel.ClientFacing;
 using SOLIDWashTunnel.Invoices;
 using SOLIDWashTunnel.Tunnel;
 

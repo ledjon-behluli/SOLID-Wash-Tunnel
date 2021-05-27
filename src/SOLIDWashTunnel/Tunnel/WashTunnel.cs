@@ -4,12 +4,6 @@ using SOLIDWashTunnel.Control;
 
 namespace SOLIDWashTunnel.Tunnel
 {
-    public interface IWashTunnel
-    {
-        void Wash(IVehicle vehicle, IWashProgram program);
-        void TransitionState(IWashTunnelState state);
-    }
-
     public class WashTunnel : IWashTunnel
     {
         private readonly IMotherboard _motherboard;
