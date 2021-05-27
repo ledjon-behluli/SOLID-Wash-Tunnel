@@ -4,17 +4,16 @@ using System.Collections.Generic;
 namespace SOLIDWashTunnel.Programs
 {
     /* 
-   * Pattern:
-   *   Builder
-   *   
-   * Reason: 
-   *   Give the client a convenient way to build the wash program, through a series of build steps.
-   *   
-   * Learn more: 
-   *   https://en.wikipedia.org/wiki/Builder_pattern
-   *   https://en.wikipedia.org/wiki/Fluent_interface
-   */
-
+     * Pattern:
+     *   Builder
+     *   
+     * Reason: 
+     *   Give the client a convenient way to build the wash program, through a series of build steps.
+     *   
+     * Learn more: 
+     *   https://en.wikipedia.org/wiki/Builder_pattern
+     *   https://en.wikipedia.org/wiki/Fluent_interface
+     */
 
     public interface ICustomWashProgramBuilder
     {
