@@ -8,7 +8,8 @@ namespace SOLIDWashTunnel.Finances
     *   Strategy
     *   
     * Reason: 
-    *   Switch different price calculation strategies at runtime.
+    *   Instead of implementing a single algorithm directly, code receives runtime instructions as to which in a family of algorithms to use.
+    *   Switch different price calculation strategies (individual & company) at runtime, for the end invoice generation.
     *   
     * Learn more: 
     *   https://en.wikipedia.org/wiki/Strategy_pattern

@@ -1,8 +1,9 @@
+﻿using SOLIDWashTunnel.Control;
 using SOLIDWashTunnel.Programs;
 using SOLIDWashTunnel.Vehicles;
 using System;
 
-namespace SOLIDWashTunnel.Control
+namespace SOLIDWashTunnel.ClientFacing
 {
     public class WashProgramSelectedSignal : ISignal
     {
@@ -59,15 +60,5 @@ namespace SOLIDWashTunnel.Control
             Vehicle = vehicle;
             InvoiceCallback = invoiceCallback;
         }
-    }
-
-    public class VehicleReadySignal : ISignal
-    {
-
-    }
-
-    public class VehicleAlreadyCleanSignal : ISignal
-    {
-
     }
 }

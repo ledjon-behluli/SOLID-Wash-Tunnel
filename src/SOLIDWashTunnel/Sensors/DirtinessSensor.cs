@@ -17,7 +17,6 @@ namespace SOLIDWashTunnel.Sensors
     {
         private int _threshold = 3;
 
-        
         public IDirtinessSensor Calibrate(int threshold)
         {
             _threshold = threshold;

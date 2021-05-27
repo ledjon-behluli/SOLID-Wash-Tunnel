@@ -3,25 +3,19 @@ using SOLIDWashTunnel.Programs;
 using SOLIDWashTunnel.Control;
 using System;
 
-namespace SOLIDWashTunnel.Tunnel
+namespace SOLIDWashTunnel.ClientFacing
 {
-    public interface IUserPanel
-    {
-        ICustomerInformationCollector SelectBuiltInProgram(ProgramType type);
-        ICustomerInformationCollector CustomizeProgram(ICustomWashProgramBuilder builder);
-    }
+    /* 
+    * Pattern:
+    *   Builder
+    *   
+    * Reason: 
+    *   Collect user information to start the vehicle wash process
+    *   
+    * Learn more: 
+    *   https://en.wikipedia.org/wiki/Builder_pattern
+    */
 
-    public interface ICustomerInformationCollector
-    {
-        IWashProcessStarter AsIndividual(string firstName, string lastName, Currency preferedCurrecy);
-        IWashProcessStarter AsCompany(string companyName, Currency preferedCurrecy);
-    }
-
-    public interface IWashProcessStarter
-    {
-        void Start(IVehicle vehicle, Action<string> invoiceCallback);
-    }
-    
     public class UserPanel : IUserPanel, ICustomerInformationCollector, IWashProcessStarter
     {
         private readonly IMotherboard _motherboard;

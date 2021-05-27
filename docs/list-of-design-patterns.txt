@@ -1,14 +1,21 @@
-Command
-Mediator
-Service Locator
-Simple Factory
-Strategy
-Builder
-Chain of Responsibility
-Decorator
-State
-Visitor
-Singelton
-Adapter
-Proxy
-Dependency Injection
+Adapter         - v
+Bridge          - x
+Composite       - x
+Decorator       - v
+Facade          - x
+Flyweight       - x
+Proxy           - v
+Chain of Resp.  - v
+Command         - v
+Interpreter     - x
+Iterator        - x
+Mediator        - v
+Memento         - x
+Observer        - x
+State           - v
+Strategy        - v
+Template        - x
+Visitor         - v
+Template Method - x is based on inheritance: it lets you alter parts of an algorithm by extending those parts in subclasses. 
+Simple Factory  - v
+Dep. Injection  - v

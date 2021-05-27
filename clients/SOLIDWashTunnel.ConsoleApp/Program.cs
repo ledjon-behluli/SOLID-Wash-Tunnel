@@ -1,8 +1,8 @@
 using System;
+using SOLIDWashTunnel.ClientFacing;
 using SOLIDWashTunnel.DI;
 using SOLIDWashTunnel.DI.Abstractions;
 using SOLIDWashTunnel.Programs;
-using SOLIDWashTunnel.Tunnel;
 using SOLIDWashTunnel.Vehicles;
 
 namespace SOLIDWashTunnel.ConsoleApp
@@ -10,11 +10,9 @@ namespace SOLIDWashTunnel.ConsoleApp
     class Program
     {
         static readonly IContainer container = new SimpleContainer();
-
-        // Choose per-liking
-
-        static readonly IVehicle vehicle = new DirtyCar(); 
-        //static readonly IVehicle vehicle = new CleanCar();
+        static readonly IVehicle vehicle = 
+            new DirtyCar(); 
+         // new CleanCar();
 
         static void Main(string[] args)
         {

@@ -9,11 +9,11 @@ namespace SOLIDWashTunnel.Control
         void Flush();
     }
 
-    public class Memory : IMemory
+    public class RandomAccessMemory : IMemory
     {
         private Dictionary<string, ISignal> _items;
 
-        public Memory()
+        public RandomAccessMemory()
         {
             _items = new Dictionary<string, ISignal>();
         }

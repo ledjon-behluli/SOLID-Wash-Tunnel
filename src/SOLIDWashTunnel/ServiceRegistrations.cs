@@ -6,6 +6,7 @@ using SOLIDWashTunnel.Invoices;
 using SOLIDWashTunnel.Programs;
 using SOLIDWashTunnel.Control;
 using SOLIDWashTunnel.Sensors;
+using SOLIDWashTunnel.ClientFacing;
 
 namespace SOLIDWashTunnel
 {
@@ -20,7 +21,7 @@ namespace SOLIDWashTunnel
         public static IContainer AddWashTunnel(this IContainer container)
         {
             container.RegisterSingleton<IMotherboard>(() => new Motherboard(container));
-            container.RegisterSingleton<IMemory>(() => new Memory());
+            container.RegisterSingleton<IMemory>(() => new RandomAccessMemory());
 
             container.Register<IUserPanel, UserPanel>();
             container.Register<IWashTunnel, WashTunnel>();

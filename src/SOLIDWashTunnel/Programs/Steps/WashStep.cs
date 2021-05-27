@@ -20,8 +20,8 @@ namespace SOLIDWashTunnel.Programs.Steps
      *   
      * Reason:
      *   Clients should not be forced to implement interfaces they don't use.
-     *   A vehicle does not care about information of an wash step like: price, next step to apply, or the step description.
-     *   A vehicle just need to be washed a.k.a apply a wash action. That is why we have sepparated the IWashAction from IWashStep. 
+     *   A vehicle does not care about information of a wash step like: price, next step to apply, or step-description.
+     *   A vehicle just needs to be washed a.k.a apply a wash action. That is why we have sepparated the IWashAction from IWashStep. 
      *   
      * Learn more:
      *   https://en.wikipedia.org/wiki/Interface_segregation_principle
