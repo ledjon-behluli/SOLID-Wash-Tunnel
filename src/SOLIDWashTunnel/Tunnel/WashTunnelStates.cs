@@ -1,7 +1,7 @@
 using System.Linq;
-using SOLIDWashTunnel.Vehicles;
 using SOLIDWashTunnel.Programs;
 using SOLIDWashTunnel.Programs.Steps;
+using SOLIDWashTunnel.ClientFacing;
 
 namespace SOLIDWashTunnel.Tunnel
 {

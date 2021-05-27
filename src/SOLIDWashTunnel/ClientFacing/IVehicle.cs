@@ -1,5 +1,4 @@
-
-namespace SOLIDWashTunnel.Vehicles
+namespace SOLIDWashTunnel.ClientFacing
 {
     /* 
     * Pattern: 

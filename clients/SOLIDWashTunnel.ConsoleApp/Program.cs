@@ -3,7 +3,6 @@ using SOLIDWashTunnel.ClientFacing;
 using SOLIDWashTunnel.DI;
 using SOLIDWashTunnel.DI.Abstractions;
 using SOLIDWashTunnel.Programs;
-using SOLIDWashTunnel.Vehicles;
 
 namespace SOLIDWashTunnel.ConsoleApp
 {

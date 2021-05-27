@@ -1,5 +1,4 @@
 ﻿using SOLIDWashTunnel.Programs;
-using SOLIDWashTunnel.Vehicles;
 using System;
 
 namespace SOLIDWashTunnel.ClientFacing

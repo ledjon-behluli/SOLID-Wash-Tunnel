@@ -1,6 +1,6 @@
-using SOLIDWashTunnel.Vehicles;
 using SOLIDWashTunnel.Programs;
 using SOLIDWashTunnel.Control;
+using SOLIDWashTunnel.ClientFacing;
 
 namespace SOLIDWashTunnel.Tunnel
 {

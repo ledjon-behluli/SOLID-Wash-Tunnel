@@ -1,4 +1,4 @@
-using SOLIDWashTunnel.Vehicles;
+using SOLIDWashTunnel.ClientFacing;
 
 namespace SOLIDWashTunnel.Sensors
 {
