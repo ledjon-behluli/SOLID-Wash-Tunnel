@@ -16,11 +16,8 @@ namespace SOLIDWashTunnel.Control
      *   A motherboard allows communication between many of the crucial electronic components of a system, 
      *   such as the central processing unit and memory, and provides connectors for other peripherals.
      *   As such the motherboard is a good implementation of the Mediator Pattern.
-     *   
-     *   The injected dependencies reflect the real-word usage of a Motherboard
-     *      IContainer -
-     *          The motherboard has access to all of its connected components (CPU, Memory etc.) but is not tied to any of them.
-     *          We can think of the container as the collection of electronic paths on a PCB (Printed Circuit Board).
+     *   The motherboard has access to all of its connected components (CPU, RAM etc.) 
+     *   but is not tied to any of them, or any implementation of them either.
      *          
      * Learn more: 
      *   https://en.wikipedia.org/wiki/Mediator_pattern
