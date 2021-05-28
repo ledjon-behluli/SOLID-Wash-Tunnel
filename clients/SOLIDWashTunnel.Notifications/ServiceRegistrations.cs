@@ -1,4 +1,4 @@
-﻿using SOLIDWashTunnel.DI.Abstractions;
+using SOLIDWashTunnel.DI.Abstractions;
 using SOLIDWashTunnel.Programs.Steps;
 
 namespace SOLIDWashTunnel.Notifications

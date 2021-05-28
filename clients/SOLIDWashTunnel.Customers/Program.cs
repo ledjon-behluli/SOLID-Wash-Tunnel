@@ -5,7 +5,7 @@ using SOLIDWashTunnel.DI.Abstractions;
 using SOLIDWashTunnel.Programs;
 using SOLIDWashTunnel.Notifications;
 
-namespace SOLIDWashTunnel.ConsoleApp
+namespace SOLIDWashTunnel.Customers
 {
     class Program
     {

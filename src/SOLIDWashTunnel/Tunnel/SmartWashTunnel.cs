@@ -26,18 +26,15 @@ namespace SOLIDWashTunnel.Tunnel
         private readonly IWashTunnel _washTunnel;
         private readonly IMotherboard _motherboard;
         private readonly IDirtinessSensor _sensor;
-        private readonly IWashStepNotifier _notifier;
 
         public SmartWashTunnel(
             IWashTunnel washTunnel,
             IMotherboard motherboard,
-            IDirtinessSensor sensor,
-            IWashStepNotifier notifier)
+            IDirtinessSensor sensor)
         {
             _washTunnel = washTunnel;
             _motherboard = motherboard;
             _sensor = sensor;
-            _notifier = notifier;
         }
 
         public void Wash(IVehicle vehicle, IWashProgram program)

@@ -1,4 +1,4 @@
-﻿using SOLIDWashTunnel.ClientFacing;
+using SOLIDWashTunnel.ClientFacing;
 using SOLIDWashTunnel.Programs.Steps;
 using System;
 

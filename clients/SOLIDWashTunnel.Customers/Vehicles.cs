@@ -1,6 +1,6 @@
 using SOLIDWashTunnel.ClientFacing;
 
-namespace SOLIDWashTunnel.ConsoleApp
+namespace SOLIDWashTunnel.Customers
 {
     public abstract class Car : IVehicle
     {
