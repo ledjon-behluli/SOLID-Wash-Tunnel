@@ -1,6 +1,7 @@
 using SOLIDWashTunnel.Programs;
 using SOLIDWashTunnel.Control;
 using SOLIDWashTunnel.ClientFacing;
+using SOLIDWashTunnel.Programs.Steps;
 
 namespace SOLIDWashTunnel.Tunnel
 {
@@ -9,10 +10,12 @@ namespace SOLIDWashTunnel.Tunnel
         private readonly IMotherboard _motherboard;
         private IWashTunnelState _state;
 
-        public WashTunnel(IMotherboard motherboard)
+        public WashTunnel(
+            IMotherboard motherboard,
+            IWashStepNotifier notifier)
         {
             _motherboard = motherboard;
-            _state = new FreeState(this);
+            _state = new FreeState(this, notifier);
         }
 
         public void Wash(IVehicle vehicle, IWashProgram program)

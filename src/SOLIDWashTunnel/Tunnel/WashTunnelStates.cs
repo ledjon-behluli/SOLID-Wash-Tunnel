@@ -24,10 +24,14 @@ namespace SOLIDWashTunnel.Tunnel
     public class FreeState : IWashTunnelState
     {
         private readonly IWashTunnel _washTunnel;
+        private readonly IWashStepNotifier _notifier;
 
-        public FreeState(IWashTunnel washTunnel)
+        public FreeState(
+            IWashTunnel washTunnel,
+            IWashStepNotifier notifier)
         {
             _washTunnel = washTunnel;
+            _notifier = notifier;
         }
 
         public void Handle(IVehicle vehicle, IWashProgram program)
@@ -37,11 +41,12 @@ namespace SOLIDWashTunnel.Tunnel
 
             for (int i = 0; i < washSteps.Length - 1; i++)
             {
+                _notifier.Notify(washSteps[i]);
                 washSteps[i].NextStep(washSteps[i + 1]);
             }
 
             washSteps[0].Visit(vehicle);
-            _washTunnel.TransitionState(new FreeState(_washTunnel));
+            _washTunnel.TransitionState(new FreeState(_washTunnel, _notifier));
         }
     }
 

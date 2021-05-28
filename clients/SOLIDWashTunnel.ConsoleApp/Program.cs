@@ -3,6 +3,7 @@ using SOLIDWashTunnel.ClientFacing;
 using SOLIDWashTunnel.DI;
 using SOLIDWashTunnel.DI.Abstractions;
 using SOLIDWashTunnel.Programs;
+using SOLIDWashTunnel.Notifications;
 
 namespace SOLIDWashTunnel.ConsoleApp
 {
@@ -15,10 +16,12 @@ namespace SOLIDWashTunnel.ConsoleApp
 
         static void Main(string[] args)
         {
-            // Choose per-liking
-
-            container.AddWashTunnel();           // A normal wash tunnel registration (hover over it to see what it means)
-            container.AddSmartWashTunnel();      // A smart wash tunnel registration (hover over it to see what it means)
+            container
+                .AddWashTunnel()           // A normal wash tunnel registration (hover over it to see what it means)
+                .AddSmartWashTunnel()      // A smart wash tunnel registration (hover over it to see what it means)
+                .AddSmsNotifications("(917) 208-4154")
+                .AddMobileAppNotifications("ledjon-behluli");
+            
 
             test(ProgramType.Fast, "Ledjon", "Behluli", Currency.USD);
 
@@ -109,7 +112,8 @@ namespace SOLIDWashTunnel.ConsoleApp
 
         static Action<string> PrintInvoice() => (content) =>
         {
-            Console.OutputEncoding = System.Text.Encoding.UTF8;
+            Console.WriteLine("\nInvoice Report");
+            Console.WriteLine("-------------------------");
             Console.WriteLine(content);
             Console.WriteLine("\n\n\n");
         };

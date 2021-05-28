@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SOLIDWashTunnel.DI.Abstractions\SOLIDWashTunnel.DI.Abstractions.csproj" />
+    <ProjectReference Include="..\SOLIDWashTunnel\SOLIDWashTunnel.csproj" />
+  </ItemGroup>
+
+</Project>

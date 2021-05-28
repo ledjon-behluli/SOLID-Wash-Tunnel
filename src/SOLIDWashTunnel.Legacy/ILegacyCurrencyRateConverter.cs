@@ -1,4 +1,4 @@
-﻿namespace SOLIDWashTunnel.Legacy
+namespace SOLIDWashTunnel.Legacy
 {
     public interface ILegacyCurrencyRateConverter
     {

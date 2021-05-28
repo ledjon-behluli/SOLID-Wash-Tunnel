@@ -1,4 +1,4 @@
-﻿using SOLIDWashTunnel.Control;
+using SOLIDWashTunnel.Control;
 using SOLIDWashTunnel.Programs;
 using System;
 

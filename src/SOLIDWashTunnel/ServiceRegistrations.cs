@@ -7,11 +7,10 @@ using SOLIDWashTunnel.Programs;
 using SOLIDWashTunnel.Control;
 using SOLIDWashTunnel.Sensors;
 using SOLIDWashTunnel.ClientFacing;
+using SOLIDWashTunnel.Programs.Steps;
 
 namespace SOLIDWashTunnel
 {
-    //TODO: Observer pattern: implement signal login in external provider or similar
-
     public static class ServiceRegistrations
     {
         /// <summary>
@@ -22,13 +21,14 @@ namespace SOLIDWashTunnel
         {
             container.RegisterSingleton<IMotherboard>(() => new Motherboard(container));
             container.RegisterSingleton<IMemory>(() => new RandomAccessMemory());
+            container.RegisterSingleton<IWashStepNotifier>(() => new WashStepNotifier());
 
             container.Register<IUserPanel, UserPanel>();
             container.Register<IWashTunnel, WashTunnel>();
 
             container.Register<ICurrencyRateConverter>(() =>
             {
-                ILegacyCurrencyRateConverter legacyConverter = 
+                ILegacyCurrencyRateConverter legacyConverter =
                     LegacyCurrencyRateConverterProxy.Instance.Authenticate("solid-tunnel-00F1BDE0-AC18-452B-A628-B8FB0335DAB6");
 
                 return new CurrencyRateConverter(legacyConverter);
@@ -55,6 +55,5 @@ namespace SOLIDWashTunnel
 
             return container;
         }
-
     }
 }
