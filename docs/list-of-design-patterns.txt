@@ -1,14 +1,14 @@
-Command
-Mediator
-Service Locator
-Simple Factory
-Strategy
-Builder
-Chain of Responsibility
-Decorator
-State
-Visitor
-Singelton
-Adapter
-Proxy
-Dependency Injection
+- Command
+- Mediator
+- Strategy
+- Builder
+- Chain of Responsibility
+- Decorator
+- State
+- Visitor
+- Singelton
+- Adapter
+- Proxy
+- Simple Factory
+- Dependency Injection
+- Service Locator
