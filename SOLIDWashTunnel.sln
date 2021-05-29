@@ -4,12 +4,9 @@ VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E0EDA7E4-7A2F-40F8-BFA0-A70276644EEA}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{13C372CB-EE50-4DF8-83E5-11D241DB4259}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{CDB128EE-EB07-41C3-8149-03EFFF9C9ADD}"
 	ProjectSection(SolutionItems) = preProject
 		docs\list-of-design-patterns.txt = docs\list-of-design-patterns.txt
-		docs\list-of-design-principles.txt = docs\list-of-design-principles.txt
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "clients", "clients", "{7780E8EC-AF1B-4BA5-895B-541923A172D5}"
@@ -24,9 +21,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SOLIDWashTunnel.Legacy", "s
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SOLIDWashTunnel.Customers", "clients\SOLIDWashTunnel.Customers\SOLIDWashTunnel.Customers.csproj", "{99ECE46B-70EA-4ADA-A396-D747D7634125}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SOLIDWashTunnel.Sms", "clients\SOLIDWashTunnel.Sms\SOLIDWashTunnel.Sms.csproj", "{F197E31F-181F-439B-915F-C690872A835C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SOLIDWashTunnel.Sms", "clients\SOLIDWashTunnel.Sms\SOLIDWashTunnel.Sms.csproj", "{F197E31F-181F-439B-915F-C690872A835C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SOLIDWashTunnel.MobileApp", "clients\SOLIDWashTunnel.MobileApp\SOLIDWashTunnel.MobileApp.csproj", "{5BE2B33C-E0E0-4CFE-A1C7-5B3F7FAAFB54}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SOLIDWashTunnel.MobileApp", "clients\SOLIDWashTunnel.MobileApp\SOLIDWashTunnel.MobileApp.csproj", "{5BE2B33C-E0E0-4CFE-A1C7-5B3F7FAAFB54}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

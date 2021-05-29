@@ -89,7 +89,7 @@ namespace SOLIDWashTunnel.Invoices
             var builder = new StringBuilder();
         
             builder.AppendLine($"Recepient: {_invoice.Recepient}");
-            builder.AppendLine("Wash steps applied and prices:");
+            builder.AppendLine($"Program type: {_invoice.WashProgram.Name}");
             builder.AppendLine("-----------------------------");
 
             foreach (var washStep in _invoice.WashProgram.GetWashSteps())

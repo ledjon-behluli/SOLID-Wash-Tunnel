@@ -10,46 +10,45 @@ namespace SOLIDWashTunnel.Customers
 {
     class Program
     {
-        static readonly IContainer container = new SimpleContainer();
-        static readonly IVehicle vehicle = 
-            new DirtyCar(); 
-         // new CleanCar();
+        static IContainer container = new SimpleContainer();
+        static IVehicle vehicle => 
+            new DirtyCar();
+          //new CleanCar();
+          
 
         static void Main(string[] args)
         {
             container
-                .AddWashTunnel()           // A normal wash tunnel registration (hover over it to see what it means)
-                .AddSmartWashTunnel()      // A smart wash tunnel registration (hover over it to see what it means)
+                .AddWashTunnel()           
+                .AddSmartFeatures()     
                 .AddSmsNotifications("(917) 208-4154")
                 .AddMobileAppNotifications("ledjon-behluli");
             
+            RunBuiltInProgramForIndividual(ProgramType.Fast, "Ledjon", "Behluli", Currency.USD);
+            RunBuiltInProgramForIndividual(ProgramType.Fast, "Ledjon", "Behluli", Currency.EUR);
+            RunBuiltInProgramForIndividual(ProgramType.Economic, "Ledjon", "Behluli", Currency.USD);
+            RunBuiltInProgramForIndividual(ProgramType.Economic, "Ledjon", "Behluli", Currency.EUR);
+            RunBuiltInProgramForIndividual(ProgramType.AllRounder, "Ledjon", "Behluli", Currency.USD);
+            RunBuiltInProgramForIndividual(ProgramType.AllRounder, "Ledjon", "Behluli", Currency.EUR);
 
-            test(ProgramType.Fast, "Ledjon", "Behluli", Currency.USD);
+            RunBuiltInProgramForCompany(ProgramType.Fast, "Ledjon SoftTech", Currency.USD);
+            RunBuiltInProgramForCompany(ProgramType.Fast, "Ledjon SoftTech", Currency.EUR);
+            RunBuiltInProgramForCompany(ProgramType.Economic, "Ledjon SoftTech", Currency.USD);
+            RunBuiltInProgramForCompany(ProgramType.Economic, "Ledjon SoftTech", Currency.EUR);
+            RunBuiltInProgramForCompany(ProgramType.AllRounder, "Ledjon SoftTech", Currency.USD);
+            RunBuiltInProgramForCompany(ProgramType.AllRounder, "Ledjon SoftTech", Currency.EUR);
 
-            //RunBuildInProgramForIndividual(ProgramType.Fast, "Ledjon", "Behluli", Currency.USD);
-            //RunBuildInProgramForIndividual(ProgramType.Fast, "Ledjon", "Behluli", Currency.EUR);
-            //RunBuildInProgramForIndividual(ProgramType.Economic, "Ledjon", "Behluli", Currency.USD);
-            //RunBuildInProgramForIndividual(ProgramType.Economic, "Ledjon", "Behluli", Currency.EUR);
-            //RunBuildInProgramForIndividual(ProgramType.AllRounder, "Ledjon", "Behluli", Currency.USD);
-            //RunBuildInProgramForIndividual(ProgramType.AllRounder, "Ledjon", "Behluli", Currency.EUR);
-            
-            //RunBuildInProgramForCompany(ProgramType.Fast, "Ledjon SoftTech", Currency.USD);
-            //RunBuildInProgramForCompany(ProgramType.Fast, "Ledjon SoftTech", Currency.EUR);
-            //RunBuildInProgramForCompany(ProgramType.Economic, "Ledjon SoftTech", Currency.USD);
-            //RunBuildInProgramForCompany(ProgramType.Economic, "Ledjon SoftTech", Currency.EUR);
-            //RunBuildInProgramForCompany(ProgramType.AllRounder, "Ledjon SoftTech", Currency.USD);
-            //RunBuildInProgramForCompany(ProgramType.AllRounder, "Ledjon SoftTech", Currency.EUR);
-            
-            //RunCustomWashProgramForIndividual("Ledjon", "Behluli", Currency.USD);
-            //RunCustomWashProgramForIndividual("Ledjon", "Behluli", Currency.EUR);
-            
-            //RunCustomWashProgramForCompany("Ledjon SoftTech", Currency.USD);
-            //RunCustomWashProgramForCompany("Ledjon SoftTech", Currency.EUR);
+            RunCustomWashProgramForIndividual("Ledjon", "Behluli", Currency.USD);
+            RunCustomWashProgramForIndividual("Ledjon", "Behluli", Currency.EUR);
+
+            RunCustomWashProgramForCompany("Ledjon SoftTech", Currency.USD);
+            RunCustomWashProgramForCompany("Ledjon SoftTech", Currency.EUR);
 
             Console.ReadKey();
         }
 
-        static void test(ProgramType type, string firstName, string lastName, Currency currency)
+
+        static void RunBuiltInProgramForIndividual(ProgramType type, string firstName, string lastName, Currency currency)
         {
             var panel = container.GetService<IUserPanel>();
 
@@ -58,17 +57,7 @@ namespace SOLIDWashTunnel.Customers
                  .Start(vehicle, PrintInvoice());
         }
 
-
-        static void RunBuildInProgramForIndividual(ProgramType type, string firstName, string lastName, Currency currency)
-        {
-            var panel = container.GetService<IUserPanel>();
-
-            panel.SelectBuiltInProgram(type)
-                 .AsIndividual(firstName, lastName, currency)
-                 .Start(vehicle, PrintInvoice());
-        }
-
-        static void RunBuildInProgramForCompany(ProgramType type, string companyName, Currency currency)
+        static void RunBuiltInProgramForCompany(ProgramType type, string companyName, Currency currency)
         {
             var panel = container.GetService<IUserPanel>();
 
@@ -84,6 +73,7 @@ namespace SOLIDWashTunnel.Customers
 
             builder
                 .AddChasisAndWheelWashing()
+                .AddShampooing()
                 .AddHighPressureWashing();
 
             panel.CustomizeProgram(builder)
