@@ -2,7 +2,7 @@ using SOLIDWashTunnel.ClientFacing;
 using SOLIDWashTunnel.Programs.Steps;
 using System;
 
-namespace SOLIDWashTunnel.Notifications
+namespace SOLIDWashTunnel.Sms
 {
     public class SmsClient : IWashStepSubscriber
     {

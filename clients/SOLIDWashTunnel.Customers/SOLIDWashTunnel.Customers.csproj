@@ -8,7 +8,8 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\SOLIDWashTunnel.DI\SOLIDWashTunnel.DI.csproj" />
     <ProjectReference Include="..\..\src\SOLIDWashTunnel\SOLIDWashTunnel.csproj" />
-    <ProjectReference Include="..\SOLIDWashTunnel.Notifications\SOLIDWashTunnel.Notifications.csproj" />
+    <ProjectReference Include="..\SOLIDWashTunnel.MobileApp\SOLIDWashTunnel.MobileApp.csproj" />
+    <ProjectReference Include="..\SOLIDWashTunnel.Sms\SOLIDWashTunnel.Sms.csproj" />
   </ItemGroup>
 
 </Project>

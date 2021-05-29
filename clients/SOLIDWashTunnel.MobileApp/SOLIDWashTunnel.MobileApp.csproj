@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\SOLIDWashTunnel.DI.Abstractions\SOLIDWashTunnel.DI.Abstractions.csproj" />
     <ProjectReference Include="..\..\src\SOLIDWashTunnel\SOLIDWashTunnel.csproj" />
   </ItemGroup>
 

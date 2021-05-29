@@ -3,7 +3,8 @@ using SOLIDWashTunnel.ClientFacing;
 using SOLIDWashTunnel.DI;
 using SOLIDWashTunnel.DI.Abstractions;
 using SOLIDWashTunnel.Programs;
-using SOLIDWashTunnel.Notifications;
+using SOLIDWashTunnel.Sms;
+using SOLIDWashTunnel.MobileApp;
 
 namespace SOLIDWashTunnel.Customers
 {
@@ -113,7 +114,7 @@ namespace SOLIDWashTunnel.Customers
         static Action<string> PrintInvoice() => (content) =>
         {
             Console.WriteLine("\nInvoice Report");
-            Console.WriteLine("-------------------------");
+            Console.WriteLine("*************************");
             Console.WriteLine(content);
             Console.WriteLine("\n\n\n");
         };

@@ -16,9 +16,9 @@ namespace SOLIDWashTunnel.Programs
 
     public enum ProgramType
     {
-        Fast = 0,
-        Economic = 1,
-        AllRounder = 2
+        Fast,
+        Economic,
+        AllRounder
     }
 
     public interface IWashProgramFactory
