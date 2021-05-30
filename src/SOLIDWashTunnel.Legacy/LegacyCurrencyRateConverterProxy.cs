@@ -18,11 +18,11 @@ namespace SOLIDWashTunnel.Legacy
 
     /* 
     * Pattern:
-    *   Singelton
+    *   Singleton
     *   
     * Reason: 
-    *   Although this pattern is considered nowdays to be an anti-pattern, because of dependency injection and singelton lifespan.
-    *   This is a simulation of an "old" legacy system that doesn't have dependency injection, so we provide the proxy object via the singelton pattern.
+    *   Although this pattern is considered nowdays to be an anti-pattern, because of dependency injection and Singleton lifespan.
+    *   This is a simulation of an "old" legacy system that doesn't have dependency injection, so we provide the proxy object via the Singleton pattern.
     *   
     * Learn more: 
     *   https://en.wikipedia.org/wiki/Singleton_pattern

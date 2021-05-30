@@ -6,7 +6,7 @@
 - Decorator
 - State
 - Visitor
-- Singelton
+- Singleton
 - Adapter
 - Observer
 - Proxy
