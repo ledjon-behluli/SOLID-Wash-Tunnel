@@ -2,7 +2,7 @@ using System;
 
 namespace SOLIDWashTunnel.DI.Abstractions
 {
-    public interface IContainer : IDisposable
+    public interface IContainer
     {
         void Register<TService, TImplementation>() where TImplementation : TService;
         void Register<TService>(Func<TService> instanceCreator);

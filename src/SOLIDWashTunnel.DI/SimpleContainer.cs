@@ -41,7 +41,7 @@ namespace SOLIDWashTunnel.DI
             Register(() => lazy.Value);
         }
 
-        // In real projects use a DI container which supports decorator registrations out of the box.
+        // In real projects use a container which supports decorator registrations out of the box.
         public void Decorate<TService, TImplementation>() where TImplementation : TService
         {
             Type serviceType = typeof(TService);
@@ -80,11 +80,6 @@ namespace SOLIDWashTunnel.DI
             var parameterTypes = ctor.GetParameters().Select(p => p.ParameterType);
             var dependencies = parameterTypes.Select(t => GetService(t)).ToArray();
             return Activator.CreateInstance(implementationType, dependencies);
-        }
-
-        public void Dispose()
-        {
-            _registrations.Clear();
         }
     }
 }
