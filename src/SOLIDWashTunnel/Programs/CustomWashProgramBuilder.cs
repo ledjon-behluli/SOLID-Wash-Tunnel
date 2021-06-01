@@ -86,6 +86,6 @@ namespace SOLIDWashTunnel.Programs
 
         #endregion
 
-        public IWashProgram Build() => _programFactory.Create(null, _washSteps.ToArray());
+        public IWashProgram Build() => _programFactory.Create(ProgramType.Custom, _washSteps.ToArray());
     }
 }

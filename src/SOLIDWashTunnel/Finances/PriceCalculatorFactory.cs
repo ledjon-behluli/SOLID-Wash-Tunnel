@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace SOLIDWashTunnel.Finances
 {
@@ -16,24 +17,26 @@ namespace SOLIDWashTunnel.Finances
 
     public interface IPriceCalculatorFactory
     {
-        IPriceCalculator Create(CustomerType customerType);
+        IPriceCalculator Create(CustomerType type);
     }
 
     public class PriceCalculatorFactory : IPriceCalculatorFactory
     {
-        private readonly ICurrencyRateConverter converter;
+        private readonly Lazy<IDictionary<CustomerType, Func<IPriceCalculator>>> _calculators;
 
-        public PriceCalculatorFactory(ICurrencyRateConverter converter)
+        public PriceCalculatorFactory(IDictionary<CustomerType, Func<IPriceCalculator>> calculators)
         {
-            this.converter = converter;
+            _calculators = new Lazy<IDictionary<CustomerType, Func<IPriceCalculator>>>(calculators);
         }
 
-        public IPriceCalculator Create(CustomerType customerType) =>
-            customerType switch
+        public IPriceCalculator Create(CustomerType type)
+        {
+            if (!_calculators.Value.TryGetValue(type, out Func<IPriceCalculator> _func))
             {
-                CustomerType.Individual => new IndividualPriceCalculator(converter),
-                CustomerType.Company => new CompanyPriceCalculator(converter),
-                _ => throw new NotSupportedException()
-            };
+                throw new NotSupportedException($"No calculator was found for customer type = {type}");
+            }
+
+            return _func.Invoke();
+        }
     }
 }

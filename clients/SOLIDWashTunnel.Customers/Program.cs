@@ -10,8 +10,8 @@ namespace SOLIDWashTunnel.Customers
 {
     class Program
     {
-        static IContainer container = new SimpleContainer();
-        static IVehicle vehicle => 
+        static readonly IContainer container = new SimpleContainer();
+        static IVehicle Vehicle => 
             new DirtyCar();
           //new CleanCar();
           
@@ -54,7 +54,7 @@ namespace SOLIDWashTunnel.Customers
 
             panel.SelectBuiltInProgram(type)
                  .AsIndividual(firstName, lastName, currency)
-                 .Start(vehicle, PrintInvoice());
+                 .Start(Vehicle, PrintInvoice());
         }
 
         static void RunBuiltInProgramForCompany(ProgramType type, string companyName, Currency currency)
@@ -63,7 +63,7 @@ namespace SOLIDWashTunnel.Customers
 
             panel.SelectBuiltInProgram(type)
                  .AsCompany(companyName, currency)
-                 .Start(vehicle, PrintInvoice());
+                 .Start(Vehicle, PrintInvoice());
         }
 
         static void RunCustomWashProgramForIndividual(string firstName, string lastName, Currency currency)
@@ -78,7 +78,7 @@ namespace SOLIDWashTunnel.Customers
 
             panel.CustomizeProgram(builder)
                  .AsIndividual(firstName, lastName, currency)
-                 .Start(vehicle, PrintInvoice());
+                 .Start(Vehicle, PrintInvoice());
         }
 
         static void RunCustomWashProgramForCompany(string companyName, Currency currency)
@@ -97,7 +97,7 @@ namespace SOLIDWashTunnel.Customers
 
             panel.CustomizeProgram(builder)
                  .AsCompany(companyName, currency)
-                 .Start(vehicle, PrintInvoice());
+                 .Start(Vehicle, PrintInvoice());
         }
 
 

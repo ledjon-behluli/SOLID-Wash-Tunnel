@@ -1,4 +1,6 @@
 using SOLIDWashTunnel.Programs.Steps;
+using System;
+using System.Collections.Generic;
 
 namespace SOLIDWashTunnel.Programs
 {
@@ -14,27 +16,28 @@ namespace SOLIDWashTunnel.Programs
     *   https://refactoring.guru/design-patterns/factory-comparison
     */
 
-    public enum ProgramType
-    {
-        Fast,
-        Economic,
-        AllRounder
-    }
-
     public interface IWashProgramFactory
     {
-        IWashProgram Create(ProgramType? type, params IWashStep[] washSteps);
+        IWashProgram Create(ProgramType type, params IWashStep[] washSteps);
     }
 
     public class WashProgramFactory : IWashProgramFactory
     {
-        public IWashProgram Create(ProgramType? type, params IWashStep[] washSteps) =>
-            type switch
+        private readonly Lazy<IDictionary<ProgramType, Func<IWashStep[], IWashProgram>>> _programs;
+            
+        public WashProgramFactory(IDictionary<ProgramType, Func<IWashStep[], IWashProgram>> programs)
+        {
+            _programs = new Lazy<IDictionary<ProgramType, Func<IWashStep[], IWashProgram>>>(programs);
+        }
+
+        public IWashProgram Create(ProgramType type, params IWashStep[] washSteps)
+        {
+            if (!_programs.Value.TryGetValue(type, out Func<IWashStep[], IWashProgram> _func))
             {
-                ProgramType.Fast => new FastWashProgram(),
-                ProgramType.Economic => new EconomicWashProgram(),
-                ProgramType.AllRounder => new AllRounderWashProgram(),
-                _ => new CustomWashProgram(washSteps)
-            };
+                throw new NotSupportedException($"No wash program was found for provided type = {type}");
+            }
+
+            return _func.Invoke(washSteps);
+        }
     }
 }
