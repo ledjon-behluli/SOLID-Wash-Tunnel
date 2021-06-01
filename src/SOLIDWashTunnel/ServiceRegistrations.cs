@@ -28,8 +28,10 @@ namespace SOLIDWashTunnel
             container.Register<IUserPanel, UserPanel>();
             container.Register<IWashTunnel, WashTunnel>();
 
-            ICurrencyRateConverter converter = GetCurrencyRateConverter();
-            container.Register(converter);
+            ILegacyCurrencyRateConverter legacyConverter = LegacyCurrencyRateConverterProxy.Instance.Authenticate("solid-tunnel-00F1BDE0-AC18-452B-A628-B8FB0335DAB6");
+            ICurrencyRateConverter converter = new CurrencyRateConverter(legacyConverter, ConfigMap.GetLegacyCurrencies());
+
+            container.RegisterSingleton(() => converter);
             container.RegisterSingleton<IPriceCalculatorFactory>(() => new PriceCalculatorFactory(ConfigMap.GetPriceCalculators(converter)));
 
             container.Register<IInvoiceBuilder, InvoiceBuilder>();
@@ -52,14 +54,6 @@ namespace SOLIDWashTunnel
             container.Decorate<IWashTunnel, SmartWashTunnel>();
 
             return container;
-        }
-
-        private static ICurrencyRateConverter GetCurrencyRateConverter()
-        {
-            ILegacyCurrencyRateConverter legacyConverter =
-                    LegacyCurrencyRateConverterProxy.Instance.Authenticate("solid-tunnel-00F1BDE0-AC18-452B-A628-B8FB0335DAB6");
-
-            return new CurrencyRateConverter(legacyConverter);
         }
     }
 }

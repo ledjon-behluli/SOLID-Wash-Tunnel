@@ -34,7 +34,7 @@ namespace SOLIDWashTunnel.Programs
         {
             if (!_programs.Value.TryGetValue(type, out Func<IWashStep[], IWashProgram> _func))
             {
-                throw new NotSupportedException($"No wash program was found for provided type = {type}");
+                throw new NotSupportedException($"Wash program type {type} is not supported!");
             }
 
             return _func.Invoke(washSteps);

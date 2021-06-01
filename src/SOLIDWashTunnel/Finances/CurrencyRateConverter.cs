@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using SOLIDWashTunnel.Legacy;
 
 namespace SOLIDWashTunnel.Finances
@@ -30,26 +31,27 @@ namespace SOLIDWashTunnel.Finances
     public class CurrencyRateConverter : ICurrencyRateConverter
     {
         private readonly ILegacyCurrencyRateConverter _legacyConverter;
+        private readonly IDictionary<Currency, string> _currencies;
 
-        public CurrencyRateConverter(ILegacyCurrencyRateConverter legacyConverter)
+        public CurrencyRateConverter(
+            ILegacyCurrencyRateConverter legacyConverter,
+            IDictionary<Currency, string> currencies)
         {
             _legacyConverter = legacyConverter;
+            _currencies = currencies;
         }
 
         public Money Convert(Money price, Currency currency)
         {
-            var convertedAmount = _legacyConverter.Convert(price.Amount, ToLegacyCurrencyType(currency));
+            if (!_currencies.ContainsKey(currency))
+            {
+                throw new NotSupportedException($"Currency type {currency} is not supported!");
+            }
+
+            var legacyFormat = _currencies[currency];
+            var convertedAmount = _legacyConverter.Convert(price.Amount, legacyFormat);
+
             return new Money(currency, convertedAmount);
         }
-
-        private string ToLegacyCurrencyType(Currency currency) =>
-            currency switch
-            {
-                Currency.USD => "USD",
-                Currency.EUR => "EUR",
-                Currency.CAD => "CAD",
-                Currency.JPY => "JPY",
-                _ => throw new NotSupportedException()
-            };
     }
 }

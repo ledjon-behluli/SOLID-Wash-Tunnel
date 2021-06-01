@@ -23,5 +23,14 @@ namespace SOLIDWashTunnel
                     { CustomerType.Individual, () => new IndividualPriceCalculator(converter) },
                     { CustomerType.Company, () => new CompanyPriceCalculator(converter) }
                 };
+
+        internal static IDictionary<Currency, string> GetLegacyCurrencies() =>
+            new Dictionary<Currency, string>()
+            {
+                 { Currency.USD, "USD" },
+                 { Currency.EUR, "EUR" },
+                 { Currency.CAD, "CAD" },
+                 { Currency.JPY, "JPY" }
+            };
     }
 }

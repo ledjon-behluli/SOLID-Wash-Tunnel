@@ -33,7 +33,7 @@ namespace SOLIDWashTunnel.Finances
         {
             if (!_calculators.Value.TryGetValue(type, out Func<IPriceCalculator> _func))
             {
-                throw new NotSupportedException($"No calculator was found for customer type = {type}");
+                throw new NotSupportedException($"No calculator was found for customer type {type}");
             }
 
             return _func.Invoke();
