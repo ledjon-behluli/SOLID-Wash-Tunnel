@@ -103,6 +103,7 @@ namespace SOLIDWashTunnel.Customers
 
         static Action<string> PrintInvoice() => (content) =>
         {
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
             Console.WriteLine("\nInvoice Report");
             Console.WriteLine("*************************");
             Console.WriteLine(content);

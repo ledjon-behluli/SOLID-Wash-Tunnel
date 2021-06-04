@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 
 namespace SOLIDWashTunnel.Legacy
 {
@@ -22,7 +23,7 @@ namespace SOLIDWashTunnel.Legacy
     *   
     * Reason: 
     *   Although this pattern is considered nowdays to be an anti-pattern, because of dependency injection and Singleton lifespan.
-    *   This is a simulation of an "old" legacy system that doesn't have dependency injection, so we provide the proxy object via the Singleton pattern.
+    *   This is a simulation of an "old" legacy system that doesn't have IoC, so we provide the proxy object via the Singleton pattern.
     *   
     * Learn more: 
     *   https://en.wikipedia.org/wiki/Singleton_pattern
@@ -66,6 +67,11 @@ namespace SOLIDWashTunnel.Legacy
 
         public ILegacyCurrencyRateConverter Authenticate(string token)
         {
+            Console.WriteLine("Simulating authentication process to legacy system...");
+            Thread.Sleep(3000);       // Simulating a time consuming authentication process to justify the singleton pattern
+            Console.WriteLine("Succefully authenticated!");
+            Console.WriteLine("\n\n\n");
+
             var user = _tokens.FirstOrDefault(x => x == token);
 
             if (user == null)

@@ -81,10 +81,5 @@ namespace SOLIDWashTunnel.DI
             var dependencies = parameterTypes.Select(t => GetService(t)).ToArray();
             return Activator.CreateInstance(implementationType, dependencies);
         }
-
-        public void Dispose()
-        {
-            _registrations.Clear();
-        }
     }
 }

@@ -8,8 +8,6 @@ using SOLIDWashTunnel.Control;
 using SOLIDWashTunnel.Sensors;
 using SOLIDWashTunnel.ClientFacing;
 using SOLIDWashTunnel.Programs.Steps;
-using System;
-using System.Collections.Generic;
 
 namespace SOLIDWashTunnel
 {
@@ -42,14 +40,11 @@ namespace SOLIDWashTunnel
         }
 
         /// <summary>
-        /// Registers all components needed for a smart wash tunnel.
+        /// Registers all smart features of a smart wash tunnel.
         /// The tunnel will wash a vehicle only if it considered to be 'dirty'.
         /// </summary>
         public static IContainer AddSmartFeatures(this IContainer container)
         {
-            container.Dispose();
-            container.AddWashTunnel();
-
             container.Register(() => new DirtinessSensor().Calibrate(5));
             container.Decorate<IWashTunnel, SmartWashTunnel>();
 
