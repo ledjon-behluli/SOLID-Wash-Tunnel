@@ -29,7 +29,7 @@ namespace SOLIDWashTunnel.Legacy
     *   https://en.wikipedia.org/wiki/Singleton_pattern
     */
 
-    public class LegacyCurrencyRateConverterProxy
+    public sealed class LegacyCurrencyRateConverterProxy
     {
         private readonly LegacyCurrencyRateConverter _converter;
         private readonly List<string> _tokens;
