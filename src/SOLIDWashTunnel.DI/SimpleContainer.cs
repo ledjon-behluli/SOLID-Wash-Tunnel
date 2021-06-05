@@ -29,15 +29,15 @@ namespace SOLIDWashTunnel.DI
         public void Register<TService, TImplementation>() where TImplementation : TService
             => _registrations.Add(typeof(TService), () => GetService(typeof(TImplementation)));
 
-        public void Register<TService>(Func<TService> instanceCreator) 
-            => _registrations.Add(typeof(TService), () => instanceCreator());
+        public void Register<TService>(Func<TService> instantiator) 
+            => _registrations.Add(typeof(TService), () => instantiator());
 
         public void Register<TService>(TService instance) 
             => _registrations.Add(typeof(TService), () => instance);
 
-        public void RegisterSingleton<TService>(Func<TService> instanceCreator)
+        public void RegisterSingleton<TService>(Func<TService> instantiator)
         {
-            var lazy = new Lazy<TService>(instanceCreator);
+            var lazy = new Lazy<TService>(instantiator);
             Register(() => lazy.Value);
         }
 
@@ -60,8 +60,8 @@ namespace SOLIDWashTunnel.DI
 
         public object GetService(Type type)
         {
-            if (_registrations.TryGetValue(type, out Func<object> creator))
-                return creator();
+            if (_registrations.TryGetValue(type, out Func<object> instantiator))
+                return instantiator.Invoke();
             else if (!type.IsAbstract)
                 return CreateService(type);
             else
