@@ -41,7 +41,6 @@ namespace SOLIDWashTunnel.DI
             Register(() => lazy.Value);
         }
 
-        // In real projects use a container which supports decorator registrations out of the box.
         public void Decorate<TService, TImplementation>() where TImplementation : TService
         {
             Type serviceType = typeof(TService);
