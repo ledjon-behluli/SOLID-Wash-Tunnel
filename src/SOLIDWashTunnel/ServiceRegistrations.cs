@@ -19,22 +19,22 @@ namespace SOLIDWashTunnel
         /// </summary>
         public static IContainer AddWashTunnel(this IContainer container)
         {
-            container.RegisterSingleton<IMotherboard>(() => new Motherboard(container));
-            container.RegisterSingleton<IMemory>(() => new RandomAccessMemory());
-            container.RegisterSingleton<IWashStepNotifier>(() => new WashStepNotifier());
+            container.AddSingleton<IMotherboard, Motherboard>();
+            container.AddSingleton<IMemory, RandomAccessMemory>();
+            container.AddSingleton<IWashStepNotifier, WashStepNotifier>();
 
-            container.Register<IUserPanel, UserPanel>();
-            container.Register<IWashTunnel, WashTunnel>();
+            container.AddTransient<IUserPanel, UserPanel>();
+            container.AddTransient<IWashTunnel, WashTunnel>();
 
             ILegacyCurrencyRateConverter legacyConverter = LegacyCurrencyRateConverterProxy.Instance.Authenticate("solid-tunnel-00F1BDE0-AC18-452B-A628-B8FB0335DAB6");
             ICurrencyRateConverter converter = new CurrencyRateConverter(legacyConverter, ConfigMap.GetLegacyCurrencies());
 
-            container.RegisterSingleton(() => converter);
-            container.RegisterSingleton<IPriceCalculatorFactory>(() => new PriceCalculatorFactory(ConfigMap.GetPriceCalculators(converter)));
+            container.AddSingleton(() => converter);
+            container.AddSingleton<IPriceCalculatorFactory>(() => new PriceCalculatorFactory(ConfigMap.GetPriceCalculators(converter)));
 
-            container.Register<IInvoiceBuilder, InvoiceBuilder>();
-            container.Register<ICustomWashProgramBuilder, CustomWashProgramBuilder>();
-            container.RegisterSingleton<IWashProgramFactory>(() => new WashProgramFactory(ConfigMap.GetWashPrograms()));
+            container.AddTransient<IInvoiceBuilder, InvoiceBuilder>();
+            container.AddTransient<ICustomWashProgramBuilder, CustomWashProgramBuilder>();
+            container.AddSingleton<IWashProgramFactory>(() => new WashProgramFactory(ConfigMap.GetWashPrograms()));
 
             return container;
         }
@@ -45,7 +45,7 @@ namespace SOLIDWashTunnel
         /// </summary>
         public static IContainer AddSmartFeatures(this IContainer container)
         {
-            container.Register(() => new DirtinessSensor().Calibrate(5));
+            container.AddTransient(() => new DirtinessSensor().Calibrate(5));
             container.Decorate<IWashTunnel, SmartWashTunnel>();
 
             return container;

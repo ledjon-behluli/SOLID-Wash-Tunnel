@@ -10,7 +10,7 @@ namespace SOLIDWashTunnel.Customers
 {
     class Program
     {
-        static readonly IContainer container = new SimpleContainer();
+        static readonly IContainer container = new Container();
         static IVehicle Vehicle => 
             new DirtyCar();
           //new CleanCar();

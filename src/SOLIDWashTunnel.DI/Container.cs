@@ -17,29 +17,35 @@ namespace SOLIDWashTunnel.DI
     *   https://en.wikipedia.org/wiki/Inversion_of_control
     */
 
-    public class SimpleContainer : IContainer
+    public class Container : IContainer
     {
-        private Dictionary<Type, Func<object>> _registrations;
+        private Dictionary<Type, Func<object>> _serviceDescriptors;
 
-        public SimpleContainer()
+        public Container()
         {
-            _registrations = new Dictionary<Type, Func<object>>();
+            _serviceDescriptors = new Dictionary<Type, Func<object>>();
         }
 
-        public void Register<TService, TImplementation>() where TImplementation : TService
-            => _registrations.Add(typeof(TService), () => GetService(typeof(TImplementation)));
+        public void AddTransient<TService>(Func<TService> implementationFactory)
+            => _serviceDescriptors.Add(typeof(TService), () => implementationFactory());
 
-        public void Register<TService>(Func<TService> instantiator) 
-            => _registrations.Add(typeof(TService), () => instantiator());
+        public void AddTransient<TService, TImplementation>() where TImplementation : TService
+            => _serviceDescriptors.Add(typeof(TService), () => GetService(typeof(TImplementation)));
 
-        public void Register<TService>(TService instance) 
-            => _registrations.Add(typeof(TService), () => instance);
 
-        public void RegisterSingleton<TService>(Func<TService> instantiator)
+        public void AddSingleton<TService>(Func<TService> implementationFactory)
         {
-            var lazy = new Lazy<TService>(instantiator);
-            Register(() => lazy.Value);
+            var lazy = new Lazy<TService>(implementationFactory);
+            AddTransient(() => lazy.Value);
         }
+
+        public void AddSingleton<TService, TImplementation>() where TImplementation : TService
+        {
+            var service = (TService)GetService(typeof(TImplementation));
+            var lazy = new Lazy<TService>(service);
+            AddTransient(() => lazy.Value);
+        }
+
 
         public void Decorate<TService, TImplementation>() where TImplementation : TService
         {
@@ -53,15 +59,17 @@ namespace SOLIDWashTunnel.DI
             
             var decorator = CreateService(implementationType);
 
-            _registrations.Remove(serviceType);
-            _registrations.Add(serviceType, () => decorator);
+            _serviceDescriptors.Remove(serviceType);
+            _serviceDescriptors.Add(serviceType, () => decorator);
         }
 
         public object GetService(Type type)
         {
-            if (_registrations.TryGetValue(type, out Func<object> instantiator))
-                return instantiator.Invoke();
-            else if (!type.IsAbstract)
+            if (type.IsAssignableFrom(typeof(IContainer)))
+                return this;
+            if (_serviceDescriptors.TryGetValue(type, out Func<object> implementationFactory))
+                return implementationFactory();
+            else if (!type.IsInterface && !type.IsAbstract)
                 return CreateService(type);
             else
                 throw new InvalidOperationException($"No registration for {type}.");
@@ -71,7 +79,6 @@ namespace SOLIDWashTunnel.DI
         {
             return (TService)GetService(typeof(TService));
         }
-
 
         private object CreateService(Type implementationType)
         {
