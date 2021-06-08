@@ -1,6 +1,7 @@
 using SOLIDWashTunnel.Programs;
 using SOLIDWashTunnel.Control;
 using System;
+using SOLIDWashTunnel.Control.Signals;
 
 namespace SOLIDWashTunnel.ClientFacing
 {
