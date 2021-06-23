@@ -19,7 +19,7 @@ namespace SOLIDWashTunnel
         /// </summary>
         public static IContainer AddWashTunnel(this IContainer container)
         {
-            container.AddSingleton<IMotherboard, Motherboard>();
+            container.AddSingleton<ISignalTransmitter, Motherboard>();
             container.AddSingleton<IMemory, RandomAccessMemory>();
             container.AddSingleton<IWashStepNotifier, WashStepNotifier>();
 

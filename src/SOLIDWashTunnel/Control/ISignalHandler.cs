@@ -11,13 +11,7 @@ namespace SOLIDWashTunnel.Control
      *   https://en.wikipedia.org/wiki/Command_pattern
      */
 
-    // Marker interface
-    public interface ISignalHandler
-    {
-
-    }
-
-    public interface ISignalHandler<in T> : ISignalHandler
+    public interface ISignalHandler<in T> 
         where T : ISignal
     {
         void Handle(T signal);

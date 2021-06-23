@@ -1,4 +1,5 @@
 using SOLIDWashTunnel.DI.Abstractions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -41,12 +42,12 @@ namespace SOLIDWashTunnel.Control
      *  https://bit.ly/3oDvNrk
      */
 
-    public interface IMotherboard
+    public interface ISignalTransmitter
     {
         void Transmit<T>(T signal) where T : ISignal;
     }
 
-    public class Motherboard : IMotherboard
+    public class Motherboard : ISignalTransmitter
     {
         private readonly IContainer _container;
 
@@ -64,14 +65,11 @@ namespace SOLIDWashTunnel.Control
             }
         }
 
-        private IEnumerable<ISignalHandler<T>> GetSignalHandlers<T>()
-            where T : ISignal
-        {
-            return Assembly
+        private IEnumerable<ISignalHandler<T>> GetSignalHandlers<T>() where T : ISignal
+            => Assembly
                 .GetExecutingAssembly()
                 .GetTypes()
                 .Where(type => typeof(ISignalHandler<T>).IsAssignableFrom(type) && !type.IsInterface && !type.IsAbstract)
                 .Select(type => (ISignalHandler<T>)_container.GetService(type));
-        }
     }
 }

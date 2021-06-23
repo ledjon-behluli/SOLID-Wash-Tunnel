@@ -24,16 +24,16 @@ namespace SOLIDWashTunnel.Tunnel
     public class SmartWashTunnel : IWashTunnel
     {
         private readonly IWashTunnel _washTunnel;
-        private readonly IMotherboard _motherboard;
+        private readonly ISignalTransmitter _transmitter;
         private readonly IDirtinessSensor _sensor;
 
         public SmartWashTunnel(
             IWashTunnel washTunnel,
-            IMotherboard motherboard,
+            ISignalTransmitter transmitter,
             IDirtinessSensor sensor)
         {
             _washTunnel = washTunnel;
-            _motherboard = motherboard;
+            _transmitter = transmitter;
             _sensor = sensor;
         }
 
@@ -41,7 +41,7 @@ namespace SOLIDWashTunnel.Tunnel
         {
             if (!_sensor.IsDirty(vehicle))
             {
-                _motherboard.Transmit(new VehicleAlreadyCleanSignal());
+                _transmitter.Transmit(new VehicleAlreadyCleanSignal());
                 return;
             }
 

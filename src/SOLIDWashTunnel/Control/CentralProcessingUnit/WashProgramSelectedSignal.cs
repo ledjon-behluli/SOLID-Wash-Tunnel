@@ -16,7 +16,7 @@ namespace SOLIDWashTunnel.Control.Signals
             private readonly IMemory _memory;
 
             public WashProgramSelectedSignalHandler(IMemory memory)
-            { 
+            {
                 _memory = memory;
             }
 

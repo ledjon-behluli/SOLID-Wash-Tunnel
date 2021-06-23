@@ -18,21 +18,21 @@ namespace SOLIDWashTunnel.ClientFacing
 
     public class UserPanel : IUserPanel, ICustomerInformationCollector, IWashProcessStarter
     {
-        private readonly IMotherboard _motherboard;
+        private readonly ISignalTransmitter _transmitter;
         private readonly IWashProgramFactory _programFactory;
 
         public UserPanel(
-            IMotherboard motherboard,
+            ISignalTransmitter transmitter,
             IWashProgramFactory programFactory)
         {
-            _motherboard = motherboard;
+            _transmitter = transmitter;
             _programFactory = programFactory;
         }
 
         public ICustomerInformationCollector SelectBuiltInProgram(ProgramType type)
         {
             IWashProgram program = _programFactory.Create(type);
-            _motherboard.Transmit(new WashProgramSelectedSignal(program));
+            _transmitter.Transmit(new WashProgramSelectedSignal(program));
 
             return this;
         }
@@ -40,26 +40,26 @@ namespace SOLIDWashTunnel.ClientFacing
         public ICustomerInformationCollector CustomizeProgram(ICustomWashProgramBuilder builder)
         {
             IWashProgram program = builder.Build();
-            _motherboard.Transmit(new WashProgramSelectedSignal(program));
+            _transmitter.Transmit(new WashProgramSelectedSignal(program));
 
             return this;
         }
 
         public IWashProcessStarter AsIndividual(string firstName, string lastName, Currency preferedCurrecy)
         {
-            _motherboard.Transmit(new IndividualCustomerInfoEnteredSignal(firstName, lastName, preferedCurrecy));
+            _transmitter.Transmit(new IndividualCustomerInfoEnteredSignal(firstName, lastName, preferedCurrecy));
             return this;
         }
 
         public IWashProcessStarter AsCompany(string companyName, Currency preferedCurrecy)
         {
-            _motherboard.Transmit(new CompanyCustomerInfoEnteredSignal(companyName, preferedCurrecy));
+            _transmitter.Transmit(new CompanyCustomerInfoEnteredSignal(companyName, preferedCurrecy));
             return this;
         }
 
         public void Start(IVehicle vehicle, Action<string> invoiceCallback)
         {
-            _motherboard.Transmit(new VehicleWashingStartedSignal(vehicle, invoiceCallback));
+            _transmitter.Transmit(new VehicleWashingStartedSignal(vehicle, invoiceCallback));
         }
     }
 }

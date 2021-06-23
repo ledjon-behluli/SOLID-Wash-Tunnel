@@ -8,14 +8,14 @@ namespace SOLIDWashTunnel.Tunnel
 {
     public class WashTunnel : IWashTunnel
     {
-        private readonly IMotherboard _motherboard;
+        private readonly ISignalTransmitter _transmitter;
         private IWashTunnelState _state;
 
         public WashTunnel(
-            IMotherboard motherboard,
+            ISignalTransmitter transmitter,
             IWashStepNotifier notifier)
         {
-            _motherboard = motherboard;
+            _transmitter = transmitter;
             _state = new FreeState(this, notifier);
         }
 
@@ -29,7 +29,7 @@ namespace SOLIDWashTunnel.Tunnel
             _state = state;
             if (state is FreeState)
             {
-                _motherboard.Transmit(new VehicleReadySignal());
+                _transmitter.Transmit(new VehicleReadySignal());
             }
         }
     }
