@@ -48,7 +48,7 @@ The domain as seen from the title is an automatic vehicle wash tunnel. Customers
 * Proxy Pattern
 * Demo of the wash tunnel
 
-You can find detailed explanations on some of the topics (more to come) on my [website](#).
+You can find detailed explanations on some of the topics (more to come) on my [website](https://www.ledjonbehluli.com/posts/wash-tunnel/introduction/).
 
 ---
 
