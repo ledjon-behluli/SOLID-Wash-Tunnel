@@ -4,9 +4,9 @@ VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E0EDA7E4-7A2F-40F8-BFA0-A70276644EEA}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{CDB128EE-EB07-41C3-8149-03EFFF9C9ADD}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "assets", "assets", "{CDB128EE-EB07-41C3-8149-03EFFF9C9ADD}"
 	ProjectSection(SolutionItems) = preProject
-		docs\list-of-design-patterns.txt = docs\list-of-design-patterns.txt
+		assets\tunnel.jpg = assets\tunnel.jpg
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "clients", "clients", "{7780E8EC-AF1B-4BA5-895B-541923A172D5}"
