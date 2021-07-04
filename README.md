@@ -28,16 +28,16 @@ The domain as seen from the title is an automatic vehicle wash tunnel. Customers
 * Select whether they are an individual or company customer (They get discounts if they represent a company).
 * Receive an invoice at the end in the preferred currency.
 
-## Table of contents
+## Topics
 
-* [Introduction to SOLID wash tunnel](#)
-* [Implementing a custom IoC container](#)
-* [Dependency Injection Technique](#)
-* [Simple Factory Pattern](#)
-* [Singleton Pattern](#)
-* [Command Pattern](#)
-* [Mediator Pattern](#)
-* [Service Locator Anti-Pattern](#)
+* Introduction to SOLID wash tunnel
+* Implementing a custom IoC container
+* Dependency Injection Technique
+* Simple Factory Pattern
+* Singleton Pattern
+* Command Pattern
+* Mediator Pattern
+* Service Locator Anti-Pattern
 * Builder Pattern
 * Chain of Responsibility Pattern
 * Decorator Pattern
@@ -47,6 +47,8 @@ The domain as seen from the title is an automatic vehicle wash tunnel. Customers
 * Observer Pattern
 * Proxy Pattern
 * Demo of the wash tunnel
+
+You can find detailed explanations on some of the topics (more to come) on my [website](#).
 
 ---
 
