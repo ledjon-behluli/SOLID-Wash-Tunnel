@@ -38,7 +38,7 @@ The domain as seen from the title is an automatic vehicle wash tunnel. Customers
 * Command Message Pattern
 * Mediator Pattern
 * Service Locator Anti-Pattern
-* Builder Pattern
+* Fluent Builder Pattern
 * Chain of Responsibility Pattern
 * Decorator Pattern
 * State Pattern
