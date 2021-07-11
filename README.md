@@ -35,7 +35,7 @@ The domain as seen from the title is an automatic vehicle wash tunnel. Customers
 * Dependency Injection Technique
 * Simple Factory Pattern
 * Singleton Pattern
-* Command Pattern
+* Command Message Pattern
 * Mediator Pattern
 * Service Locator Anti-Pattern
 * Builder Pattern
