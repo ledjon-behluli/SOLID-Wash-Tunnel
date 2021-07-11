@@ -76,7 +76,7 @@ namespace SOLIDWashTunnel.Customers
                 .AddShampooing()
                 .AddHighPressureWashing();
 
-            panel.CustomizeProgram(builder)
+            panel.SelectCustomizedProgram(builder)
                  .AsIndividual(firstName, lastName, currency)
                  .Start(Vehicle, PrintInvoice());
         }
@@ -95,7 +95,7 @@ namespace SOLIDWashTunnel.Customers
                 .AddAirDrying()
                 .AddWaxing();
 
-            panel.CustomizeProgram(builder)
+            panel.SelectCustomizedProgram(builder)
                  .AsCompany(companyName, currency)
                  .Start(Vehicle, PrintInvoice());
         }
