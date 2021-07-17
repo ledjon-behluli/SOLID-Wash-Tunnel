@@ -71,12 +71,13 @@ namespace SOLIDWashTunnel.Customers
             var panel = container.GetService<IUserPanel>();
             var builder = container.GetService<ICustomWashProgramBuilder>();
 
-            builder
+            var customProgram = builder
                 .AddChasisAndWheelWashing()
                 .AddShampooing()
-                .AddHighPressureWashing();
+                .AddHighPressureWashing()
+                .Build();
 
-            panel.SelectCustomizedProgram(builder)
+            panel.SelectCustomizedProgram(customProgram)
                  .AsIndividual(firstName, lastName, currency)
                  .Start(Vehicle, PrintInvoice());
         }
@@ -86,16 +87,17 @@ namespace SOLIDWashTunnel.Customers
             var panel = container.GetService<IUserPanel>();
             var builder = container.GetService<ICustomWashProgramBuilder>();
 
-            builder
+            var customProgram = builder
                 .AddChasisAndWheelWashing()
                 .AddShampooing()
                 .AddHighPressureWashing()
                 .AddThreeColorFoaming()
                 .AddHighPressureWashing()
                 .AddAirDrying()
-                .AddWaxing();
+                .AddWaxing()
+                .Build();
 
-            panel.SelectCustomizedProgram(builder)
+            panel.SelectCustomizedProgram(customProgram)
                  .AsCompany(companyName, currency)
                  .Start(Vehicle, PrintInvoice());
         }

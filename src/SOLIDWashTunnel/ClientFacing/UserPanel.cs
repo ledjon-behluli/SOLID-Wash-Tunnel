@@ -37,11 +37,9 @@ namespace SOLIDWashTunnel.ClientFacing
             return this;
         }
 
-        public ICustomerInformationCollector SelectCustomizedProgram(ICustomWashProgramBuilder builder)
+        public ICustomerInformationCollector SelectCustomizedProgram(IWashProgram program)
         {
-            IWashProgram program = builder.Build();
             _transmitter.Transmit(new WashProgramSelectedSignal(program));
-
             return this;
         }
 

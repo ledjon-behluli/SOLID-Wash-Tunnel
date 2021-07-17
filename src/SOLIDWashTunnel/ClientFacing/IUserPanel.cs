@@ -6,7 +6,7 @@ namespace SOLIDWashTunnel.ClientFacing
     public interface IUserPanel
     {
         ICustomerInformationCollector SelectBuiltInProgram(ProgramType type);
-        ICustomerInformationCollector SelectCustomizedProgram(ICustomWashProgramBuilder builder);
+        ICustomerInformationCollector SelectCustomizedProgram(IWashProgram program);
     }
 
     public interface ICustomerInformationCollector
