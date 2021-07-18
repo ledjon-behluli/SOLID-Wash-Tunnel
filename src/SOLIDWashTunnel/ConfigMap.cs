@@ -17,6 +17,18 @@ namespace SOLIDWashTunnel
                     { ProgramType.AllRounder, (ws) => new AllRounderWashProgram() }
                 };
 
+        internal static IDictionary<WashStepType, Func<IWashStep>> GetWashSteps() =>
+            new Dictionary<WashStepType, Func<IWashStep>>()
+            {
+                { WashStepType.ChasisAndWheelWashing, () => new ChasisAndWheelWashing() },
+                { WashStepType.Shampooing, () => new Shampooing() },
+                { WashStepType.HighPressureWashing, () => new HighPressureWashing() },
+                { WashStepType.SingleColorFoaming, () => new SingleColorFoaming() },
+                { WashStepType.ThreeColorFoaming, () => new ThreeColorFoaming() },
+                { WashStepType.Waxing, () => new Waxing() },
+                { WashStepType.AirDrying, () => new AirDrying() }
+            };
+
         internal static IDictionary<CustomerType, Func<IPriceCalculator>> GetPriceCalculators(ICurrencyRateConverter converter) =>
             new Dictionary<CustomerType, Func<IPriceCalculator>>()
                 {

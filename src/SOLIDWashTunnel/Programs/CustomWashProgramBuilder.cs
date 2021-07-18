@@ -1,4 +1,5 @@
 using SOLIDWashTunnel.Programs.Steps;
+using System;
 using System.Collections.Generic;
 
 namespace SOLIDWashTunnel.Programs
@@ -17,13 +18,9 @@ namespace SOLIDWashTunnel.Programs
 
     public interface ICustomWashProgramBuilder
     {
-        ICustomWashProgramBuilder AddChasisAndWheelWashing();
-        ICustomWashProgramBuilder AddShampooing();
-        ICustomWashProgramBuilder AddHighPressureWashing();
-        ICustomWashProgramBuilder AddSingleColorFoaming();
-        ICustomWashProgramBuilder AddThreeColorFoaming();
-        ICustomWashProgramBuilder AddWaxing();
-        ICustomWashProgramBuilder AddAirDrying();
+        ICustomWashProgramBuilder Add(WashStepType type);
+        ICustomWashProgramBuilder Add(IWashStep washStep);
+        ICustomWashProgramBuilder AddAll();
 
         IWashProgram Build();
     }
@@ -33,58 +30,40 @@ namespace SOLIDWashTunnel.Programs
     {
         private readonly List<IWashStep> _washSteps;
         private readonly IWashProgramFactory _programFactory;
+        private readonly IWashStepFactory _washStepFactory;
 
-        public CustomWashProgramBuilder(IWashProgramFactory programFactory)
+        public CustomWashProgramBuilder(
+            IWashProgramFactory programFactory,
+            IWashStepFactory washStepFactory)
         {
             _washSteps = new List<IWashStep>();
             _programFactory = programFactory;
+            _washStepFactory = washStepFactory;
         }
 
-        #region Wash Steps
 
-        public ICustomWashProgramBuilder AddAirDrying()
+        public ICustomWashProgramBuilder Add(WashStepType type)
         {
-            _washSteps.Add(new AirDrying());
+            _washSteps.Add(_washStepFactory.Create(type));
             return this;
         }
 
-        public ICustomWashProgramBuilder AddChasisAndWheelWashing()
+        public ICustomWashProgramBuilder Add(IWashStep washStep)
         {
-            _washSteps.Add(new ChasisAndWheelWashing());
+            _washSteps.Add(washStep);
             return this;
         }
 
-        public ICustomWashProgramBuilder AddHighPressureWashing()
+        public ICustomWashProgramBuilder AddAll()
         {
-            _washSteps.Add(new HighPressureWashing());
+            foreach (WashStepType type in (WashStepType[])Enum.GetValues(typeof(WashStepType)))
+            {
+                _washSteps.Add(_washStepFactory.Create(type));
+            }
+
             return this;
         }
 
-        public ICustomWashProgramBuilder AddShampooing()
-        {
-            _washSteps.Add(new Shampooing());
-            return this;
-        }
-
-        public ICustomWashProgramBuilder AddSingleColorFoaming()
-        {
-            _washSteps.Add(new SingleColorFoaming());
-            return this;
-        }
-
-        public ICustomWashProgramBuilder AddThreeColorFoaming()
-        {
-            _washSteps.Add(new ThreeColorFoaming());
-            return this;
-        }
-
-        public ICustomWashProgramBuilder AddWaxing()
-        {
-            _washSteps.Add(new Waxing());
-            return this;
-        }
-
-        #endregion
 
         public IWashProgram Build()
         {

@@ -3,6 +3,7 @@ using SOLIDWashTunnel.ClientFacing;
 using SOLIDWashTunnel.DI;
 using SOLIDWashTunnel.DI.Abstractions;
 using SOLIDWashTunnel.Programs;
+using SOLIDWashTunnel.Programs.Steps;
 using SOLIDWashTunnel.Sms;
 using SOLIDWashTunnel.MobileApp;
 
@@ -23,7 +24,7 @@ namespace SOLIDWashTunnel.Customers
                 .AddSmartFeatures()     
                 .AddSmsNotifications("(917) 208-4154")
                 .AddMobileAppNotifications("ledjon-behluli");
-            
+
             RunBuiltInProgramForIndividual(ProgramType.Fast, "Ledjon", "Behluli", Currency.USD);
             RunBuiltInProgramForIndividual(ProgramType.Fast, "Ledjon", "Behluli", Currency.EUR);
             RunBuiltInProgramForIndividual(ProgramType.Economic, "Ledjon", "Behluli", Currency.USD);
@@ -72,9 +73,9 @@ namespace SOLIDWashTunnel.Customers
             var builder = container.GetService<ICustomWashProgramBuilder>();
 
             var customProgram = builder
-                .AddChasisAndWheelWashing()
-                .AddShampooing()
-                .AddHighPressureWashing()
+                .Add(WashStepType.ChasisAndWheelWashing)
+                .Add(WashStepType.Shampooing)
+                .Add(WashStepType.HighPressureWashing)
                 .Build();
 
             panel.SelectCustomizedProgram(customProgram)
@@ -88,13 +89,7 @@ namespace SOLIDWashTunnel.Customers
             var builder = container.GetService<ICustomWashProgramBuilder>();
 
             var customProgram = builder
-                .AddChasisAndWheelWashing()
-                .AddShampooing()
-                .AddHighPressureWashing()
-                .AddThreeColorFoaming()
-                .AddHighPressureWashing()
-                .AddAirDrying()
-                .AddWaxing()
+                .AddAll()
                 .Build();
 
             panel.SelectCustomizedProgram(customProgram)
