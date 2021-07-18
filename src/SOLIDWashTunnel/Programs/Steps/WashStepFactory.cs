@@ -3,6 +3,16 @@ using System.Collections.Generic;
 
 namespace SOLIDWashTunnel.Programs.Steps
 {
+    /* 
+    * Pattern: 
+    *   Simple Factory
+    *   
+    * Reason: 
+    *   Create a wash step based on the type.
+    *   
+    * Learn more: 
+    *   https://refactoring.guru/design-patterns/factory-comparison
+    */
 
     public interface IWashStepFactory
     {
