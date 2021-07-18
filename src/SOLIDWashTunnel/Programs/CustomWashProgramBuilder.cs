@@ -56,7 +56,7 @@ namespace SOLIDWashTunnel.Programs
 
         public ICustomWashProgramBuilder AddAll()
         {
-            foreach (WashStepType type in (WashStepType[])Enum.GetValues(typeof(WashStepType)))
+            foreach (WashStepType type in Enum.GetValues(typeof(WashStepType)))
             {
                 _washSteps.Add(_washStepFactory.Create(type));
             }
