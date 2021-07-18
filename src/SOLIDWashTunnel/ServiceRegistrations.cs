@@ -34,8 +34,10 @@ namespace SOLIDWashTunnel
 
             container.AddTransient<IInvoiceBuilder, InvoiceBuilder>();
             container.AddTransient<ICustomWashProgramBuilder, CustomWashProgramBuilder>();
-            container.AddSingleton<IWashProgramFactory>(() => new WashProgramFactory(ConfigMap.GetWashPrograms()));
-            container.AddSingleton<IWashStepFactory>(() => new WashStepFactory(ConfigMap.GetWashSteps()));
+
+            IWashStepFactory washStepFactory = new WashStepFactory(ConfigMap.GetWashSteps());
+            container.AddSingleton(() => washStepFactory);
+            container.AddSingleton<IWashProgramFactory>(() => new WashProgramFactory(ConfigMap.GetWashPrograms(washStepFactory)));
 
             return container;
         }

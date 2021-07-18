@@ -8,13 +8,13 @@ namespace SOLIDWashTunnel
 {
     internal static class ConfigMap
     {
-        internal static IDictionary<ProgramType, Func<IWashStep[], IWashProgram>> GetWashPrograms() =>
+        internal static IDictionary<ProgramType, Func<IWashStep[], IWashProgram>> GetWashPrograms(IWashStepFactory factory) =>
             new Dictionary<ProgramType, Func<IWashStep[], IWashProgram>>()
                 {
                     { ProgramType.Custom, (ws) => new CustomWashProgram(ws) },
-                    { ProgramType.Fast, (ws) => new FastWashProgram() },
-                    { ProgramType.Economic, (ws) => new EconomicWashProgram() },
-                    { ProgramType.AllRounder, (ws) => new AllRounderWashProgram() }
+                    { ProgramType.Fast, _ => new FastWashProgram(factory) },
+                    { ProgramType.Economic, _ => new EconomicWashProgram(factory) },
+                    { ProgramType.AllRounder, _ => new AllRounderWashProgram(factory) }
                 };
 
         internal static IDictionary<WashStepType, Func<IWashStep>> GetWashSteps() =>
