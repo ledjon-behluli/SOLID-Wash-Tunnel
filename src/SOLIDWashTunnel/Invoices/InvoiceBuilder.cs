@@ -95,7 +95,7 @@ namespace SOLIDWashTunnel.Invoices
 
             builder.AppendLine("-----------------------------");
             builder.AppendLine($"Total price: {_invoice.Price}");
-            builder.AppendLine($"Discount: {_discount}%");
+            builder.AppendLine($"Applied discount: {_discount}%");
 
             return builder.ToString();
         }
