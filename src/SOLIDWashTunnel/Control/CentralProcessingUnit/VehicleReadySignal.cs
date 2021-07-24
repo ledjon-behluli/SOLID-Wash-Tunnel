@@ -1,4 +1,5 @@
 ﻿using SOLIDWashTunnel.Invoices;
+using System;
 
 namespace SOLIDWashTunnel.Control.Signals
 {
@@ -57,7 +58,7 @@ namespace SOLIDWashTunnel.Control.Signals
                     }
                 }
 
-                return string.Empty;
+                throw new InvalidOperationException("Can not generate invoice because some critical informations about the wash session are missing.");
             }
         }
     }
