@@ -67,14 +67,10 @@ namespace SOLIDWashTunnel.Programs
 
         public IEnumerable<IWashStep> GetWashSteps()
         {
-            var washSteps = new List<IWashStep>();
-
             foreach (WashStepType type in Enum.GetValues(typeof(WashStepType)))
             {
-                washSteps.Add(_washStepFactory.Create(type));
+                yield return _washStepFactory.Create(type);
             }
-
-            return washSteps;
         }
     }
 
