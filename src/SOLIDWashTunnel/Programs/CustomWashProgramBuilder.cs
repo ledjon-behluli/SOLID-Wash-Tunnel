@@ -67,6 +67,9 @@ namespace SOLIDWashTunnel.Programs
 
         public IWashProgram Build()
         {
+            if (_washSteps.Count == 0)
+                throw new InvalidOperationException("A custom wash program must have at least one wash step.");
+
             IWashProgram program = _programFactory.Create(ProgramType.Custom, _washSteps.ToArray());
             _washSteps.Clear();
 
