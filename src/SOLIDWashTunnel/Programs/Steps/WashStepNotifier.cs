@@ -21,7 +21,7 @@ namespace SOLIDWashTunnel.Programs.Steps
     {
         void Subscribe(IWashStepSubscriber subscriber);
         void Unsubscribe(IWashStepSubscriber subscriber);
-        void Notify(IWashStep state);
+        void Notify(IWashStep step);
     }
 
     public class WashStepNotifier : IWashStepNotifier
@@ -43,11 +43,11 @@ namespace SOLIDWashTunnel.Programs.Steps
             _subscribers.Remove(subscriber);
         }
 
-        public void Notify(IWashStep state)
+        public void Notify(IWashStep step)
         {
             foreach (var subscriber in _subscribers)
             {
-                subscriber.OnStateChange(state);
+                subscriber.OnNewStepApplied(step);
             }
         }
     }

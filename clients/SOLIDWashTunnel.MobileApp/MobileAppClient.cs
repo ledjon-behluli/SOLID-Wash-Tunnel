@@ -13,7 +13,7 @@ namespace SOLIDWashTunnel.MobileApp
             _username = username;
         }
 
-        public void OnStateChange(IWashStep step)
+        public void OnNewStepApplied(IWashStep step)
         {
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine($"[MobileAppClient] [{_username}]: {step.GetDescription()}");

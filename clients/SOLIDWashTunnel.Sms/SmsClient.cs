@@ -13,7 +13,7 @@ namespace SOLIDWashTunnel.Sms
             _phoneNumber = phoneNumber;
         }
 
-        public void OnStateChange(IWashStep step)
+        public void OnNewStepApplied(IWashStep step)
         {
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine($"[SmsClient] [{_phoneNumber}]: {step.GetDescription()}");

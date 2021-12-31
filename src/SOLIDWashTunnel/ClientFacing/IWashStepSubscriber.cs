@@ -4,6 +4,6 @@ namespace SOLIDWashTunnel.ClientFacing
 {
     public interface IWashStepSubscriber
     {
-        void OnStateChange(IWashStep step);
+        void OnNewStepApplied(IWashStep step);
     }
 }
