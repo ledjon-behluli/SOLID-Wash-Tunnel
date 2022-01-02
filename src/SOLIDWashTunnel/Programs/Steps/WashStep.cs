@@ -48,11 +48,11 @@ namespace SOLIDWashTunnel.Programs.Steps
             return nextStep;
         }
 
-        public virtual void Visit(IVehicle vehicle)
+        public virtual void Act(IVehicle vehicle)
         {
             if (nextStep != null)
             {
-                nextStep.Visit(vehicle);
+                nextStep.Act(vehicle);
             }
         }
 

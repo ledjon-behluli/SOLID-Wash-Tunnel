@@ -45,7 +45,7 @@ namespace SOLIDWashTunnel.Tunnel
                 washSteps[i].NextStep(washSteps[i + 1]);
             }
 
-            washSteps[0].Visit(vehicle);
+            washSteps[0].Act(vehicle);
             _washTunnel.TransitionState(new FreeState(_washTunnel, _notifier));
         }
     }

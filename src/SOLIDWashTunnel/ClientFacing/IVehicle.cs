@@ -19,7 +19,7 @@ namespace SOLIDWashTunnel.ClientFacing
     public interface IWashAction
     {
         int CleaningFactor { get; }
-        void Visit(IVehicle vehicle);
+        void Act(IVehicle vehicle);
     }
 
     public interface IVehicle

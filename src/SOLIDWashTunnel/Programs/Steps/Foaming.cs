@@ -7,10 +7,10 @@ namespace SOLIDWashTunnel.Programs.Steps
         public override int CleaningFactor => 1;
         public override Money Price => Money.Create(1.1m);
 
-        public override void Visit(IVehicle vehicle)
+        public override void Act(IVehicle vehicle)
         {
             vehicle.Accept(this);
-            base.Visit(vehicle);
+            base.Act(vehicle);
         }
 
         public override string GetDescription()
@@ -24,10 +24,10 @@ namespace SOLIDWashTunnel.Programs.Steps
         public override int CleaningFactor => 2;
         public override Money Price => Money.Create(1.7m);
 
-        public override void Visit(IVehicle vehicle)
+        public override void Act(IVehicle vehicle)
         {
             vehicle.Accept(this);
-            base.Visit(vehicle);
+            base.Act(vehicle);
         }
 
         public override string GetDescription()
