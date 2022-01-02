@@ -76,9 +76,7 @@ namespace SOLIDWashTunnel.DI
         }
 
         public TService GetService<TService>()
-        {
-            return (TService)GetService(typeof(TService));
-        }
+            => (TService)GetService(typeof(TService));
 
         private object CreateService(Type implementationType)
         {
