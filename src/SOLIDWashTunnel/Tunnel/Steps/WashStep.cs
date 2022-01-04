@@ -1,6 +1,6 @@
 using SOLIDWashTunnel.ClientFacing;
 
-namespace SOLIDWashTunnel.Programs.Steps
+namespace SOLIDWashTunnel.Tunnel.Steps
 {
     /* 
     * Pattern: 

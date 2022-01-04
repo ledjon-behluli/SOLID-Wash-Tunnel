@@ -22,7 +22,7 @@ namespace SOLIDWashTunnel.Invoices
         private int _discount;
         private CustomerType _customerType;
         private Currency _currency;
-        private Invoice _invoice;
+        private readonly Invoice _invoice;
 
         private readonly ICurrencyRateConverter _converter;
         private readonly IPriceCalculatorFactory _calculatorFactory;

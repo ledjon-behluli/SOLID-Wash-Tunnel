@@ -3,7 +3,7 @@ using SOLIDWashTunnel.ClientFacing;
 using SOLIDWashTunnel.DI;
 using SOLIDWashTunnel.DI.Abstractions;
 using SOLIDWashTunnel.Programs;
-using SOLIDWashTunnel.Programs.Steps;
+using SOLIDWashTunnel.Tunnel.Steps;
 using SOLIDWashTunnel.Sms;
 using SOLIDWashTunnel.MobileApp;
 
@@ -13,8 +13,10 @@ namespace SOLIDWashTunnel.Customers
     {
         static readonly IContainer container = new Container();
         static IVehicle Vehicle => 
-            new DirtyCar();
-          //new CleanCar();
+            //new DirtyMetallicCar();
+          new DirtyMatteCar();
+          //new CleanMetallicCar();
+          //new CleanMatteCar();
           
 
         static void Main(string[] args)
@@ -25,25 +27,25 @@ namespace SOLIDWashTunnel.Customers
                 .AddSmsNotifications("(917) 208-4154")
                 .AddMobileAppNotifications("ledjon-behluli");
 
-            RunBuiltInProgramForIndividual(ProgramType.Fast, "Ledjon", "Behluli", Currency.USD);
-            RunBuiltInProgramForIndividual(ProgramType.Fast, "Ledjon", "Behluli", Currency.EUR);
-            RunBuiltInProgramForIndividual(ProgramType.Economic, "Ledjon", "Behluli", Currency.USD);
-            RunBuiltInProgramForIndividual(ProgramType.Economic, "Ledjon", "Behluli", Currency.EUR);
-            RunBuiltInProgramForIndividual(ProgramType.AllRounder, "Ledjon", "Behluli", Currency.USD);
-            RunBuiltInProgramForIndividual(ProgramType.AllRounder, "Ledjon", "Behluli", Currency.EUR);
+            //RunBuiltInProgramForIndividual(ProgramType.Fast, "Ledjon", "Behluli", Currency.USD);
+            //RunBuiltInProgramForIndividual(ProgramType.Fast, "Ledjon", "Behluli", Currency.EUR);
+            //RunBuiltInProgramForIndividual(ProgramType.Economic, "Ledjon", "Behluli", Currency.USD);
+            //RunBuiltInProgramForIndividual(ProgramType.Economic, "Ledjon", "Behluli", Currency.EUR);
+            //RunBuiltInProgramForIndividual(ProgramType.AllRounder, "Ledjon", "Behluli", Currency.USD);
+            //RunBuiltInProgramForIndividual(ProgramType.AllRounder, "Ledjon", "Behluli", Currency.EUR);
 
-            RunBuiltInProgramForCompany(ProgramType.Fast, "Ledjon SoftTech", Currency.USD);
-            RunBuiltInProgramForCompany(ProgramType.Fast, "Ledjon SoftTech", Currency.EUR);
-            RunBuiltInProgramForCompany(ProgramType.Economic, "Ledjon SoftTech", Currency.USD);
-            RunBuiltInProgramForCompany(ProgramType.Economic, "Ledjon SoftTech", Currency.EUR);
-            RunBuiltInProgramForCompany(ProgramType.AllRounder, "Ledjon SoftTech", Currency.USD);
-            RunBuiltInProgramForCompany(ProgramType.AllRounder, "Ledjon SoftTech", Currency.EUR);
+            //RunBuiltInProgramForCompany(ProgramType.Fast, "Ledjon SoftTech", Currency.USD);
+            //RunBuiltInProgramForCompany(ProgramType.Fast, "Ledjon SoftTech", Currency.EUR);
+            //RunBuiltInProgramForCompany(ProgramType.Economic, "Ledjon SoftTech", Currency.USD);
+            //RunBuiltInProgramForCompany(ProgramType.Economic, "Ledjon SoftTech", Currency.EUR);
+            //RunBuiltInProgramForCompany(ProgramType.AllRounder, "Ledjon SoftTech", Currency.USD);
+            //RunBuiltInProgramForCompany(ProgramType.AllRounder, "Ledjon SoftTech", Currency.EUR);
 
             RunCustomWashProgramForIndividual("Ledjon", "Behluli", Currency.USD);
-            RunCustomWashProgramForIndividual("Ledjon", "Behluli", Currency.EUR);
+            //RunCustomWashProgramForIndividual("Ledjon", "Behluli", Currency.EUR);
 
-            RunCustomWashProgramForCompany("Ledjon SoftTech", Currency.USD);
-            RunCustomWashProgramForCompany("Ledjon SoftTech", Currency.EUR);
+            //RunCustomWashProgramForCompany("Ledjon SoftTech", Currency.USD);
+            //RunCustomWashProgramForCompany("Ledjon SoftTech", Currency.EUR);
 
             Console.ReadKey();
         }
@@ -75,6 +77,7 @@ namespace SOLIDWashTunnel.Customers
             var customProgram = builder
                 .Add(WashStepType.ChasisAndWheelWashing)
                 .Add(WashStepType.Shampooing)
+                .Add(WashStepType.Waxing)
                 .Add(WashStepType.HighPressureWashing)
                 .Build();
 

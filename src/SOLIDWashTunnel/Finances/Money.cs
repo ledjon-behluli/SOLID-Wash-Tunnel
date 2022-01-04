@@ -48,7 +48,7 @@ namespace SOLIDWashTunnel
 
         public bool Equals(Money other)
         {
-            if (ReferenceEquals(other, null)) 
+            if (other is null) 
                 return false;
 
             if (ReferenceEquals(other, this)) 
@@ -70,9 +70,8 @@ namespace SOLIDWashTunnel
         public override string ToString()
         {
             var field = Currency.GetType().GetField(Currency.ToString());
-            var attributes = field.GetCustomAttributes(typeof(DescriptionAttribute), false) as DescriptionAttribute[];
 
-            string symbol = attributes != null && attributes.Length > 0 ?
+            string symbol = field.GetCustomAttributes(typeof(DescriptionAttribute), false) is DescriptionAttribute[] attributes && attributes.Length > 0 ?
                             attributes[0].Description : Currency.ToString();
 
             return $"{Amount}{symbol}";

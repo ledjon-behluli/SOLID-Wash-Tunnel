@@ -1,7 +1,7 @@
 using SOLIDWashTunnel.ClientFacing;
 using System.Collections.Generic;
 
-namespace SOLIDWashTunnel.Programs.Steps
+namespace SOLIDWashTunnel.Tunnel.Steps
 {
     /* 
    * Pattern: 

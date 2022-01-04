@@ -1,11 +1,11 @@
-using SOLIDWashTunnel.ClientFacing;
+﻿using SOLIDWashTunnel.ClientFacing;
 
-namespace SOLIDWashTunnel.Programs.Steps
+namespace SOLIDWashTunnel.Tunnel.Steps
 {
-    public class AirDrying : WashStep
+    public class SingleColorFoaming : WashStep
     {
         public override int CleaningFactor => 1;
-        public override Money Price => Money.Create(0.5m);
+        public override Money Price => Money.Create(1.1m);
 
         public override void Act(IVehicle vehicle)
         {
@@ -15,7 +15,7 @@ namespace SOLIDWashTunnel.Programs.Steps
 
         public override string GetDescription()
         {
-            return "Air drying";
+            return "Foaming using a single color foam";
         }
     }
 }

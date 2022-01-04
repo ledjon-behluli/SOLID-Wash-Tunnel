@@ -1,8 +1,9 @@
 using SOLIDWashTunnel.Programs;
 using SOLIDWashTunnel.Control;
 using SOLIDWashTunnel.ClientFacing;
-using SOLIDWashTunnel.Programs.Steps;
+using SOLIDWashTunnel.Tunnel.Steps;
 using SOLIDWashTunnel.Control.Signals;
+using SOLIDWashTunnel.Tunnel.States;
 
 namespace SOLIDWashTunnel.Tunnel
 {

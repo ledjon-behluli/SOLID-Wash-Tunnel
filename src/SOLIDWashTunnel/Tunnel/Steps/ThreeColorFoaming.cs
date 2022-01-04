@@ -1,11 +1,11 @@
 using SOLIDWashTunnel.ClientFacing;
 
-namespace SOLIDWashTunnel.Programs.Steps
+namespace SOLIDWashTunnel.Tunnel.Steps
 {
-    public class Shampooing : WashStep
+    public class ThreeColorFoaming : WashStep
     {
-        public override int CleaningFactor => 1;
-        public override Money Price => Money.Create(0.8m);
+        public override int CleaningFactor => 2;
+        public override Money Price => Money.Create(1.7m);
 
         public override void Act(IVehicle vehicle)
         {
@@ -15,7 +15,7 @@ namespace SOLIDWashTunnel.Programs.Steps
 
         public override string GetDescription()
         {
-            return "Shampooing";
+            return "Foaming using a three color foam";
         }
     }
 }

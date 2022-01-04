@@ -1,11 +1,11 @@
 using SOLIDWashTunnel.ClientFacing;
 
-namespace SOLIDWashTunnel.Programs.Steps
+namespace SOLIDWashTunnel.Tunnel.Steps
 {
-    public class ChasisAndWheelWashing : WashStep
+    public class AirDrying : WashStep
     {
-        public override int CleaningFactor => 3;
-        public override Money Price => Money.Create(1.5m);
+        public override int CleaningFactor => 1;
+        public override Money Price => Money.Create(0.5m);
 
         public override void Act(IVehicle vehicle)
         {
@@ -15,7 +15,7 @@ namespace SOLIDWashTunnel.Programs.Steps
 
         public override string GetDescription()
         {
-            return "Chasis & wheels washing";
+            return "Air drying";
         }
     }
 }
