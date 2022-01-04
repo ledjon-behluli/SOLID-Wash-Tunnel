@@ -1,4 +1,5 @@
 using SOLIDWashTunnel.ClientFacing;
+using System;
 
 namespace SOLIDWashTunnel.Tunnel.Steps
 {
@@ -7,10 +8,12 @@ namespace SOLIDWashTunnel.Tunnel.Steps
         public override int CleaningFactor => 5;
         public override Money Price => Money.Create(0.3m);
 
-        public override void Act(IVehicle vehicle)
+        public override void Act(IVehicle vehicle, Action<IWashAction, bool> callback)
         {
             vehicle.Accept(this);
-            base.Act(vehicle);
+            callback.Invoke(this, true);
+
+            base.Act(vehicle, callback);
         }
 
         public override string GetDescription()

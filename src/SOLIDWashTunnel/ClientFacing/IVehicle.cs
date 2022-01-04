@@ -1,4 +1,6 @@
 
+using System;
+
 namespace SOLIDWashTunnel.ClientFacing
 {
     /* 
@@ -21,7 +23,7 @@ namespace SOLIDWashTunnel.ClientFacing
     {
         int CleaningFactor { get; }
 
-        void Act(IVehicle vehicle);
+        void Act(IVehicle vehicle, Action<IWashAction, bool> callback);
     }
 
     public interface IVehicle

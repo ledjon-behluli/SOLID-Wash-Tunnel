@@ -13,10 +13,17 @@ namespace SOLIDWashTunnel.MobileApp
             _username = username;
         }
 
-        public void OnNewStepApplied(IWashStep step)
+        public void OnStepApplied(IWashStep step)
         {
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine($"[MobileAppClient] [{_username}]: {step.GetDescription()}");
+            Console.WriteLine($"[MobileAppClient] [{_username}] [APPLIED]: {step.GetDescription()}");
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+
+        public void OnStepSkipped(IWashStep step)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine($"[MobileAppClient] [{_username}] [SKIPPED]: {step.GetDescription()}");
             Console.ForegroundColor = ConsoleColor.White;
         }
     }

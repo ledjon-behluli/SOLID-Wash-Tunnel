@@ -1,4 +1,5 @@
 using SOLIDWashTunnel.ClientFacing;
+using System;
 
 namespace SOLIDWashTunnel.Tunnel.Steps
 {
@@ -48,11 +49,11 @@ namespace SOLIDWashTunnel.Tunnel.Steps
             return nextStep;
         }
 
-        public virtual void Act(IVehicle vehicle)
+        public virtual void Act(IVehicle vehicle, Action<IWashAction, bool> callback)
         {
             if (nextStep != null)
             {
-                nextStep.Act(vehicle);
+                nextStep.Act(vehicle, callback);
             }
         }
 
