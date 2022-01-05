@@ -1,5 +1,5 @@
 using SOLIDWashTunnel.ClientFacing;
-using SOLIDWashTunnel.Programs.Steps;
+using SOLIDWashTunnel.Tunnel.Steps;
 using System;
 
 namespace SOLIDWashTunnel.Sms
@@ -13,10 +13,17 @@ namespace SOLIDWashTunnel.Sms
             _phoneNumber = phoneNumber;
         }
 
-        public void OnNewStepApplied(IWashStep step)
+        public void OnStepApplied(IWashStep step)
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"[SmsClient] [{_phoneNumber}] [APPLIED]: {step.GetDescription()}");
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+
+        public void OnStepSkipped(IWashStep step)
         {
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine($"[SmsClient] [{_phoneNumber}]: {step.GetDescription()}");
+            Console.WriteLine($"[SmsClient] [{_phoneNumber}] [SKIPPED]: {step.GetDescription()}");
             Console.ForegroundColor = ConsoleColor.White;
         }
     }

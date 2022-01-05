@@ -7,7 +7,7 @@ using SOLIDWashTunnel.Programs;
 using SOLIDWashTunnel.Control;
 using SOLIDWashTunnel.Sensors;
 using SOLIDWashTunnel.ClientFacing;
-using SOLIDWashTunnel.Programs.Steps;
+using SOLIDWashTunnel.Tunnel.Steps;
 
 namespace SOLIDWashTunnel
 {
@@ -31,6 +31,12 @@ namespace SOLIDWashTunnel
 
             container.AddSingleton(() => converter);
             container.AddSingleton<IPriceCalculatorFactory>(() => new PriceCalculatorFactory(ConfigMap.GetPriceCalculators(converter)));
+
+            var stepTracker = new WashStepTracker();
+            container.AddTransient<IWashStepTracker>(() => stepTracker);
+
+            var notifier = container.GetService<IWashStepNotifier>();
+            notifier.Subscribe(stepTracker);
 
             container.AddTransient<IInvoiceBuilder, InvoiceBuilder>();
             container.AddTransient<ICustomWashProgramBuilder, CustomWashProgramBuilder>();

@@ -19,7 +19,7 @@ namespace SOLIDWashTunnel.DI
 
     public class Container : IContainer
     {
-        private Dictionary<Type, Func<object>> _serviceDescriptors;
+        private readonly Dictionary<Type, Func<object>> _serviceDescriptors;
 
         public Container()
         {

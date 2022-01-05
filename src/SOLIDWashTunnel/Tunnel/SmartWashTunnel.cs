@@ -3,6 +3,7 @@ using SOLIDWashTunnel.Sensors;
 using SOLIDWashTunnel.Control;
 using SOLIDWashTunnel.ClientFacing;
 using SOLIDWashTunnel.Control.Signals;
+using SOLIDWashTunnel.Tunnel.States;
 
 namespace SOLIDWashTunnel.Tunnel
 {

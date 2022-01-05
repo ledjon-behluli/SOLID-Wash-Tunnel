@@ -5,10 +5,12 @@ namespace SOLIDWashTunnel.Customers
     public abstract class Car : IVehicle
     {
         public int Dirtiness { get; private set; }
+        public PaintFinishType FinishType { get; }
 
-        public Car(int dirtiness)
+        public Car(int dirtiness, PaintFinishType finishType)
         {
             Dirtiness = dirtiness; 
+            FinishType = finishType;
         }
 
         public void Accept(IWashAction action)
@@ -17,19 +19,37 @@ namespace SOLIDWashTunnel.Customers
         }
     }
 
-    public class DirtyCar : Car
+    public class DirtyMetallicCar : Car
     {
-        public DirtyCar()
-            : base(10)       // Represents a dirty car, since dirtiness is high
+        public DirtyMetallicCar()
+            : base(10, PaintFinishType.Metallic)       // Represents a dirty car (since dirtiness is high) with a metallic finish.
         {
 
         }
     }
 
-    public class CleanCar : Car
+    public class CleanMetallicCar : Car
     {
-        public CleanCar()
-            : base(0)      // Represents a clean car, since dirtiness is low
+        public CleanMetallicCar()
+            : base(0, PaintFinishType.Metallic)      // Represents a clean car (since dirtiness is low) with a metallic finish.
+        {
+
+        }
+    }
+
+    public class DirtyMatteCar : Car
+    {
+        public DirtyMatteCar()
+            : base(10, PaintFinishType.Matte)       // Represents a dirty car (since dirtiness is high) with a matte finish.
+        {
+
+        }
+    }
+
+    public class CleanMatteCar : Car
+    {
+        public CleanMatteCar()
+            : base(0, PaintFinishType.Matte)      // Represents a clean car (since dirtiness is low) with a matte finish.
         {
 
         }

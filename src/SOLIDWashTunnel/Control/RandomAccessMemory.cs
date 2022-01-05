@@ -11,7 +11,7 @@ namespace SOLIDWashTunnel.Control
 
     public class RandomAccessMemory : IMemory
     {
-        private Dictionary<string, ISignal> _items;
+        private readonly Dictionary<string, ISignal> _items;
 
         public RandomAccessMemory()
         {

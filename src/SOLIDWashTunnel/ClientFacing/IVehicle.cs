@@ -1,3 +1,6 @@
+
+using System;
+
 namespace SOLIDWashTunnel.ClientFacing
 {
     /* 
@@ -19,12 +22,21 @@ namespace SOLIDWashTunnel.ClientFacing
     public interface IWashAction
     {
         int CleaningFactor { get; }
-        void Act(IVehicle vehicle);
+
+        void Act(IVehicle vehicle, Action<IWashAction, bool> callback);
     }
 
     public interface IVehicle
     {
         int Dirtiness { get; }
+        PaintFinishType FinishType { get; }
+
         void Accept(IWashAction action);
+    }
+
+    public enum PaintFinishType
+    {
+        Metallic,
+        Matte
     }
 }

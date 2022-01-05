@@ -3,7 +3,7 @@ using SOLIDWashTunnel.ClientFacing;
 using SOLIDWashTunnel.DI;
 using SOLIDWashTunnel.DI.Abstractions;
 using SOLIDWashTunnel.Programs;
-using SOLIDWashTunnel.Programs.Steps;
+using SOLIDWashTunnel.Tunnel.Steps;
 using SOLIDWashTunnel.Sms;
 using SOLIDWashTunnel.MobileApp;
 
@@ -13,15 +13,16 @@ namespace SOLIDWashTunnel.Customers
     {
         static readonly IContainer container = new Container();
         static IVehicle Vehicle => 
-            new DirtyCar();
-          //new CleanCar();
-          
+          new DirtyMetallicCar();
+        //new DirtyMatteCar();
+        //new CleanMetallicCar();
+        //new CleanMatteCar();
 
         static void Main(string[] args)
         {
             container
-                .AddWashTunnel()           
-                .AddSmartFeatures()     
+                .AddWashTunnel()
+                .AddSmartFeatures()
                 .AddSmsNotifications("(917) 208-4154")
                 .AddMobileAppNotifications("ledjon-behluli");
 
@@ -73,9 +74,11 @@ namespace SOLIDWashTunnel.Customers
             var builder = container.GetService<ICustomWashProgramBuilder>();
 
             var customProgram = builder
+                .Add(WashStepType.HighPressureWashing)
                 .Add(WashStepType.ChasisAndWheelWashing)
                 .Add(WashStepType.Shampooing)
                 .Add(WashStepType.HighPressureWashing)
+                .Add(WashStepType.Waxing)
                 .Build();
 
             panel.SelectCustomizedProgram(customProgram)

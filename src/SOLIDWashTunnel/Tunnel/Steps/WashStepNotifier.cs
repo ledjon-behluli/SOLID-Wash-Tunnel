@@ -1,7 +1,7 @@
 using SOLIDWashTunnel.ClientFacing;
 using System.Collections.Generic;
 
-namespace SOLIDWashTunnel.Programs.Steps
+namespace SOLIDWashTunnel.Tunnel.Steps
 {
     /* 
    * Pattern: 
@@ -21,7 +21,8 @@ namespace SOLIDWashTunnel.Programs.Steps
     {
         void Subscribe(IWashStepSubscriber subscriber);
         void Unsubscribe(IWashStepSubscriber subscriber);
-        void Notify(IWashStep step);
+
+        void Notify(WashStepResult result);
     }
 
     public class WashStepNotifier : IWashStepNotifier
@@ -43,12 +44,31 @@ namespace SOLIDWashTunnel.Programs.Steps
             _subscribers.Remove(subscriber);
         }
 
-        public void Notify(IWashStep step)
+        public void Notify(WashStepResult result)
         {
             foreach (var subscriber in _subscribers)
             {
-                subscriber.OnNewStepApplied(step);
+                if (result.Succeeded)
+                {
+                    subscriber.OnStepApplied(result.WashStep);
+                }
+                else
+                {
+                    subscriber.OnStepSkipped(result.WashStep);
+                }
             }
+        }
+    }
+
+    public readonly struct WashStepResult
+    {
+        public IWashStep WashStep { get; }
+        public bool Succeeded { get; }
+
+        public WashStepResult(IWashStep washStep, bool succeeded)
+        {
+            WashStep = washStep;
+            Succeeded = succeeded;
         }
     }
 }

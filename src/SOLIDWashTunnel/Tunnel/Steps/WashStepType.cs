@@ -1,4 +1,4 @@
-﻿namespace SOLIDWashTunnel.Programs.Steps
+﻿namespace SOLIDWashTunnel.Tunnel.Steps
 {
     public enum WashStepType
     {
