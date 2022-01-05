@@ -22,16 +22,19 @@ namespace SOLIDWashTunnel.Invoices
         private int _discount;
         private CustomerType _customerType;
         private Currency _currency;
-        private readonly Invoice _invoice;
 
+        private readonly Invoice _invoice;
+        private readonly IWashStepTracker _tracker;
         private readonly ICurrencyRateConverter _converter;
         private readonly IPriceCalculatorFactory _calculatorFactory;
 
         public InvoiceBuilder(
+            IWashStepTracker tracker,
             ICurrencyRateConverter converter,
             IPriceCalculatorFactory calculatorFactory)
         {
             _invoice = new Invoice();
+            _tracker = tracker;
             _converter = converter;
             _calculatorFactory = calculatorFactory;
         }
@@ -75,7 +78,24 @@ namespace SOLIDWashTunnel.Invoices
         public IInvoicePrinter Calculate()
         {
             IPriceCalculator calculator = _calculatorFactory.Create(_customerType);
-            _invoice.Price = calculator.Calculate(_invoice.WashProgram, _currency);
+            Money price = calculator.Calculate(_invoice.WashProgram, _currency);
+
+            foreach (var washStep in _invoice.WashProgram.GetWashSteps())
+            {
+                if (!_tracker.HasStepBeenApplied(washStep))
+                {
+                    Money washStepPrice = washStep.Price;
+
+                    if (price.Currency != washStep.Price.Currency)
+                    {
+                        washStepPrice = _converter.Convert(washStep.Price, _currency);
+                    }
+
+                    price -= washStepPrice;
+                }
+            }
+
+            _invoice.Price = price;
             _discount = calculator.Discount;
 
             return this;
@@ -90,7 +110,12 @@ namespace SOLIDWashTunnel.Invoices
             builder.AppendLine("-----------------------------");
 
             foreach (var washStep in _invoice.WashProgram.GetWashSteps())
-                builder.AppendLine($" * {washStep.GetDescription()} - {_converter.Convert(washStep.Price, _currency)}");
+            {
+                if (_tracker.HasStepBeenApplied(washStep))
+                {
+                    builder.AppendLine($" * {washStep.GetDescription()} - {_converter.Convert(washStep.Price, _currency)}");
+                }
+            }
 
             builder.AppendLine("-----------------------------");
             builder.AppendLine($"Total price: {_invoice.Price}");
