@@ -6,11 +6,11 @@ namespace SOLIDWashTunnel.Tunnel.Steps
 {
     public class WashStepTracker : IWashStepTracker, IWashStepSubscriber
     {
-        private readonly Dictionary<IWashStep, bool> _map = new Dictionary<IWashStep, bool>();
+        private readonly Dictionary<int, bool> _stepIdMap = new Dictionary<int, bool>();
 
         public bool HasStepBeenApplied(IWashStep washStep)
         {
-            if (_map.TryGetValue(washStep, out bool applied))
+            if (_stepIdMap.TryGetValue(washStep.Id, out bool applied))
             {
                 return applied;
             }
@@ -18,14 +18,14 @@ namespace SOLIDWashTunnel.Tunnel.Steps
             return false;
         }
 
-        public void OnStepApplied(IWashStep step)
+        public void OnStepApplied(IWashStep washStep)
         {
-            _map.TryAdd(step, true);
+            _stepIdMap.TryAdd(washStep.Id, true);
         }
 
-        public void OnStepSkipped(IWashStep step)
+        public void OnStepSkipped(IWashStep washStep)
         {
-            _map.TryAdd(step, false);
+            _stepIdMap.TryAdd(washStep.Id, false);
         }
     }
 }

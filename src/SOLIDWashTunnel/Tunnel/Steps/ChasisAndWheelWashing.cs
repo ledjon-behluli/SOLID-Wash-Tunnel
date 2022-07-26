@@ -5,6 +5,7 @@ namespace SOLIDWashTunnel.Tunnel.Steps
 {
     public class ChasisAndWheelWashing : WashStep
     {
+        public override int Id => 2;
         public override int CleaningFactor => 3;
         public override Money Price => Money.Create(1.5m);
 

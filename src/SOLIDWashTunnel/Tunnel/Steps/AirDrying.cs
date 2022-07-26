@@ -5,6 +5,7 @@ namespace SOLIDWashTunnel.Tunnel.Steps
 {
     public class AirDrying : WashStep
     {
+        public override int Id => 1;
         public override int CleaningFactor => 1;
         public override Money Price => Money.Create(0.5m);
 

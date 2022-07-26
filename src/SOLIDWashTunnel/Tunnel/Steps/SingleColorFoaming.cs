@@ -5,6 +5,7 @@ namespace SOLIDWashTunnel.Tunnel.Steps
 {
     public class SingleColorFoaming : WashStep
     {
+        public override int Id => 5;
         public override int CleaningFactor => 1;
         public override Money Price => Money.Create(1.1m);
 

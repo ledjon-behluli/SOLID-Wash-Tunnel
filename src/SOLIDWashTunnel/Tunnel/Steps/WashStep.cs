@@ -30,6 +30,7 @@ namespace SOLIDWashTunnel.Tunnel.Steps
 
     public interface IWashStep : IWashAction
     {
+        int Id { get; }
         Money Price { get; }
 
         IWashStep NextStep(IWashStep washStep);
@@ -39,6 +40,7 @@ namespace SOLIDWashTunnel.Tunnel.Steps
     public abstract class WashStep : IWashStep
     {
         public abstract int CleaningFactor { get; }
+        public abstract int Id { get; }
         public abstract Money Price { get; }
 
         private IWashStep nextStep;
