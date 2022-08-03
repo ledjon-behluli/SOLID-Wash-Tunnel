@@ -5,12 +5,12 @@ using SOLIDWashTunnel.ClientFacing;
 
 namespace SOLIDWashTunnel.Tunnel.States
 {
-    public class FreeState : IWashTunnelState
+    public class AvailableState : IWashTunnelState
     {
         private readonly IWashTunnel _washTunnel;
         private readonly IWashStepNotifier _notifier;
 
-        public FreeState(
+        public AvailableState(
             IWashTunnel washTunnel,
             IWashStepNotifier notifier)
         {
@@ -32,7 +32,7 @@ namespace SOLIDWashTunnel.Tunnel.States
                 _notifier.Notify(new WashStepResult(action as IWashStep, status)
             ));
 
-            _washTunnel.TransitionState(new FreeState(_washTunnel, _notifier));
+            _washTunnel.TransitionState(new AvailableState(_washTunnel, _notifier));
         }
     }
 }

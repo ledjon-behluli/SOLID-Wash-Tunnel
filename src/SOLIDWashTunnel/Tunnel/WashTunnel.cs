@@ -17,7 +17,7 @@ namespace SOLIDWashTunnel.Tunnel
             IWashStepNotifier notifier)
         {
             _transmitter = transmitter;
-            _state = new FreeState(this, notifier);
+            _state = new AvailableState(this, notifier);
         }
 
         public void Wash(IVehicle vehicle, IWashProgram program)
@@ -28,7 +28,7 @@ namespace SOLIDWashTunnel.Tunnel
         public void TransitionState(IWashTunnelState state)
         {
             _state = state;
-            if (state is FreeState)
+            if (state is AvailableState)
             {
                 _transmitter.Transmit(new VehicleReadySignal());
             }
