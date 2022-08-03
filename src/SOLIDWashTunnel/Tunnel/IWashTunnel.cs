@@ -6,7 +6,7 @@ namespace SOLIDWashTunnel.Tunnel
 {
     public interface IWashTunnel
     {
+        IWashTunnelState State { get; set; }
         void Wash(IVehicle vehicle, IWashProgram program);
-        void TransitionState(IWashTunnelState state);
     }
 }

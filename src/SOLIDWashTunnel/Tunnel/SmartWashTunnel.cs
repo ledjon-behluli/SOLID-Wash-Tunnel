@@ -28,6 +28,12 @@ namespace SOLIDWashTunnel.Tunnel
         private readonly ISignalTransmitter _transmitter;
         private readonly IDirtinessSensor _sensor;
 
+        public IWashTunnelState State
+        {
+            get => _washTunnel.State;
+            set => _washTunnel.State = value;
+        }
+
         public SmartWashTunnel(
             IWashTunnel washTunnel,
             ISignalTransmitter transmitter,
@@ -47,11 +53,6 @@ namespace SOLIDWashTunnel.Tunnel
             }
 
             _washTunnel.Wash(vehicle, program);
-        }
-
-        public void TransitionState(IWashTunnelState state)
-        {
-            _washTunnel.TransitionState(state);
         }
     }
 }
