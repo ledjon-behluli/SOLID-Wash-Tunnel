@@ -9,8 +9,8 @@ namespace SOLIDWashTunnel.ClientFacing
     *
     * Reason: 
     *   Separate an algorithm from an object structure on which it operates.
-    *   We are sepparating the IWashAction from the IVehicle, because the wash action simple executes 
-    *   and does not care about wether it reaches the vehicle or not (like a stream of watter for exmp).
+    *   We are sepparating the IWashAction from the IVehicle, because the wash action simply executes 
+    *   and does not care about wether it reaches the vehicle or not (like a stream of water for example).
     *   
     *   IWashAction - Is the 'visitor' since it acts on the IVehicle.
     *   IVehicle - Is the 'abstract visited element', since it accepts an action from the visitor.
