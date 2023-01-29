@@ -33,7 +33,6 @@ namespace SOLIDWashTunnel.Tunnel.States
 
             _washTunnel.State = new BusyState();
 
-            _transmitter.Transmit(new VehicleReadySignal());
             IWashStep[] washSteps = program.GetWashSteps().ToArray();
 
             for (int i = 0; i < washSteps.Length - 1; i++)
@@ -46,6 +45,7 @@ namespace SOLIDWashTunnel.Tunnel.States
             ));
 
             _washTunnel.State = new AvailableState(_washTunnel, _transmitter, _notifier);
+            _transmitter.Transmit(new VehicleReadySignal());
         }
     }
 }
