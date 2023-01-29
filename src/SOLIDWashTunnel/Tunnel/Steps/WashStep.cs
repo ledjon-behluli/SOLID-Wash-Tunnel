@@ -54,7 +54,7 @@ namespace SOLIDWashTunnel.Tunnel.Steps
 
         public void Visit(IVehicle vehicle)
         {
-            vehicle.Dirtiness = -CleaningFactor;
+            vehicle.Dirtiness =- CleaningFactor;
         }
 
         public virtual void Act(IVehicle vehicle, Action<IWashStep, bool> callback)
