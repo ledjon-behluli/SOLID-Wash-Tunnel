@@ -33,6 +33,7 @@ namespace SOLIDWashTunnel.Tunnel.Steps
         int Id { get; }
         Money Price { get; }
 
+        void Act(IVehicle vehicle, Action<IWashStep, bool> callback);
         IWashStep NextStep(IWashStep washStep);
         string GetDescription();
     }
@@ -51,7 +52,12 @@ namespace SOLIDWashTunnel.Tunnel.Steps
             return nextStep;
         }
 
-        public virtual void Act(IVehicle vehicle, Action<IWashAction, bool> callback)
+        public void Visit(IVehicle vehicle)
+        {
+            vehicle.Dirtiness = -CleaningFactor;
+        }
+
+        public virtual void Act(IVehicle vehicle, Action<IWashStep, bool> callback)
         {
             if (nextStep != null)
             {

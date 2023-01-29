@@ -4,7 +4,7 @@ namespace SOLIDWashTunnel.Customers
 {
     public abstract class Car : IVehicle
     {
-        public int Dirtiness { get; private set; }
+        public int Dirtiness { get; set; }
         public PaintFinishType FinishType { get; }
 
         public Car(int dirtiness, PaintFinishType finishType)
@@ -15,7 +15,7 @@ namespace SOLIDWashTunnel.Customers
 
         public void Accept(IWashAction action)
         {
-            Dirtiness -= action.CleaningFactor;      // With each wash action we decrease the dirtiness a.k.a we make the vehicle cleaner.
+            action.Visit(this);
         }
     }
 

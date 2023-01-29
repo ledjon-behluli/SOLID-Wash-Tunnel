@@ -9,7 +9,7 @@ namespace SOLIDWashTunnel.Tunnel.Steps
         public override int CleaningFactor => 2;
         public override Money Price => Money.Create(2.2m);
 
-        public override void Act(IVehicle vehicle, Action<IWashAction, bool> callback)
+        public override void Act(IVehicle vehicle, Action<IWashStep, bool> callback)
         {
             if (vehicle.FinishType != PaintFinishType.Matte)
             {

@@ -9,7 +9,7 @@ namespace SOLIDWashTunnel.Tunnel.Steps
         public override int CleaningFactor => 5;
         public override Money Price => Money.Create(0.3m);
 
-        public override void Act(IVehicle vehicle, Action<IWashAction, bool> callback)
+        public override void Act(IVehicle vehicle, Action<IWashStep, bool> callback)
         {
             vehicle.Accept(this);
             callback.Invoke(this, true);
